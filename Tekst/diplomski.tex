@@ -34,9 +34,12 @@ U ovom poglavlju opisuje se problem bojanja grafova i njegova primjena u telekom
 \section{Tehnički opis problema}
 
 Za shvaćanje problema dovoljno je pretpostaviti da postoji korisnikova oprema (što je najčešće mobilni uređaj) i bazna stanica. Bazne stanice geografski su statične, za razliku od mobilnih uređaja.
-Radio pristupna mreža \engl{Radio Access Network} (RAN) dio je telekomunikacijskog sustava i nalazi se između opreme korisnika i jezgre mreže. Ne ulazeću u detalje, za ovaj problem dovoljno je reći da je to bazna stanica na koju se spaja korisnikova oprema (tj. mobilni uređaj).
+Ono što se u ovom radu naziva baznom stanizom je radio pristupna mreža \engl{Radio Access Network} (\emph{RAN}). \emph{RAN} dio je telekomunikacijskog sustava i nalazi se između opreme korisnika i jezgre mreže. To je sloj u mreži koji je zaslužan za prenošenje komunikacije između mobilnog uređaja do antene i od antene do drugog mobilnog uređaja. 
 
-Za što kvalitetnji rad mreže potrebno je optimirati parametre \emph{RAN}-a. Jedan od parametra je \emph{scrambling} kod. 
+Za što kvalitetnji rad mreže potrebno je optimirati parametre \emph{RAN}-a. Jedan od parametra je \emph{scrambling} k\^{o}d. \emph{Scrambling} k\^{o}d međuostalim služi kako bi mobilni uređaj mogao razlikovati bazne stanice. Zbog toga je potrebno svakoj baznoj stanici pridružiti različit k\^{o}d. Problem je u tome što je dostupno samo 512 različitih kodova. To znači da neke bazne stanice moraju imati isti k\^{o}d (ako se u sustavu nalazi više od 512 baznih stanica). Ako neke dvije bazne stanice imaju isti k\^{o}d i mobilni uređaj se nalazi u dosegu signala od obje stanice, tada ne zna s kojom baznom stanicom komunicira te pada kvaliteta usluge.
+
+Potrebno je dodjeliti \emph{scrambling} k\^{o}dove tako da dvije bazne stanice koje mogu biti istovremeno vezane za jedan mobilni uređaj nemaju isti k\^{o}d ili ako je to nemoguće smanjiti, dodjeliti k\^{o}dove tako da je negativan utjecaj na kvalitetu usluge što manji. Postoje još neka tehnička ograničenja koja je potrebno uvažiti, a biti će navedena u nastavku.
+
 
 
 \section{Matematički opis problema}
