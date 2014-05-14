@@ -135,7 +135,7 @@ Pretpostavimo da je graf \emph{G} \textbf{k-obojiv}. Definiramo skupove $S_i$ ta
 Drugi smjer dokazuje se tako što se pretpostavi da postoji \textbf{legalna k-dioba} grafa \textbf{G} na skupove $S_i$. Kako je svaki skup indeksiran s indeksom \textbf{i}, tada svakom čvoru koji se nalazi u skupu $S_i$ dodjelimo boju \textbf{i}. Kako su skupovi $S_i$ prema pretpostavci disjunktni, neprazni i nezavisni tada ne postoje dva čvora koja bi imala istu boju. Q.E.D
 \end{proof}
 
-\subsection{Definicije računske teorije složenosti}
+\subsubsection{Definicije računske teorije složenosti}
 
 \begin{definition}
 \textbf{Problem odluke} je problem koji uvijek ima odgovor \textbf{da} ili \textbf{ne}. Primjerice, problem da li je graf točno \textbf{k-obojiv} je problem odluke. Problem traženja kromatskog broja grafa nije problem odluke, jer tražimo točan broj \textbf{k}.
@@ -157,11 +157,114 @@ Problem odluke za koje postoje algoritmi koji daju odgovor, a čije vrijeme izvr
 Kažemo da je problem \textbf{NP-težak} akko postoji \textbf{NP-potpun problem} koji se može polinomno reducirati na njega.
 \end{definition}
 
-%TODO Komentar na NP
+Problem odluke za koji postoji algoritam čije trajanje ovisi polinomno o veličini ulaznih podataka tada je to \textbf{P problem}. Ako za neki problem odluke ne možemo pronaći algoritam čije vrijeme izvođenja ovisi polinomno o veličini ulaznih podataka, ali točnost rješenja možemo provjeriti u polinomnom vremenu tada je to \textbf{NP problem}. \textbf{NP-potpun problem} je problem odluke čiji algoritam možemo iskoristiti da bi rješili sve \textbf{NP probleme} tako da koristimo polinoman broj poziva tog algoritma. Općeniti problemi (koji ne moraju biti problemi odluke) nazivaju se \textbf{NP-teški problemi} ako postoji problem u klasi \textbf{NP-potpunih problema} koji se može rješiti pomoću polinomnog broja poziva algoritma za promatrani \textbf{NP-teški} problem. Odnost \textbf{P} i \textbf{NP} klasa još je uvijek otvoren problem ($P=NP$ ili $P\subset NP$). Kada bi se moglo dokazati da je neki \textbf{NP-potpun} problem moguće rješiti u polinomnom vremenu, tada bi se svi \textbf{NP problemi} mogli rješiti u polinomnom vremenu, pa bi klase \textbf{P} i klase \textbf{NP} bile jednake. Ako se pak pokaže da za neki \textbf{NP} problem ne postoji algoritam čije izvršavanje ovisi polinomno o ulaznim podacima, tada bi klasa \textbf{P} bila pravi podskup od klase \textbf{NP}.  
 
-Predhodne definicije služe kako bi se uskladili nazivi za matematičke pojmove koji će se koristiti u radu. Sve definicije uzete su iz [literatura], gdje se međuostalim mogu naći i druge definicije i teoremi vezani za teoriju grafova i računsku teoriju složenosti.
+\subsubsection{\emph{No free lunch} teorem za optimizacijske algoritme}
+
+\begin{definition}
+\textbf{Optimizacija} je grana matematike koja proučava pronalaženje ekstrema funkcija.
+\end{definition}
+
+\begin{definition}
+\textbf{Kombinatorna optimizacija} je grana optimizacije, gdje je domena funkcije skup s konačnim brojem elemenata.
+\end{definition}
+
+\begin{definition}
+Konkretna funkcija koja se proučava naziva se \textbf{funkcija cilja}.
+\end{definition}
+
+\begin{definition}
+Funkcije cilja koje se promatraju imaju diskretnu i konačnu domenu i kodomenu. Iako se kao elementi koodomene mogu pojaviti realni brojevi, zbog toga što su računala diskretni strojevi s konačno mnogo memorije, to je samo konačni podskup realnih brojeva.
+\end{definition}
+
+\begin{theorem}
+Funkcija cilja definira se kao: $f : \mathbb{X} \rightarrow \mathbb{Y}$, gdje su skupovi $\mathbb{X}$ i $\mathbb{Y}$ diskretni i konačni. Tada je broj svih mogućih funkcija jednak $|\mathbb{F}| = |\mathbb{Y}|^{|\mathbb{X}|}$. 
+\end{theorem}
+
+\begin{proof}
+Za svaki element domene možemo odabrati točno $|\mathbb{Y}|$ elemenata koodomene. 
+\begin{equation}
+|\mathbb{F}| = \prod_{j=1}^{|\mathbb{X}|} |\mathbb{Y}| =  |\mathbb{Y}|^{|\mathbb{X}|}
+\end{equation}
+\end{proof}
+
+\begin{definition}
+Vremenski niz $d_m$ je niz parova domene i kodomene.
+\begin{equation}
+d_m = \left \{ (d_m^x(1), d_m^y(1)), (d_m^x(2), d_m^y(2)), ..., (d_m^x(m), d_m^y(m))\right \}
+\end{equation} 
+Iz nekog niza $d_m$ može se izvući samo niz elemenata domene i to se označava s $\mathbf{d_m^x}$ ili samo niz elemenata kodomene što se označava s $\mathbf{d_m^y}$.
+\end{definition}
+
+\begin{definition}
+Prostor svih vremenskih nizova veličine $m$: $\mathbb{D}_m = (\mathbb{X} \times \mathbb{Y})^m$, a prostor svih vremenskih nizova maksimalne veličine $m$ je: $\mathbb{D} = \bigcup_{m\ge0}\mathbb{D}_m$.
+\end{definition}
+
+\begin{definition}
+Optimizacijski algoritam $a$ definira se kao: $a : d \in \mathbb{D} \rightarrow \left \{x | x \notin d_m^x \right \}$
+\end{definition}
+
+Optimizacijski algoritam preslikava neki vremenski niz (podatke iz predhodnih koraka izvođenja) u novu vrijednost domene. S time da ta vrijednost domene ne smije biti već viđena. Ovo ograničenje koristi se u dokazu teorema, ali u praksi se često mogu javiti slučajevi gdje se više puta računa vrijednost funkcije za isti element domene.
+
+\begin{definition}
+\textbf{Heuristikom} se naziva optimizacijski algoritam koji ne mora kao rezultat dati globalni ekstram \textbf{funkcije cilja}, ali daje dovoljno dobre rezultate u svrhu bržeg kraćeg vremenskog izvođenja. 
+\end{definition}
+
+\begin{definition}
+\textbf{Metaheuristikom} naziva se familija optimizacijskih algoritama, čije konkretno izvođenje ovisi o njegovim parametrima.
+\end{definition}
+
+\begin{definition}
+Skup svih dozvoljenih rješenja u optimizaciji nazivamo \textbf{prostor pretrage}.
+\end{definition}
+
+\begin{theorem}
+\textbf{"No free lunch" teorem za optimizaciju} - Neka su $a_1$ i $a_2$ dva različita heuristička algoritma koji traže ekstrem funkcije. Funkcije su predstavljene crnom kutijom. Tada vrijedi ova jednakost:
+\begin{equation}
+	\sum_{f}P(d_m^y|f,m,a_1) = \sum_{f}P(d_m^y|f,m,a_2)
+\end{equation}
+\end{theorem}
+
+Dokaz teorema može se pronaću u [literatura].
+
+Kako se ne zna ništa više o funkcijama (npr. simbolički zapis) već samo ulazni i izlazni parovi ne može se koristiti nikakvo unutarnje znanje koje bi nekom algoritmu dalo prednost. Ako je poznat broj koraka $m$ tada za bilo koji algoritam, sume vjerojatnosti su međusobno jednake, pri čemu se gleda vjerojatnost da se pojavio neki niz izlaznih vrijednosti funkcije $d_m^y$.
+Iz niza izlaznih vrijednost $d_m^y$ može se lako izvući minimalna ili maksimalna vrijednost koja je tada konačan izlaz algoritma. Dakle ne postoji algoritam koji bi bio dominantniji za sve funkcije cilja $f$. Zbog toga je potrebno svaki optimizacijski problem promatrati veoma usko i koristiti dodatne informacije o samoj funkciji $f$.
+
+Predhodne definicije i teoremi služe kako bi se uskladili nazivi za matematičke pojmove koji će se koristiti u radu. Sve definicije uzete su iz [literatura], gdje se međuostalim mogu naći i druge definicije i teoremi vezani za teoriju grafova, računsku teoriju složenosti i "\emph{No free lunch}" teorem.
 
 \subsection{Bojanje težinskih grafova}
+
+Za navedeni telekomunikacijski problem potrebno je odabrati prikladan matematički model. Već je spomenuto da se bazne stanice modeliraju čvorovima u grafu. Postavlja se pitanje što predstavlja brid u tome grafu. Očigledno je da jedna bazna stanice utjeće na drugu baznu stanicu, tj. mobilni uređaj istovremeno vidi više baznih stanica. To znači da bi brid mogao predstavljati relaciju da li neka bazna stanica vidi drugu baznu stanicu. Ali problem se može razviti i korak dalje. Nije svejedno na kojoj su udaljenosti bazne stanice, te koja je njihova snaga. To znači da dvije bliže (ili jače) bazne stanice više utjeću jedna na drugo nego što to čine dvije udaljenije. Idaja je svakom bridu dodijeliti težinu koja predstavlja neku mjeru koliko jedna bazna stanica utjeće na drugu. To znači da brid između dva čvora daje mjeru međusobnog utjecaja čvorova. Ako je utjecaj premali (tehnički nevidljiv), tada brid između ta dva čvora ne postoji.
+
+Na tako zadanom težinskom grafu potrebno je napraviti bojanje grafa tako da se poštuju tehnički uvjeti. Sad se pojavio problem jer bojanje težinskog grafa nije dobro definiran problem. Zato se klasični problem bojanja grafova poopćuje:
+
+\begin{definition}
+Bojanje težinskog grafa je optimizacijski problem u kojem se minimizira funkcija cilja:
+\begin{equation}
+f(\phi) = \sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i)
+\end{equation}
+, gdje je $\omega(e_i)$ težina brida, a $R$ funkcija koja ima vrijednost $1$ ako je $e_i$ konfliktan brid ili $0$ inače. Funkcija $f$ ovisi o bojanju grafa, tj. funkcija cilja jednaka je sumi težina konfliktnih bridova.
+\end{definition}
+
+Zbog tehničkih ograničenja potrebno je uvesti još malo matematičkih detalja koji pokrivaju te slučajeve.
+
+\begin{definition}
+Funkcija $\phi$ definira se kao funkcija koja svakom ne nepromjenjivom čvoru $v$ grafa \textbf{G} pridružuje prirodan broj iz skupa dopuštenih boja za taj čvor.
+\end{definition}
+
+\begin{definition}
+Ako su dva čvora \textbf{nepromjenjiva} spojena bridom i imaju iste boje, tada smatramo da taj brid nije \textbf{konfliktan}.
+\end{definition}
+
+Razlog ovakvoj definiciji je to što bridovi koji spajaju dva nepromjenjiva čvora različitih boja ne mogu se nikada poboljšati, pa shodno tome neovisni su o funkciji bojanja grafa $\phi$.
+
+\begin{definition}
+Ako su dva čvora koja spadaju u suprotne klase spojena bridom, tada se takav brid ne smatramo \textbf{konfliktnim}.
+\end{definition}
+
+Tehnički takva dva čvora ne utjeću jedan na drugog pa tada nema potrebe to ugrađivati u funkciju cilja.
+
+%TODO
 
 \subsection{Analiza problema bojanja težinskih grafova}
 
