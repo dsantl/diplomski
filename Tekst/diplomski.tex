@@ -1,5 +1,19 @@
 \documentclass[times, utf8, diplomski, numeric]{fer}
-\usepackage{booktabs}
+\usepackage{booktabs, url, hyperref}
+\usepackage{amsthm}
+
+\hypersetup{
+   colorlinks,
+   citecolor=black,
+   filecolor=black,
+   linkcolor=black,
+   urlcolor=black
+}
+
+
+\newtheorem{definition}{Definicija}
+\newtheorem{theorem}{Teorem}
+
 
 \begin{document}
 
@@ -40,9 +54,116 @@ Za što kvalitetnji rad mreže potrebno je optimirati parametre \emph{RAN}-a. Je
 
 Potrebno je dodjeliti \emph{scrambling} k\^{o}dove tako da dvije bazne stanice koje mogu biti istovremeno vezane za jedan mobilni uređaj nemaju isti k\^{o}d ili ako je to nemoguće smanjiti, dodjeliti k\^{o}dove tako da je negativan utjecaj na kvalitetu usluge što manji. Postoje još neka tehnička ograničenja koja je potrebno uvažiti, a biti će navedena u nastavku.
 
-
+Iako postoji 512 različitih k\^{o}dova, svaka bazna stanica ima ograničen skup k\^{o}dova koje može koristiti. Dakle, za svaku baznu stanicu zadan je skup k\^{o}dova. Za neke bazne stanice postoji svojstvo nepromjenjivost, što znači da k\^{o}d koji je trenutno zadan za tu baznu stanicu mora ostati takav. Takve se vrste baznih stanica nazivaju \textbf{nepromjenjivima}. Početno stanje mreže definirano je k\^{o}dovima koji su pridjeljeni nekoj baznoj stanici. Osim toga za svaku baznu stanicu poznata je njezina vrsta. Vrsta može biti označena sa slovima: \emph{A, B ili C}. Bazne stanice različitih vrsta ne utjeću jedna na drugu.
 
 \section{Matematički opis problema}
+
+Potrebno je modelirati problem u kojem postoji \emph{bazna stanica} i veze između istih, koje predstavljaju mjeru u kojoj jedna bazna stanica utjeće na drugu. Jedan od mogućih modela je graf. Čvorovi će predstavljati bazne stanice, a jakost između dvije bazne stanice biti će modelirano pomoću težine brida. U nastavku bazna stanica nazivat će se čvorom. Nad ovako postavljenim grafom problem je dodjeliti k\^{o}dove tako da ako je moguće nema bridova koji na svojim krajevima imaju čvor s istim k\^{o}dom. Problem je poznat pod nazivom \emph{bojanje grafa}. Kako je uobičajeno pričati o bojama čvora (a ne o k\^{o}dovima) od sad pa nadalje \emph{scrambling} k\^{o}d nazivat će se bojom čvora. U nastavku će prvo biti opisan klasičan problem bojanja grafova, gdje se promatraju beztežinski grafovi (oni čiji bridovi nemaju težine). Nakon toga problem se poopćuje na težinske grafove, čime se modelira predhodno opisan problem.
+
+\subsection{Definicije za klasičan problem bojanja grafova}
+
+Najprije se definiraju matematički pojmovi. Nakon toga formalno je opisan problem bojanja grafova. Uz to se nadovezuje teorija izračunljivosti.
+
+\subsubsection{Pojam grafa}
+
+\begin{definition}
+Jednostavni graf \textbf{G} sastoji se od nepraznog konačnog skupa \textbf{V(G)}, čije elemente nazivamo čvorovi grafa \textbf{G} i konačnog skupa \textbf{E(G)} različitih dvočlanih podskupova \textbf{V(G)} koje zovemo bridovi.
+\end{definition}
+
+\begin{definition}
+Skup vrhova koji su susjedni vrhu \textbf{v} zovemo susjedstvo vrha \textbf{v} i označavamo s oznakom \textbf{H(v)}.
+\end{definition}
+
+\begin{definition}
+Stupanj vrha \textbf{v} grafa \textbf{G} jednak je broju bridova koji su incidentni s \textbf{v}. Označavamo ga s \textbf{d(v)}.
+\end{definition}
+
+\begin{definition}
+Neka je \textbf{G} jednostavan graf i $\mathbf{\omega}$ funkcija $\mathbf{\omega : E \rightarrow \mathbb{R}}$. Par \textbf{(G, $\omega$)} naziva se težinski graf. Pri čemu funkcija $\omega$ svakom bridu iz \textbf{G} dodjeljuje jedan element iz skupa realnih brojeva. Neka je \textbf{e} neki brid grafa \textbf{G}, njegova težina označena je s $\omega(\mathbf{\mathit{e}})$.	 
+\end{definition}
+
+
+\subsubsection{Definicija bojanja grafova}
+
+\begin{definition}
+Definiramo funkciju $\phi : V(G) \rightarrow \mathbb{N}$, koja svakom čvoru u grafu pridružuje jedan prirodan broj koji $\mathbf{\phi(v)}$, gdje je $\mathbf{v}$ čvor u grafu $\mathbf{G}$. Broj $\mathbf{\phi(v)}$ nazivamo boja čvora, a funkciju $\phi$ nazivamo \textbf{bojanje grafa}. 
+\end{definition}
+
+\begin{definition}
+Bojanje grafa s najviše \textbf{k} boja nazivamo \textbf{k-bojanje} grafa. 
+\end{definition}
+
+\begin{definition}
+Ako se graf može obojati s najviše \textbf{k} boja tada takvo bojanje nazivamo \textbf{legalno k-bojanje} grafa. 
+\end{definition}
+
+\begin{definition}
+Graf je \textbf{k-obojiv} akko postoji legalno k-bojanje grafa.
+\end{definition}
+
+
+\begin{definition}
+Ako je graf G \textbf{k}-obojiv, ali nije \textbf{(k-1)}-obojiv tada kažemo da je \textbf{k} kromatski broj grafa G, gdje se koristi oznaka $\chi(G)=k$  
+\end{definition}
+
+
+\begin{definition}
+Podskup skupa V(G) nazivamo \textbf{nezavisni skup} ako u njemu ne postoje dva čvora koja su susjedna.  
+\end{definition}
+
+\begin{definition}
+Brid koji spaja dva čvora iste boje nazivamo \textbf{konfliktni brid}.
+\end{definition}
+
+\begin{definition}
+Dva čvora koja spaja konfliktni brid nazivamo \textbf{konfliktnim čvorovima}.
+\end{definition}
+
+\begin{definition}
+Particiju skupa V(G) na k disjunktnih nepraznih podskupova $V_1,..., V_k$
+ tako da vrijedi $V(G) = \bigcup_{j=1}^{k}V_j$ zovemo \textbf{k-dioba} grafa G. Ako su podskupovi  $V_1 ,..., V_k$  ujedno i nezavisni skupovi onda se to naziva \textbf{legalna k-dioba} grafa G.
+\end{definition}
+
+\begin{theorem}
+\label{a}
+Graf \textbf{G} je \textbf{k-obojiv} akko postoji \textbf{legalna k-dioba} grafa \textbf{G}.
+\end{theorem}
+
+\begin{proof}
+Pretpostavimo da je graf \emph{G} \textbf{k-obojiv}. Definiramo skupove $S_i$ tako da čvor grafa $\mathbf{v}$ pripada skupu $S_i$ ako je obojan bojom $\mathbf{i}$. Takvi skupovi su neprazni i disjunktni, te unija skupova $S_i$ čini skup svih vrhova grafa \emph{G}. Kako je G \textbf{k-obojiv} tada ne postoji boja zbog koje bi neki brid bio konfliktan pa sljedi da je podjela na skupove $S_i$ \textbf{legalna k-dioba} grafa G jer su skupovi $S_i$ nezavisni. 
+
+Drugi smjer dokazuje se tako što se pretpostavi da postoji \textbf{legalna k-dioba} grafa \textbf{G} na skupove $S_i$. Kako je svaki skup indeksiran s indeksom \textbf{i}, tada svakom čvoru koji se nalazi u skupu $S_i$ dodjelimo boju \textbf{i}. Kako su skupovi $S_i$ prema pretpostavci disjunktni, neprazni i nezavisni tada ne postoje dva čvora koja bi imala istu boju. Q.E.D
+\end{proof}
+
+\subsection{Definicije računske teorije složenosti}
+
+\begin{definition}
+\textbf{Problem odluke} je problem koji uvijek ima odgovor \textbf{da} ili \textbf{ne}. Primjerice, problem da li je graf točno \textbf{k-obojiv} je problem odluke. Problem traženja kromatskog broja grafa nije problem odluke, jer tražimo točan broj \textbf{k}.
+\end{definition}
+
+\begin{definition}
+Problem odluke za koje postoje algoritmi koji daju odgovor, a čije vrijeme izvršavanje ovisi polinomno o veličini ulaznih podataka spadaju u \textbf{klasu P}.
+\end{definition}
+
+\begin{definition}
+\textbf{Problem odluke} spada u klasu \textbf{NP problema} ako se točnost njegovog rješenja može ispitati u polinomnom vremenu. 
+\end{definition}
+
+\begin{definition}
+\textbf{Problem odluke} spada u klasu \textbf{NP-potpunih problema} ako spada u \textbf{klasu NP} problema i koji ima svojstvo da se svaki drugi problem iz \textbf{klase NP} može polinomno reducirati na njega. 
+\end{definition}
+
+\begin{definition}
+Kažemo da je problem \textbf{NP-težak} akko postoji \textbf{NP-potpun problem} koji se može polinomno reducirati na njega.
+\end{definition}
+
+%TODO Komentar na NP
+
+Predhodne definicije služe kako bi se uskladili nazivi za matematičke pojmove koji će se koristiti u radu. Sve definicije uzete su iz [literatura], gdje se međuostalim mogu naći i druge definicije i teoremi vezani za teoriju grafova i računsku teoriju složenosti.
+
+\subsection{Bojanje težinskih grafova}
+
+\subsection{Analiza problema bojanja težinskih grafova}
 
 \chapter{Infrastruktura}
 
