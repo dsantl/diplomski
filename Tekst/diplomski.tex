@@ -56,6 +56,28 @@ Potrebno je dodjeliti \emph{scrambling} k\^{o}dove tako da dvije bazne stanice k
 
 Iako postoji 512 različitih k\^{o}dova, svaka bazna stanica ima ograničen skup k\^{o}dova koje može koristiti. Dakle, za svaku baznu stanicu zadan je skup k\^{o}dova. Za neke bazne stanice postoji svojstvo nepromjenjivost, što znači da k\^{o}d koji je trenutno zadan za tu baznu stanicu mora ostati takav. Takve se vrste baznih stanica nazivaju \textbf{nepromjenjivima}. Početno stanje mreže definirano je k\^{o}dovima koji su pridjeljeni nekoj baznoj stanici. Osim toga za svaku baznu stanicu poznata je njezina vrsta. Vrsta može biti označena sa slovima: \emph{A, B ili C}. Bazne stanice različitih vrsta ne utjeću jedna na drugu.
 
+\subsection{Ulazni i izlazni podaci}
+
+Kao ulaz algoritam dobije inicjalno stanje mreže. Odnosno za svaku baznu stanicu poznat je trenutni k\^{o}d koji koristi i sva pravila koja moraju biti zadana. Izlaz algoritma je popis oznaka baznih stanica i za svaku od oznaka pripadajući k\^{o}d.
+
+\subsubsection{Ulazni podaci}
+
+\begin{enumerate}
+	\item Popis i definicija domene boja (skupova boja)
+	\item Popis čvorova (baznih stanica)
+		\begin{enumerate}
+			\item Oznaka čvora
+			\item Vrsta čvora (grupa) - A, B ili C
+			\item Oznaka domene za boju čvora (koji skup boja koristi)
+			\item Početna boja za čvor
+			\item Oznaka da li je čvor nepromjenjiv
+		\end{enumerate}
+\end{enumerate} 
+
+\subsubsection{Izlazni podaci}
+
+Kao izlaz algoritma koristi se par brojeva $(i, c)$ gdje je $i$ oznaka za čvor, a $c$ je boja čvora.
+
 \section{Matematički opis problema}
 
 Potrebno je modelirati problem u kojem postoji \emph{bazna stanica} i veze između istih, koje predstavljaju mjeru u kojoj jedna bazna stanica utjeće na drugu. Jedan od mogućih modela je graf. Čvorovi će predstavljati bazne stanice, a jakost između dvije bazne stanice biti će modelirano pomoću težine brida. U nastavku bazna stanica nazivat će se čvorom. Nad ovako postavljenim grafom problem je dodjeliti k\^{o}dove tako da ako je moguće nema bridova koji na svojim krajevima imaju čvor s istim k\^{o}dom. Problem je poznat pod nazivom \emph{bojanje grafa}. Kako je uobičajeno pričati o bojama čvora (a ne o k\^{o}dovima) od sad pa nadalje \emph{scrambling} k\^{o}d nazivat će se bojom čvora. U nastavku će prvo biti opisan klasičan problem bojanja grafova, gdje se promatraju beztežinski grafovi (oni čiji bridovi nemaju težine). Nakon toga problem se poopćuje na težinske grafove, čime se modelira predhodno opisan problem.
@@ -125,7 +147,7 @@ Particiju skupa V(G) na k disjunktnih nepraznih podskupova $V_1,..., V_k$
 \end{definition}
 
 \begin{theorem}
-\label{a}
+\label{thm:dioba}
 Graf \textbf{G} je \textbf{k-obojiv} akko postoji \textbf{legalna k-dioba} grafa \textbf{G}.
 \end{theorem}
 
@@ -259,14 +281,76 @@ Ako su dva čvora \textbf{nepromjenjiva} spojena bridom i imaju iste boje, tada 
 Razlog ovakvoj definiciji je to što bridovi koji spajaju dva nepromjenjiva čvora različitih boja ne mogu se nikada poboljšati, pa shodno tome neovisni su o funkciji bojanja grafa $\phi$.
 
 \begin{definition}
-Ako su dva čvora koja spadaju u suprotne klase spojena bridom, tada se takav brid ne smatramo \textbf{konfliktnim}.
+Ako su dva čvora koja spadaju u suprotne vrste spojena bridom, tada se takav brid ne smatramo \textbf{konfliktnim}.
 \end{definition}
 
 Tehnički takva dva čvora ne utjeću jedan na drugog pa tada nema potrebe to ugrađivati u funkciju cilja.
 
-%TODO
+U slučaju da je čvor obojan bojom koja nije u njegovoj domeni tada je potrebno dodati u funkciju cilja kaznu za takav slučaj. Iako po definiciji funckije bojanja grafa to nije moguće, zbog inicjalnog stanja boja koje algoritam primi kao ulaz može se dogoditi da boja čvora nije u njegovoj domeni. Stoga se definira proširena funkcija cilja kao:
 
-\subsection{Analiza problema bojanja težinskih grafova}
+\begin{definition}
+\begin{equation}
+\label{equ:funkcija_cilja}
+f(\phi) = \sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i) + \sum_{i=1}^{V(G)} C(v_i)
+\end{equation}
+Prva suma jednaka je već definiranoj funkciji cilja. Drugi član je suma funkcije $C$ po čvorovima, gdje funkcija $C$ ima vrijednst $\varepsilon$ ako je čvor $v_i$ krivo obojan ili $0$ ako je obojan bojom iz svoje domene.
+\end{definition}
+
+Za epsilon se odabire neki veliki pozitivan broj. U konkretnoj implementaciji koja se koristi u radu $\varepsilon=10000000$.
+
+\begin{definition}
+Smatra se da je bojanje \textbf{valjano} ako postotak promjene boja inicjalnog stanja ne prelazi prag od $\alpha$ posto.
+\end{definition}
+
+U konkretnom problemu $\alpha=66\%$.
+
+Sažetak problema kojeg modeliramo pomoću težinskog grafa glasi:
+\begin{itemize}
+	\item Svaki čvor može poprimiti jednu boju iz skupa dopuštenih boja za taj čvor
+	\item Svaki čvor spada u jednu grupu tj. vrstu (A, B ili C)
+	\item Neki čvorovi su definirani kao nepromjenjivi, njima se boja nikad ne smije mjenjati
+	\item Dodatan uvijet je da postotak promjenjenih čvorova naprema inicijalnom stanju ne smije biti veća od 66\%
+	\item Optimizacija se provodi nad funkcijom cilja definiranom formulom (\ref{equ:funkcija_cilja}).
+\end{itemize}
+
+\section{Analiza problema bojanja težinskih grafova}
+
+U ovom odjelku biti će analiziran zadani matematički problem optimizacije. U svakom koraku analize uspoređuju se klasičan problem bojanja grafova i bojanje težinskih grafova. Kreće se od analize prostora pretrage. Zatim se dokazuje u kojoj se klasi problemi nalaze. Na kraju se pokazuje da "\emph{No free lunch}" teorem vrijedi i za bojanje grafova i kakve posljedice donosi.
+
+\subsection{Prostor pretrage stanja}
+
+Kod klasičnog problema bojanja grafova analiziraju se dva problema. Prvi je odrediti da li se graf može pobojati s najviše $k$ boja, a drugi problem je odrediti najmanji takav $k$. Pretpostavimo za početak da provjeravano da li je graf \textbf{k-obojiv}. Pitanje je na koliko načina se graf može pobojati ako koristimo najviše \textbf{k} boja. Svaki čvor može poprimiti \textbf{k} boja. To znači da je ukupan broj bojanja $N$ jednak: 
+
+\begin{equation}
+N = k^{V(G)} 
+\end{equation}
+
+Valja primjetiti da u ovom brojanju veličine prostora stanja postoji više jednako vrijednih bojanja. U bojanju nije bitna točna boja, već je bitno da različiti skupovi čvorova imaju različite boje. Točno pitanje je na koliko načina možemo čvorove podijeliti u $k$ skupova (teorem \ref{thm:dioba}).  
+
+\begin{equation}
+N = \frac{k^{V(G)}}{k!}
+\end{equation}
+
+Za razliku od predhodnog razmatranja u ovom slučaju boje (tj. skupove) ne numeriramo, tj. njihov poredak nije bitan i zato se dijeli s $k!$. 
+
+Ako se zahtjeva da svaka od $k$ boja mora biti iskorištena, ekvivalentno da ni jedan od $k$ skupova ne smije biti prazan, tada je ukupan broj stanja nešto manji:
+
+\begin{equation}
+N = S(V(G), k) = \frac{1}{k!}\sum_{i=0}^{k} (-1)^i \binom{k}{i}(k-i)^{V(G)}  
+\end{equation}
+
+Oznaka $S(m,n)$ je za \emph{Stirlingov} broj druge vrste, gdje je $m$ broj različitih elemenata (čvorovi) koje smještamo u $n$ istovrsnih skupova boja, tako da svaka boja ima barem jedan čvor.
+
+Neka se promatra problem traženja kromatskog broja grafa $\chi(G)$, tj. minimalni broj boja $k$, a da se graf može legalno obojiti. Maksimalni broj za koji je to potrebno provjeriti je broj čvorova u grafu, zato jer u tom slučaju svaki čvor povezan je sa svakim drugim i svaki čvor mora imati svoju boju. Kromatski broj grafa je dakle ograničen odozgo s brojem čvorova. Za svaki broj $k$ do $V(G)$ treba provjeriti da li je graf \textbf{k-obojiv}. Ukupan broj stanja je:
+
+\begin{equation}
+N = B(V(G)) = \sum_{i=0}^{V(G)} S(V(G), i)
+\end{equation}
+
+Broj $B(n)$ naziva se \emph{Bellov} broj i on predstavlja broj načina na koje se skup od $n$ članova može podijeliti u neprazne podskupove.
+
+\subsection{Pozadina problema iz perspektive računske teorije složenosti}
+\subsection{Posljedica "\emph{No free lunch}" teorema}
 
 \chapter{Infrastruktura}
 
