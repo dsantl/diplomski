@@ -241,6 +241,7 @@ Skup svih dozvoljenih rješenja u optimizaciji nazivamo \textbf{prostor pretrage
 \end{definition}
 
 \begin{theorem}
+\label{thm:nofreelunch}
 \textbf{"No free lunch" teorem za optimizaciju} - Neka su $a_1$ i $a_2$ dva različita heuristička algoritma koji traže ekstrem funkcije. Funkcije su predstavljene crnom kutijom. Tada vrijedi ova jednakost:
 \begin{equation}
 	\sum_{f}P(d_m^y|f,m,a_1) = \sum_{f}P(d_m^y|f,m,a_2)
@@ -423,18 +424,30 @@ Broj stanja je manji jer se poštuje ograničenje da čvorovi mogu poprimiti nek
 
 \subsection{Pozadina problema iz perspektive računske teorije složenosti}
 
-Problem odluke da li je graf \textbf{k-obojiv} spada u klasu \textbf{NP-potpunih} problema. Traženje kromatskog broja grafa $a$ spada u klasu \textbf{NP-teških} problema. Dokazi se mogu pronaći u \cite{Garey:1974:SNP:800119.803884}. Potrebno je pokazati da postavljen optimizacijski problem bojanja grafa spada u klasu \textbf{NP-teških} problema. Problem sigurn ne može spadati u druge spomenute klase zato jer to nije problem odluke.
+Problem odluke da li je graf \textbf{k-obojiv} spada u klasu \textbf{NP-potpunih} problema. Traženje kromatskog broja grafa $\chi(G)$ spada u klasu \textbf{NP-teških} problema. Dokazi se mogu pronaći u \cite{Garey:1974:SNP:800119.803884}. Potrebno je pokazati da postavljen optimizacijski problem bojanja grafa spada u klasu \textbf{NP-teških} problema. Problem sigurno ne može spadati u druge spomenute (P, NP, NP-potpun) klase zato jer to nije problem odluke.
+Postupak dokazivanja da problem spada u klasu \textbf{NP-teških} problema ima nekoliko koraka. Prvi korak je pronalaženje nekog \textbf{NP-potpunog} ili \textbf{NP-teškog} problema koji će se koristiti u dokazu. Zatim se pokaže da je taj \emph{stari} problem moguće polinomno reducirati na problem za koji se dokazuje da je \textbf{NP-težak}. 
 
-...
+\begin{proof}
+Odaberemo \textbf{NP-potpun problem} koji ispituje da li je graf $G$ \textbf{k-obojiv}. Da bismo rješili taj problem koristimo zadani optimizacijski problem. Ulaz u optimizacijski algoritam međuostalim su graf $G$ i ograničenja boja za svaki od čvorova. Svakom čvoru daje se skup $\{1,2,...,k\}$ s bojama. Svim bridovima daje se težina $1$. Sada se pokreće crna kutija s optimizacijskim problemom koja će rješiti taj problem. Ako je rezultat optimizacije tj. funkcije cilja $f=0$, tada je graf \textbf{k-obojiv}, inače nije. U konstantnom vremenu možemo reducirati problem, iz čega sljedi da je optimizacijski problem \textbf{NP-težak}.  
+\end{proof}
 
-Iako je problem NP-potpun za odluku može imati više stanja... a ekvivalentni problem NP-hard ima više stanja (nejednakost u sumi).
-
-Heuristicke postupke jer optimizacija ne mora biti minimalna samo kvaliteta bolja.
-...
+Zanimljivo je primjetiti da \textbf{NP-potpun} problem k-obojivosti može imati više stanja od \textbf{NP-teškog} problema optimizacije. Što znači da je moguće da vrijeme izvršavanja optimizacije bue manje od vremena provjere k-obojivosti. Kako nije poznat odnos \emph{NP} i \emph{P} klase, za ovaj optimizacijski problem nameće se korištenje heuristika. U ovom tehničkom problemu nije potrebno do kraja minimizirati funkciju cilja, nego dobiti dovoljno malu vrijednost $f$ što će uzrokovati bolju kvalitetu mobilne mreže. 
 
 \subsection{Posljedica "\emph{No free lunch}" teorema}
 
-Dokazati da ako imamo ograničenu domenu da je to isto konačno i ovisi eksponencijalno i da se puno ne mjenja. Pogledati članak o free lunch teoremu i malo pisati o tome.
+U originalnom članku, gdje se dokazuje "\emph{No free lunch}" teorem [literatura], pretpostavlja se da sve funkcije cilja imaju iste domene i kodomene. Za problem bojanja grafova to nije tako. Funkcija cilja definirana je kao: $f:V(G) \rightarrow \mathbb{R}$, ali kako računalo ima konačnu memoriju tada je funkcija zapravo definirana kao: $f:V(G) \rightarrow \mathbb{Y}$, gdje je $\mathbb{Y}$ konačni podskup realnih brojeva koji se mogu prikazati na računalu. Problem za "\emph{No free lunch}" teorem je to da veličina domene funkcije cilja ovisi o broju čvorova grafa. Broj grafova je beskonačan, jer možemo uzeti proizvoljan broj čvorova, što znači da postoji i beskonačan broj mogućih funkcija cilja. Teorem radi samo ako je broj funkcija cilja ograničen (teorem \ref{thm:nofreelunch}). Kako je na nekom računalu nemoguće prikazati proizvoljno veliki graf, broj čvorova može se ograničiti s nekom granicom $M$. Sada je moguće prebrojati sve funkcije cilja $f$.
+
+\begin{proof}
+Pitanje je koliko funkcija postoji, ako je broj članova domene ograničen s $M$.
+Broj funkcija koje imaju točno $k$ elemenata u domeni ima:
+	\begin{equation}
+		|\mathbb{F}_k| = |\mathbb{Y}|^k
+	\end{equation}
+Ukupan broj funkcija je suma po svim $k$ do granice $M$:
+	\begin{equation}
+		|\mathbb{F}| = \sum_{k=0}^{M}|\mathbb{F}_k| = \sum_{k=0}^{M} |\mathbb{Y}|^k = ... 
+	\end{equation}
+\end{proof} 
 
 \chapter{Algoritmi}
 
