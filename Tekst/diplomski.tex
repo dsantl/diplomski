@@ -328,10 +328,10 @@ N = k^{V(G)}
 Valja primjetiti da u ovom brojanju veličine prostora stanja postoji više jednako vrijednih bojanja. U bojanju nije bitna točna boja, već je bitno da različiti skupovi čvorova imaju različite boje. Točno pitanje je na koliko načina možemo čvorove podijeliti u $k$ skupova (teorem \ref{thm:dioba}).  
 
 \begin{equation}
-N = \frac{k^{V(G)}}{k!}
+N = \sum_{i=1}^{k} S(V(G), i)
 \end{equation}
 
-Za razliku od predhodnog razmatranja u ovom slučaju boje (tj. skupove) ne numeriramo, tj. njihov poredak nije bitan i zato se dijeli s $k!$. 
+Oznaka $S(m,n)$ je za \emph{Stirlingov} broj druge vrste, gdje je $m$ broj različitih elemenata (čvorovi) koje smještamo u $n$ istovrsnih skupova boja, tako da svaka boja ima barem jedan čvor. Kako je dopušteno da kutije mogu biti prazne, tada se problem pretvori u disjunktne probleme gdje se koristi samo $i$ kutija. 
 
 Ako se zahtjeva da svaka od $k$ boja mora biti iskorištena, ekvivalentno da ni jedan od $k$ skupova ne smije biti prazan, tada je ukupan broj stanja nešto manji:
 
@@ -339,7 +339,7 @@ Ako se zahtjeva da svaka od $k$ boja mora biti iskorištena, ekvivalentno da ni 
 N = S(V(G), k) = \frac{1}{k!}\sum_{i=0}^{k} (-1)^i \binom{k}{i}(k-i)^{V(G)}  
 \end{equation}
 
-Oznaka $S(m,n)$ je za \emph{Stirlingov} broj druge vrste, gdje je $m$ broj različitih elemenata (čvorovi) koje smještamo u $n$ istovrsnih skupova boja, tako da svaka boja ima barem jedan čvor.
+Ako se čvrsto zahtjeva da svaka boja mora biti barem na jednome čvoru, tada je to \emph{Stirlingov} broj druge vrste, gdje je i navedena formula za izračun $S(m,n)$.
 
 Neka se promatra problem traženja kromatskog broja grafa $\chi(G)$, tj. minimalni broj boja $k$, a da se graf može legalno obojiti. Maksimalni broj za koji je to potrebno provjeriti je broj čvorova u grafu, zato jer u tom slučaju svaki čvor povezan je sa svakim drugim i svaki čvor mora imati svoju boju. Kromatski broj grafa je dakle ograničen odozgo s brojem čvorova. Za svaki broj $k$ do $V(G)$ treba provjeriti da li je graf \textbf{k-obojiv}. Ukupan broj stanja je:
 
@@ -347,14 +347,101 @@ Neka se promatra problem traženja kromatskog broja grafa $\chi(G)$, tj. minimal
 N = B(V(G)) = \sum_{i=0}^{V(G)} S(V(G), i)
 \end{equation}
 
-Broj $B(n)$ naziva se \emph{Bellov} broj i on predstavlja broj načina na koje se skup od $n$ članova može podijeliti u neprazne podskupove.
+Broj $B(n)$ naziva se \emph{Bellov} broj i on predstavlja broj načina na koje se skup od $n$ članova može podijeliti u neprazne podskupove. Za bolji uvid koliko brzo \emph{Bellov} niz raste dane su nejednakosti (za $n\ge 8$): 
+
+\begin{equation}
+2^n \le B(n) \le n! 
+\end{equation}
+
+\emph{Bellov} broj brže raste od eksponencijalne funkcije, ali sporije od faktorijela.
+
+\begin{proof}
+Prvo se pokazuje nejednakost: $2^n\le B(n), n \ge 5$.
+Dokaz se provodi indukcijom. Koriste se razvoj binoma: 
+\[ 2^n=(1+1)^n = \sum_{k=0}^{n}\binom{n}{k} \] 
+i svojstvo Bellovog broja: 
+\[ B(n+1)=\sum_{k=0}^{n}\binom{n}{k}B(k) \]
+	\begin{align}
+		2^n \le B(n) \\
+		\textup{Baza indukcije: } n = 5, 2^5 \le B(5) \rightarrow 32 \le 52 \\
+		\textup{Pretpostavka: } 2^n \le B(n) \\
+		2^{(n+1)} \le B(n+1) \\
+		2\cdot 2^n \le B(n+1) \\
+		\sum_{k=0}^{n} 2\cdot \binom{n}{k} \le \sum_{k=0}^{n}\binom{n}{k}B(k)\\
+		\sum_{k=0}^{3} 2\cdot \binom{n}{k} + \sum_{k=4}^{n} 2\cdot \binom{n}{k} \le \sum_{k=0}^{3}\binom{n}{k}B(k) + \sum_{k=4}^{n}\binom{n}{k}B(k) \\
+		\textup{Prvo se dokazuje: } \sum_{k=0}^{3} 2\cdot \binom{n}{k} \le \sum_{k=0}^{3}\binom{n}{k}B(k) \\
+		2\binom{n}{0} + 2\binom{n}{1} + 2\binom{n}{2} + 2\binom{n}{3} \le \\ \binom{n}{0}B(0) + \binom{n}{1}B(1) + \binom{n}{2}B(2) + \binom{n}{3}B(3) \\
+		2+2n+\frac{n(n-1)}{2}2+\frac{1}{3}n(n-1)(n-2) \le \\1 + n + \frac{n(n-1)}{2}2+\frac{n(n-1)(n-2)}{6}5 \\
+		1+n \le n(n-1)(n-2)(\frac{5}{6}-\frac{1}{3}) \\
+		1+n \le \frac{n(n-1)(n-2)}{3} \\
+		3+3n\le n^3 - 3n^2 +3n \\
+		3n^2+3 \le n^3 \\
+		3 \le n^3 - 3n^2 \\
+		3 \le n^2 (n - 3), \textup{istina za } n\ge 5 \\
+		\textup{Druge dvije sume: } \sum_{k=4}^{n} 2\cdot \binom{n}{k} \le \sum_{k=4}^{n}\binom{n}{k}B(k) \\
+		\textup{Član po član sume: }\binom{n}{k} 2 \le \binom{n}{k} B(k) \\
+		2 \le B(k), \textup{za } k \ge 4
+	\end{align}
+\end{proof}
+
+\begin{proof}
+	Potrebno je dokazati $B(n) \le n!$. Dokaz se provodi iz svojstava za Bellov broj (Berend, D.; Tassa, T. (2010)): 
+	\[ B(n) \le \left [ \frac{0.792 n}{ln(1+n)} \right ]^n \] 
+	i svojstvo faktorijela koja slijedi iz analize Stirlingove aproksimacije: \[ n!\ge \left ( \frac{n}{e} \right )^n \]
+	\begin{align}
+		B(n) \le \left [ \frac{0.792 n}{ln(1+n)} \right ]^n \le \left ( \frac{n}{e} \right )^n \le n! \\
+		\textup{Dovoljno je pokazati: } \left [ \frac{0.792 n}{ln(1+n)} \right ]^n \le \left ( \frac{n}{e} \right )^n \\
+		\left [ \frac{0.792 n}{ln(1+n)} \right ] \le \left ( \frac{n}{e} \right ) \\
+		0.792 n\cdot e \le n \cdot ln(n+1) \\
+		0.792\cdot e \le ln(n+1) \\
+		e^{0.792\cdot e} \le n+1 \\
+		8.61 -1 \le n \\
+		7.61 \le n
+	\end{align}
+\end{proof}
+
+Zaključak predhodne alanize je da za relativno veliki graf postoji velik broj stanja koje je nemoguće pretražiti pomoću \emph{brute force} algoritama. Analiza prostora stanja za zadani problem malo je drugačija. Kako svaki čvor ima konačan broj boja koje može poprimiti ukupan broj stanja je:
+
+\begin{equation}
+N = \prod_{i=1}^{V(G)} K_i
+\end{equation}
+, gdje je oznaka $K_i$ ukupan broj boja koje može poprimiti čvor s indeksom $i$. Kako je moguće dodijeliti maksimalno samo $512$ boja, možemo ograničiti $K_i$:
+\begin{equation}
+K_i \le M = 512
+\end{equation}
+\begin{equation}
+N = \prod_{i=1}^{V(G)} K_i \le \prod_{i=1}^{V(G)} M = M^{V(G)}
+\end{equation}
+
+Broj stanja eksponencijalno ovisi o broju čvorova, što je isto kao i za klasičan problem bojanja grafa jako velik broj stanja. I u ovom slučaju važno je primjetiti da su neka stanja ekvivalentna. Broj jedinstvenih stanja je broj particija skupa čvorova u skupove boja, ali uz ograničenje da barem jedan čvor ima neku od zadanih $M$ boja, tada vrijedi ova nejednakost za broj različitih stanja:
+
+\begin{equation}
+N \le \sum_{i=1}^{M} S(V(G), i)
+\end{equation}
+
+Broj stanja je manji jer se poštuje ograničenje da čvorovi mogu poprimiti neku od boja u podskupu od ukupnog konstantnog broja boja $M$. Kada je $k\ge M$ tada broj stanja optimizacijskog problema je manji od broja stanja u problemu gdje se traži odgvor na pitanje da li je graf \textbf{k-obojiv}. Ovo razmatranje biti će zanimljivo i u sljedećem poglavlju gdje se problem svrstava u klase računske teorije složenosti.
 
 \subsection{Pozadina problema iz perspektive računske teorije složenosti}
+
+Problem odluke da li je graf \textbf{k-obojiv} spada u klasu \textbf{NP-potpunih} problema. Traženje kromatskog broja grafa $a$ spada u klasu \textbf{NP-teških} problema. Dokazi se mogu pronaći u \cite{Garey:1974:SNP:800119.803884}. Potrebno je pokazati da postavljen optimizacijski problem bojanja grafa spada u klasu \textbf{NP-teških} problema. Problem sigurn ne može spadati u druge spomenute klase zato jer to nije problem odluke.
+
+...
+
+Iako je problem NP-potpun za odluku može imati više stanja... a ekvivalentni problem NP-hard ima više stanja (nejednakost u sumi).
+
+Heuristicke postupke jer optimizacija ne mora biti minimalna samo kvaliteta bolja.
+...
+
 \subsection{Posljedica "\emph{No free lunch}" teorema}
+
+Dokazati da ako imamo ograničenu domenu da je to isto konačno i ovisi eksponencijalno i da se puno ne mjenja. Pogledati članak o free lunch teoremu i malo pisati o tome.
+
+\chapter{Algoritmi}
+
+%TODO uvod, greedy - znanje o f, zasto ne samo greedy - stari rad o tome kako random ne radi prica o uniformnom podjeli boja, dokaz da greedy ne radi, 
 
 \chapter{Infrastruktura}
 
-\chapter{Algoritmi}
 
 \chapter{Testiranje}
 
