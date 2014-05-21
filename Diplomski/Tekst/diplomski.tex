@@ -452,18 +452,95 @@ Ukupan broj funkcija je suma po svim $k$ do granice $M$ (koristi se suma za geom
 Ako se ograniči broj čvorova, dobije se konačan broj funkcija te je to lako ugraditi u teorem \ref{thm:nofreelunch}. Teorem govori o tome da nemamo nikakvo zanje o funkciji. U ovom problemu funkcija cilja direktno ovisi o grafu tj. strukturi i to je važna informacija koja treba biti iskorištena da bi se dobili bolji algoritmi. Glavna posljedica ovog teorema je razvoj pohlepnih algoritama koji koriste znanje o strukturi (grafu) i primjena tih algoritama u metaheurističkim postupcima. 
 Važno je uočiti da je svaki graf posjeduje vlastitu funkciju cilja. To znači da korištenjem algoritama na sljepo koji rade na nekim grafovima ne mogu jamčiti efikasnost na drugim.
 
-U članku \cite{conf/eurogp/PoliG09} opisuje se kako postoji slučajevi u kojima hiper-heuristike mogu imati "\emph{Free lunch}" svojstvo. Hiper-heuristike su algoritmi koji traže najbolji algoritam koji može rješiti neki problem, tj. pronaći ekstrem funkcije cilja. Kako je gore opisano, svaki graf ima svoju funkciju cilja. Ako je skup funkcija cilja dovoljno malen, moguće je da hiper-heuristika uvijek pronađe neki algoritam koji je bolji od svih ostalih za konkretnu funkciju cilja. Ovo nije dokazano za bojanje grafova (tako ni za optimizacijski problem bojanja), ali daje motivaciju u razvoju algoritama. U zadnjem dijelu opisa algoritama u ovom radu koriste se metode strojnog učenja kako bi se izvuklo znanje za primjenu u nekim pohlepnim algoritmima, tj. kako bi se odabrao najbolji pohlepan algoritam, što je zapravo jednostavan oblik hiper heuristike. Osim toga u implementaciji je otvoren prostor gdje se lako mogu donostiti odluke i dinamički birati algoritmi koji u trenutnoj točci u prostoru stanja daju bolje rezultate od drugih.
+U članku \cite{conf/eurogp/PoliG09} opisuje se kako postoji slučajevi u kojima hiper-heuristike mogu imati "\emph{Free lunch}" svojstvo. Hiper-heuristike su algoritmi koji traže najbolji algoritam koji može rješiti neki problem, tj. pronaći ekstrem funkcije cilja. Kako je gore opisano, svaki graf ima svoju funkciju cilja. Ako je skup funkcija cilja dovoljno malen, moguće je da hiper-heuristika uvijek pronađe neki algoritam koji je bolji od svih ostalih za konkretnu funkciju cilja. Ovo nije dokazano za bojanje grafova (tako ni za optimizacijski problem bojanja), ali daje motivaciju u razvoju algoritama. U zadnjem dijelu opisa algoritama u ovom radu koriste se metode strojnog učenja kako bi se izvuklo znanje za primjenu u nekim pohlepnim algoritmima, tj. kako bi se odabrao najbolji pohlepan algoritam, što je zapravo jednostavan oblik hiper heuristike. Osim toga u implementaciji je otvoren prostor gdje se lako mogu donostiti odluke i dinamički birati algoritmi koji u trenutnoj točci u prostoru stanja daju bolje rezultate od drugih algoritama.
 
 \chapter{Algoritmi}
 
-%TODO uvod, greedy - znanje o f, zasto ne samo greedy - stari rad o tome kako random ne radi prica o uniformnom podjeli boja, dokaz da greedy ne radi, 
+\section{Uvod}
+
+Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Prva skupina su pohlepni algoritmi, a drugi algoritmi s kojima se i rad bavi su meta heuristike. Proučavaju se tri metaheuristike: agentski algoritam, genetski algoritam i genetsko kaljenje. Započinje se s konstruiranjem hiper-heuristike nad pohlepnim algoritmima, gdje se želi pokazati koji pohlepni algoritam je najbolji u raznim ovisnostima.
+
+\section{Pohlepni algoritam}
+
+Pojam pohlepnog algoritma u ovom radu znači sortirati čvorove grafa po nekom svojstvu. Zatim obilaziti čvorove tim redosljedom i na svaki od njih primjeniti odabranu vrstu bojanja čvora. Vrsta bojanja čvora je način odabira boje za neki čvor. Pohlepni algoritam se koristi kao operator kod meta heuristika, tj. kao metoda koja usmjeruje pretragu.
+U radu se koriste slijedeće metode za sortiranje i bojanje čvorova (za svaku od metoda koristi se specjalna oznaka):
+
+Vrste sortiranja čvorova:
+
+\begin{itemize}
+	\item \emph{COL} - sortiranje čvorova prema koliziji (broj susjednih čvorova koji imaju drugačiju boju od promatranog čvora)
+	\item \emph{FIT} - sortiranje čvorova prema pogrešci koju generiraju (suma težina konfliktnih bridova iz tog čvora)
+	\item \emph{LDO} - sortiranje prema stupnju čvora $H(v)$
+	\item \emph{RND} - slučajan raspored čvorova
+	\item \emph{SDO} - sortiranje prema zasićenju (broj različitih boja susjednih čvorova)
+	\item \emph{SDOLDO} - sortiranje prema zasićenju, a ako dva čvora imaju isto zasićenje drugi kriterij je stupan čvorova [članak]
+	\item \emph{STDORD} - sortiranje prema oznaci čvora (čvorovi su numerirani)
+\end{itemize}
+
+Vrste bojanja čvorova su:
+
+\begin{itemize}
+	\item \emph{ABW} - susjedi čvora sortiraju se prema težini brida, obilazi se svaki susjed i uzima se njegova boja. Ako je ta boja jedna od dopuštenih za promatrani čvor, ta boja više ne može biti odabrana. Kada na raspolaganju ostane samo jedna boja ili su svi susjedi posjećeni, uzima se jedna od boja koja je još uvijek na raspolaganju. 
+	\item \emph{MC} - traži se dopuštena boja koja trenutnom čvoru daje minimalnu vrijednost kolizije
+	\item \emph{MF} - traži se dopuštena boja koja trenutnom čvoru daje minimalnu sumu konfliktnih bridova
+	\item \emph{RND} - daje se slučajna dopuštena boja
+	\item \emph{START} - čvoru se daje početna boja (ako je dopuštena) ili se boja ne mjenja ako u inicjalnom bojanju boja nije bila dopuštena
+	\item \emph{SWAP} - čvoru se daje neka boja gdje apsolutno odstupanje od greške (sume konfliktnih bridova) naspram trenutne greške nije veće od nekog praga
+	\item \emph{TRG} - čvoru se daje neka boja čija nova greška (suma konfliktnih bridova) ne prelazi neku fiksnu vrijednst. 
+\end{itemize}
+
+Važno je pokazati kako pohlepni algoritam neće uvijek minimizirati funkciju cilja. Neka je zadan graf na slici:
+
+slika
+
+Neka se prvo odabere čvor s lijeve strane, i zatim neki koji nije susjedan prvom. Pretpostavljamo da početne boje nisu zadane, što znači da je svejedno koje boje će biti pridružene čvorovima. Na slici se jasno vidi da u nekom trenutku dolazi do stvaranja konfliknog brida, što znači da će funkcija cilja biti veća od $0$, što nije minimum, jer minimum funkcije cilja u ovom slučaju je $0$.
+
+Ovaj problem \emph{skakanja} s jednog čvora na neki koji nije susjedni možda bi mogli rješiti algoritmi kao što su \emph{hill climbing} algoritam. Kreće se od nekog proizvoljnog čvora, čvor se oboja i kreće se na neki od susjednih čvorova. Time se jamči da će graf na kraju biti legalno obojan. Problem je što graf ne mora biti obojan s minimalno boja (slika).
+
+\section{Agentski algoritam}
+
+Agentski algoritam je direktno povezan s idejom pohlepnog algoritma. Ideja je da postoje agenti koji šeću grafom i u svakoj iteraciji čvoru na kojem se nalaze daju neku boju. U svakom koraku svaki agent nekom čvoru pridruži neku boju (ili ostavi istu). Svaki od agenata se boduje. Agenti s više bodova su prioritetniji i oni prvi pridružuju boje. To je ekvivalentno pohlepnom bojanju, gdje su sad čvorovi sortirani prema bodovima agenata. Dodatak na pohlepni algoritam je to što svaki agent nakoj globalne iteracije odlučuje što će napraviti. Može napraviti dvije vrste akcije: ostali na trenutnom čvoru ili se pomaknuti na neki susjedni. Odluka za akciju donosi se stohastički. Agent može otići na neki čvor ako \emph{vidi} priliku za lokalnom minimizacijom ili odabrati slučajan čvor. Postupak se provodi zadani broj globalnih iteracija. Unutar upravljačkog algoritma postoji mehanizam koji ako primjeti da postoji konvergencija u lokalni minimum poziva pohlepni algoritam da pomakne trenutno stanje u negu drugu točku prostora pretrage.
+
+\subsection{Parametri algoritma}
+
+\begin{enumerate}
+	\item Broj agenata
+	\item Broj globalnih iteracija
+	\item Način na koji agenti bojaju čvorove (vrsta bojanja)
+	\item Pohlepni algoritam - izlaz iz lokalnog minimuma
+	\item Vjerojatnost agenta da ostane na istom čvoru
+	\item Vjerojatnost da se agent slučajno pomakne na nekog susjeda
+	\item Vjerojatnost da agent odabere susjeda prema kriteriju
+\end{enumerate}
+
+\subsection{Detalji algoritma}
+
+Globale iteracije - sto je
+Sto svaki agent napravi kako napravi kako se bira - malo probati kod
+
+%TODO
+
+\section{Genetski algoritam}
+
+\section{Genetsko kaljenje}
+
+\section{Izvlačenje znanja iz grafa u svrhu odabira pohlepnog algoritma}
 
 \chapter{Infrastruktura}
 
+\section{Uvod}
 
-\chapter{Testiranje}
+%TODO po modulima
 
 \chapter{Rezultati}
+
+\section{Metode testiranja algoritama}
+\section{Slučajno pretraživanje}
+\section{Agentski algoritam}
+
+\section{Genetski algoritam}
+\section{Genetsko kaljenje}
+\section{Metode strojnog učenja za odair pohlepnog algoritma}
 
 \chapter{Zaključak}
 Zaključak.
