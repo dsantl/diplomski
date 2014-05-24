@@ -521,35 +521,62 @@ Vrste bojanja čvorova su:
 	\item \emph{TRG} - čvoru se daje neka boja čija nova greška (suma konfliktnih bridova) ne prelazi neku fiksnu vrijednst. 
 \end{itemize}
 
-Važno je pokazati kako pohlepni algoritam neće uvijek minimizirati funkciju cilja. Neka je zadan graf na slici:
+\subsection{Neispravnost pohlepnog algoritma}
+
+Važno je pokazati kako pohlepni algoritam neće pronaći globalni minimum funkcije cilja. Neka je zadan graf na slici \ref{fig:greedy_alg}.
+Slika \ref{fig:crown_empty} prikazuje graf koji je potrebno obojati korištenjem samo dvije boje. Neka su težine svih bridova jednake $1$. Slika \ref{fig:crown_normal} prikazuje 2-legalno obojan graf čija je vrijednost funckije cilja u optimizaciji jednaka $0$. Ako se u postupku sortiranja čvorova dogodi poredak prva tri čvora kako je to prikazano na slici \ref{fig:crown_wrong}, bez obzira na to kako je drugi dio čvorova sortiran ni jedan algoritam više ne može doći do globalnog minimum funkcije cilja, zato jer prva dva koraka su čvorove koji sigurno moraju biti u različitim bojama svrstao u isti skup, a posljedica je bojanje trećeg čvora drugom bojom (jer je susjedan drugo odabranom), a nakon toga cijelo rješenje je pogrešno.
+
 
 \begin{figure}
         \centering
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.33\textwidth}
                 \includegraphics[width=\textwidth]{Slike/crown_empty.pdf}
-                \caption{A gull}
-                \label{fig:gull}
-        \end{subfigure}%
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-          %(or a blank line to force the subfigure onto a new line)
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=\textwidth]{Slike/crown_empty.pdf}
-                \caption{A tiger}
-                \label{fig:tiger}
+                \caption{Neobojan graf}
+                \label{fig:crown_empty}
         \end{subfigure}
-        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-          %(or a blank line to force the subfigure onto a new line)
-        \begin{subfigure}[b]{0.3\textwidth}
-                \includegraphics[width=\textwidth]{Slike/crown_empty.pdf}
-                \caption{A mouse}
-                \label{fig:mouse}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=\textwidth]{Slike/crown_normal.pdf}
+                \caption{2-legalno obojan graf}
+                \label{fig:crown_normal}
         \end{subfigure}
-        \caption{Pictures of animals}\label{fig:animals}
+         
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=\textwidth]{Slike/crown_wrong.pdf}
+                \caption{Odabir prva tri čvora}
+                \label{fig:crown_wrong}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=\textwidth]{Slike/crown_wrong_full.pdf}
+                \caption{Pogrešno obojan graf}
+                \label{fig:crown_wrong_full}
+        \end{subfigure}
+        \caption{Prikaz pravilno obojanog grafa i primjer pohlepnog algoritma}
+        \label{fig:greedy_alg}
 \end{figure}
 
-Neka se prvo odabere čvor s lijeve strane, i zatim neki koji nije susjedan prvom. Pretpostavljamo da početne boje nisu zadane, što znači da je svejedno koje boje će biti pridružene čvorovima. Na slici se jasno vidi da u nekom trenutku dolazi do stvaranja konfliknog brida, što znači da će funkcija cilja biti veća od $0$, što nije minimum, jer minimum funkcije cilja u ovom slučaju je $0$.
 
-Ovaj problem \emph{skakanja} s jednog čvora na neki koji nije susjedni možda bi mogli rješiti algoritmi kao što su \emph{hill climbing} algoritam. Kreće se od nekog proizvoljnog čvora, čvor se oboja i kreće se na neki od susjednih čvorova. Time se jamči da će graf na kraju biti legalno obojan. Problem je što graf ne mora biti obojan s minimalno boja (slika).
+Moguće rješenje navedenog problema moglo bi biti u pretraživanju susjednih čvorova. Neka su boje označene brojevima, gdje je prva boja označena s $1$. Prvi čvor odabere se slučajno. Za odabrani čvor odabere se boja s minimalnom oznakom, a nema je u susjednim čvorovima. Sljedeći čvor biti će neki od susjeda trenutnog čvora. Ako čvor nema susjeda za odabir onda se traži čvor koji nije obojan ali ima obojanog susjeda (pretpostavka je da je graf povezan). Ovako opisan algoritam uvijek će dobro obojati graf na slici \ref{fig:crown_empty}. Potrebno je ako ima, pronaći graf na kojem ovakav pohlepni algoritam koji se još i naziva \emph{uspinjanje na vrh} ne radi dobro. Primjer takvog grafa i odabir čvorova može se vidjeti na slici \ref{fig:hill_climbing}. Brojevi u čvorovima predstavljaju poredak obilaženja grafa. Na slici \ref{fig:hill_climbing_ok} odabir čvorova je takav da je ukupan broj boja, a da funkcija cilja bude $0$ jednak $3$. To je ujedno i minimalni broj boja, jer u grafu postoje tri čvora koja su međusobno povezana, dakle s manjim brojem boja nije moguće legalno obojati graf. Na slici \ref{fig:hill_climbing_wrong} odabir čvorova je bio takav da u zadnjem posjećenom čvoru $8$ bilo potrebno odabrati novu boju da bi graf bio legalno obojen. Kako se pokazalo da je graf moguće obojati s $3$ boje, zaključak je da algoritam ne daje uvijek točan rezultat.
+
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{Slike/hill_climbing_ok.pdf}
+                \caption{Dobar odabir čvorova}
+                \label{fig:hill_climbing_ok}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{Slike/hill_climbing_wrong.pdf}
+                \caption{Loš odabir čvorova}
+                \label{fig:hill_climbing_wrong}
+        \end{subfigure}
+        \caption{Isti algoritam uz drugačiji odabir čvorova daje različita k-legalna bojanja}
+        \label{fig:hill_climbing}
+\end{figure}
+
+
 
 \section{Agentski algoritam}
 
