@@ -649,10 +649,56 @@ Kako je algoritam temeljen na pohlepnom algoritmu ima nedostatak što lako zapin
 
 Vremenska složenost algoritma ovisi o broju agenata i broju globalnih iteracija. Vremenska složenost je: $O(G\cdot(N+Nlog(N))=O(G\cdot N+G\cdot Nlog(N))=O(G\cdot Nlog(N))$. Kao što je vidljivo algoritam polinomno ovisi o $G$ i $N$.
 
-\section{Genetski algoritam}
+\section{Algoritam evolucijske strategije}
+
+Skupina evolucijskih algoritama veoma je popularna u rješavanju optimizacijskih problema. Takvi algoritmi spadaju u još veću skupini algoritama koji se nazivaju \emph{metaheuristike}, što znači da konkretno ponašanje algoritma ovisi o postavljenim parametrima. Svim evolucijskim algoritmima zajedničko je što posjeduju populaciju rješenja, te iz koraka u korak evoluiraju rješenje, što nužno ne mora značiti dobijanje boljeg rješenja, već algoritmi provode usmjereno pretraživanje prostora stanja. Evolucijska strategija vrsta je evolucijskog algoritma kod kojeg je dominantan operator mutacije. Genetski algoritam je poopćenje evolucijskih strategija jer se koristi operator selekcije, te se operator križanja koristi češće od operatora mutacije. Operator selekcije koristi se za odabir roditelja. Operator križanja je operator koji kombinira roditelje (rješenja) i njihovom kombinacijom (nije definirano kako) generira djecu (nova rješenja). Križanje se koristi kako bi se prostor stanja finje pretraživao, tj. vršila lokalna pretraga. Operator mutacije djelije nad jednim djetetom i mjenja izgled te jedinke. Mutacija se koristi kako bi se pretraga pomakla u neki drugi dio prostora stanja i zadužena je za sprečavanje konvergencije u lokalne ekstreme. 
+
+\subsection{Genetski algoritam}
+
+Kao preliminarni dio ovog rada nekoliko vrsta genetskih algoritama je isprobano. Jednostavni genetski algoritam koristi \emph{3K} turnirsku selekciju, operator križanja s jednom točkom prekida, te mutacijom koja slučajno promijeni nekoliko gena u zapisu rješenja. Algoritam se pokazao veoma lošim na problemu optimizacijskog problema bojanja grafova. Ako se kao rješenje koristi niz brojeva, gdje svaki element predstavlja jedan čvor u grafu, a vrijednost elementa boju, tada operator križanja nema previše smisla, zbog toga što su čvorovi povezani u određenu strukturu, a križanje s jednom točkom prekida nema zanje o tome. Drugi problem je slučajna mutacija, koja može rješenje staviti u neki drugi dio prostora stanja, ali teško je odrediti njen utjecaj i jako ovisi o konkretnom grafu. Drugi korak je bilo korištenje hibridnog genetskog algoritma u kojem je za operator mutacije koristi pohlepni algoritam. Rezultati u ovom slučaju također nisu bili dobri, tj. algoritam se ponašao kao slučajna pretraga prostora. Najveći problem je podešavanje parametara i njihova osjetljivost. Jedno od mogućih pristupa je kreiranje operatora križanja koji je usko povezan uz domenu problema, jedan od primjera naveden je u \cite{lit17}. Drugi pristup je izbacivanje operatora križanja, čime se efektivo dobija evolucijska strategija. Takav pristup koristi se u članku \cite{lit12}, gdje je zamjećeno loše ponašanje genetskog algoritma tj. jednostavnih operatora križanja. U ovom radu koristi se evolucijska strategija. Ovaj izbor načinjen je zbog očekivanog manjeg vremena izvođenja evolucijske strategije, jer se koristi jedan operator manje, za razliku od genetskog algoritma. Mutacija u tom slučaju poprima dvojaku ulogu, tj. potrebno je implementirati više vrsta mutacija - koje će obavljati lokalnu pretragu i one koje će obavljati globalnu pretragu.
+
+\subsection{Evolucijska strategija}
+
+Odabrana je evolucijska strategija koja se koristi u članku \cite{lit17}. Koristi se ($\mu$, $\lambda$) evolucijska strategija. Oznake $\mu$ i $\lambda$ služe za oznake skupova jedinki (rješenja). Skup $\mu$ je skup roditeljskih jedinki iz kojih se stvara skup djece $\lambda$. Iz toga proizlazi da broj elemenata u skupu $\mu$ mora biti veći ili jednak broju elemenata u skupu $\lambda$. Jedinka je predstavljena kao niz brojeva, gdje svaki element predstavlja neki čvor, a vrijednost elementa je boja čvora. U svakoj iteraciji algoritam uniformno bira $|\lambda|$ jedinki iz skupa roditelja. Može se dogoditi da je neka jedinka više puta odabrana. Za svaku odabranu jedinku koristi se operator mutacije. Slučajnim odabirom bira se između mutacije koja ima lokalni karakter tj. trenutno rješenje nastoji poboljšati lokalnom pretragom prostora stanja i mutacije koja skače iz okoline trenutne točke prostora stanja. Mutacija se implementira pomoću vrsta bojanja. Sve takve mutiranje jedinke stavljaju se u skup $\lambda$. Na kraju postupka najboljih $|\mu|$ jedinki kopira se u $\mu$ skup. Poželjno je koristiti elitizam kako se najbolje rješenje kroz iteracije izgubilo.
+
+\subsection{Parametri algoritma}
+
+\begin{enumerate}
+	\item Veličina skupa $\mu$ - $MI\_SIZE$
+	\item Veličina skupa $\lambda$ - $LAMBDA\_SIZE$
+	\item Ukupan broj iteracija - $N$
+	\item Broj mutacija nad jednom jedinkom - $M$
+	\item Vjerojatnost mutacije gena pomoću lokalne pretrage - $PROP$
+	\item Način bojanja za lokalnu pretragu - $CS\_GLOBAL$
+	\item Način bojanja za globalnu pretragu - $CS\_LOCAL$
+\end{enumerate}
+
+\subsection{Detalji algoritma}
+
+\begin{singlespace}
+	\begin{lstlisting}[caption=Pseudok\^{o}d evolucijske strategije]
+		ALGORITHM(MI_SIZE, LAMBDA_SIZE, N, M, PROP, CS_GLOBAL, CS_LOCAL):
+			P[MI_SIZE]
+			
+			FOR i = 1 TO N:
+				init(AGENT(i))
+			END FOR
+			FOR j = 1 TO G:
+				FOR i = 1 TO N:
+					SETCOLOR(AGENT(i), CS)
+					MOVE(AGENT(i), PR_NO_MOVE, PR_RND_MOVE)
+				END FOR
+				SORT(AGENT[N])
+			END FOR
+		END ALGORITHM
+	\end{lstlisting}
+\end{singlespace}
 
 
+\subsection{Karakteristike algoritma}
 
+
+\section{Simulirano kaljenje}
 \section{Genetsko kaljenje}
 
 
