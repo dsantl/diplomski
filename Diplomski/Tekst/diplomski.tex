@@ -72,6 +72,82 @@ Uvod rada. Nakon uvoda dolaze poglavlja u kojima se obrađuje tema.
 
 \section{Sažetci korištenih znanstvenih članaka}
 
+\subsection*{An Efficient GA with Multipoint Guided Mutation for Graph Coloring Problems \cite{lit1}}
+
+Rad opisuje rješavanje problema bojanja grafova pomoću genetskog algoritma.
+Posebna pažnja posvećena je operatoru mutacije.
+Prikaz jedinki je pomoću niza cijelih brojeva. Svakom čvoru u grafu pridružen je jedinstveni cijeli broj - identifikacija.
+Jedinka je prikazana pomoću niza u kojem je svakoj identifikaciji (čvoru)
+pridružen broj boje. Funkcija cilja je broj korištenih boja.
+Inicijalna populacija generira se slučajnim dodjeljivanjem
+boja svakom čvoru u grafu.
+Dodatno koristi se operator ispravaka koji popravlja jedinku tako da izabere dva susjedna čvora koji imaju istu boju i zatim jednome od njih promjeni boju.
+Mutacija se vrši nad jedinkom tako da se prvo reducira broj korištenih boja. To se može napraviti tako da se odaberu dva čvora i pridruži im se boja koja nije jedna od dvije odabrane.
+Zatim se primijeni operator ispravaka nad tom jedinkom. To se sve ponavlja sve dok se ne generira legalno pobojani graf.
+Rezultati su uspoređivani s klasičnim implementacijama genetskih algoritama i
+dobiveni su bolji rezultati ali u zaključku se navodi kako bi algoritam trebalo poboljšati da bi vrijeme
+izvođenja na većim i kompleksnijim grafovima bilo bolje.
+Testiranje se obavljalo nad nekim primjerima iz DIMACS baze.
+
+\subsection*{Efficient Graph Coloring With Parallel Genetic Algorithms \cite{lit2}}
+
+Koristi se paralelni genetski algoritam i to migracijski model. Osim toga
+definirani su i novi genetski operatori. Jedinka je prikazana pomoću 
+particije skupa. 
+
+Ispitivanje je vršeno nad DIMACS bazom.
+Dobiveni su rezultati:
+\begin{enumerate}
+\item Uvijek je bolje koristiti migraciju a ne izolaciju. Za neke operatore može se odrediti najbolji parametar migracije (Transposition mutacija), dok za većinu drugih to nije pronađeno.
+
+\item U migraciji je bolje koristiti najbolje jedinke. Samo u nekim slučajevima kod CEX operatora je bolje koristiti slučajno odabrane jedinke.
+
+\item First Fit je uvijek bolja mutacija od Transposition mutacije. First Fit najbolje se ponaša uz CEX i GPX operator. Transposition mutacija relativno dobro radi sa SPPX operatorom.
+
+\item CEX i GPX operatori su bili najbolji uz korištenje First Fit mutacije.
+Nakon toga slijedi USIX. SPPX je jako brz operator ali da bi bio uspješan
+potrebno ga je izvršiti u više iteracija.
+
+\item Najbrži operator križanja je CEX s First Fit mutacijom. Najsporji je UISX.
+\end{enumerate}
+
+
+\subsection*{An ACO Algorithm for the Graph Coloring Problem \cite{lit4}}
+
+Opisuje se jedna inačica ACO \engl{Ant colony optimization} algoritma. Ideja je u svakom koraku bojati 
+jednom bojom (odabiru se čvorovi koji će se bojati u zadanu boju). Radi se o 
+proširenju ANTCOL-a. Uz kemijske tragove dodaje se heuristika (npr. 
+broj čvorova koji su iste boje kao i trenutni korak). Graf koji mravi rješavaju
+nije orginalni graf koji je zadan, već je to graf gdje su povezana dva čvora
+koja u originalnom grafu nisu susjedna. Prema tome računa se vjerojatnost da 
+se nekom čvoru pridoda neka boja. 
+
+
+\subsection*{Breaking the Symmetry of the Graph Colouring Problem with Genetic Algorithms \cite{lit5}}
+
+Razbija se simetrija u klasičnom problemu bojanja grafova. Tj. različite jedinke mogu predstavljati isto pobojane grafove. Problem se pokušava rješitit tako  što se na početku fiksiraju boje za određene čvorove. U našem problemu članak se može koristiti kod pristupa pri pohlepnom algoritmu.
+
+\subsection*{New Graph Coloring Algorithms \cite{lit7}}
+
+Članak koji opisuje heuristike koje se koriste u pohlepnim algoritmima. Članak donosi ideje koje se lako implementiraju i daju dobre rezultate. Neke vrste bojanja i neke vrste sortiranja ideje vuku iz ovog članka (npr. SDO-LDO).
+
+\subsection*{Graph Coloring Algorithms for Assignment Problems in Radio Networks \cite{lit10}}
+
+Problem koji je veoma sličan praktičnoj primjeni problema koji se rješava. Koriste se različiti algoritmi i uspoređuju se rezultati. Cilj rada je istražiti problem i pokazati koji algoritmi tj. heuristike su efikasne.
+
+\subsection*{Evolutionary Algorithms for Real-World Instances of the Automatic Frequency Planning Problem in GSM Networks \cite{lit12}}
+
+Rad koji je vrlo sličan problematici koja se rješava u diplomskom radu. U radu je primjećeno da operator križanja mora biti vrlo napredan ili ga uopće ne koristiti, te se predlaže korištenje evolucijske strategije $(\mu, \lambda)$ 
+
+\subsection*{Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning \cite{lit13}}
+
+Opisuje se korištenje simuliranog kaljenja u optimizacijskim algoritmima. Pokazuje se osnovna struktura simuliranog kaljenja i predlažu se nadogradnje kako bi metaheuristika dala bolje rezultate.
+
+\subsection*{Genetic Annealing Optimization: Design and Real World Applications \cite{lit18}}
+
+Jedan od rjetkih članaka koji opisuje metaheuristiku - genetsko kaljenje. Analizira se metaheuristika u kojoj su uzete dobre strane genetskog algoritma i dobre strane simuliranog kaljenja. Algoritam pokazuje dobre rezultate, ali nedostatak može predstavljati velika populacija za koju je potrebno računati funkcije cilja čija je vremenska složenost velika.
+
+
 \chapter{Formalni opis problema}
 
 U ovom poglavlju opisuje se problem bojanja grafova i njegova primjena u području telekomunikacija. Opisuje se konkretan problem u telekomunikacijama uz pretpostavke i ograničenja. Zatim se isti problem opisuje pomoću matematičkog modela tj. problema bojanja grafova. Kreće se od općenitog problem bojanja grafova, a zatim se matematički model prilagodi konkretnom telekomunikacijskom problemu.
@@ -484,13 +560,19 @@ Ukupan broj funkcija je suma po svim $k$ do granice $M$ (koristi se suma za geom
 Ako se ograniči broj čvorova, dobije se konačan broj funkcija te je to lako ugraditi u teorem \ref{thm:nofreelunch}. Teorem govori o tome kako ne postoji nikakvo znanje o funkciji. U ovom problemu funkcija cilja direktno ovisi o grafu tj. strukturi i to je važna informacija koja treba biti iskorištena da bi se dobili bolji algoritmi. Glavna Posljedica ovog teorema je razvoj pohlepnih algoritama koji koriste znanje o strukturi (grafu) i primjena tih algoritama u metaheurističkim postupcima. 
 Važno je uočiti da je svaki graf posjeduje vlastitu funkciju cilja. To znači da korištenjem algoritama na slijepo koji rade na nekim grafovima ne mogu jamčiti efikasnost na drugim.
 
-U članku \cite{conf/eurogp/PoliG09} opisuje se kako postoji slučajevi u kojima hiper-heuristike mogu imati "\emph{Free lunch}" svojstvo. Hiper-heuristike su algoritmi koji traže najbolji algoritam koji može riješiti neki problem, tj. pronaći ekstrem funkcije cilja. Kako je gore opisano, svaki graf ima svoju funkciju cilja. Ako je skup funkcija cilja dovoljno malen, moguće je da hiper-heuristika uvijek pronađe neki algoritam koji je bolji od svih ostalih za konkretnu funkciju cilja. Ovo nije dokazano za bojanje grafova (tako ni za optimizacijski problem bojanja), ali daje motivaciju u razvoju algoritama. U zadnjem dijelu opisa algoritama u ovom radu koriste se metode strojnog učenja kako bi se izvuklo znanje za primjenu u nekim pohlepnim algoritmima, tj. kako bi se odabrao najbolji pohlepan algoritam, što je zapravo jednostavan oblik hiper-heuristike. Osim toga u implementaciji je otvoren prostor gdje se lako mogu donositi odluke i dinamički birati algoritmi koji u trenutnoj točci u prostoru stanja daju bolje rezultate od drugih algoritama.
+U članku \cite{lit9} opisuje se kako postoji slučajevi u kojima hiper-heuristike mogu imati "\emph{Free lunch}" svojstvo. Hiper-heuristike su algoritmi koji traže najbolji algoritam koji može riješiti neki problem, tj. pronaći ekstrem funkcije cilja. Kako je gore opisano, svaki graf ima svoju funkciju cilja. Ako je skup funkcija cilja dovoljno malen, moguće je da hiper-heuristika uvijek pronađe neki algoritam koji je bolji od svih ostalih za konkretnu funkciju cilja. Ovo nije dokazano za bojanje grafova (tako ni za optimizacijski problem bojanja), ali daje motivaciju u razvoju algoritama. U zadnjem dijelu opisa algoritama u ovom radu koriste se metode strojnog učenja kako bi se izvuklo znanje za primjenu u nekim pohlepnim algoritmima, tj. kako bi se odabrao najbolji pohlepan algoritam, što je zapravo jednostavan oblik hiper-heuristike. Osim toga u implementaciji je otvoren prostor gdje se lako mogu donositi odluke i dinamički birati algoritmi koji u trenutnoj točci u prostoru stanja daju bolje rezultate od drugih algoritama.
 
 \chapter{Algoritmi}
 
 \section{Uvod}
 
-Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Prva skupina su pohlepni algoritmi, a drugi algoritmi s kojima se i rad bavi su meta heuristike. Proučavaju se tri metaheuristike: agentski algoritam, genetski algoritam i genetsko kaljenje. Započinje se s konstruiranjem hiper-heuristike nad pohlepnim algoritmima, gdje se želi pokazati koji pohlepni algoritam je najbolji u raznim ovisnostima. Pri testiranju algoritama treba biti veoma oprezan. Prethodna razmatranja upućuju na to da neki algoritam (metaheuristika s određenim parametrima) može dati bolje rezultate od drugih algoritama na nekim grafovima, dok je na nekim grafovima obrnuta situacija. To se može usporediti s pojmom \emph{prenaučenosti} iz strojnog učenja. Zbog toga je za ovaj problem potrebno graditi algoritme koji su prilagodljivi.
+Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Prva skupina su pohlepni algoritmi, a drugi algoritmi s kojima se i rad bavi su meta heuristike. Proučavaju se četiri metaheuristike: agentski algoritam, simulirano kaljenje, genetski algoritam i genetsko kaljenje. Započinje se s konstruiranjem hiper-heuristike nad pohlepnim algoritmima, gdje se želi pokazati koji pohlepni algoritam je najbolji u raznim ovisnostima. Pri testiranju algoritama treba biti veoma oprezan. Prethodna razmatranja upućuju na to da neki algoritam (metaheuristika s određenim parametrima) može dati bolje rezultate od drugih algoritama na nekim grafovima, dok je na nekim grafovima obrnuta situacija. To se može usporediti s pojmom \emph{prenaučenosti} iz strojnog učenja. Zbog toga je za ovaj problem potrebno graditi algoritme koji su prilagodljivi.
+
+\subsection{Mogući problemi}
+
+Mogući problemi mogu se podijeliti na dva dijela: problemi vezani uz ograničenja i problemi vezani uz implementaciju. Problemi vezani uz ograničenja su velik broj čvorova i bridova koji se mogu pojaviti, velika razlika između težina bridova (razlika za više redova veličina), nepromjenjivi čvorovi koji su okruženi promjenjivim čvorovima. Velik broj čvorova i bridova uzrukuje i sporji rad algoritma. Razlika između težina bridova može kod algoritama koji koriste tu razliku uzrokovati neočekivano ponašanje (npr. dugo zadržavanje na manjim vrijednostima funkcije cilja). Neopromjenjivi čvorovi koji za susjede imaju promjenjive čvorove mogu uzrokovati sporu konvergenciju, a čest zbog takvh čvorova minimum funkcije cilja je relativno velika vrijednost, pa je teško razlikovati lokalni od globalnog minimuma. 
+
+Problemi vezani uz implementaciju su zapravo problemi dizajna algoritama i struktura podataka. S jedne strane potrebno je osigurati brze operacije nad grafom, a s druge strane grafovi mogu zauzimati velik dio memorijskog prostora. Zato je potrebno dizajnirati strukturu grafa koja ne zauzima previše memorijskog prostora, a omogućuje brze operacije. Mogući problem su i populacijski algoritmi kod kojih je potrebno čuvati više rješenja. Zbog toga se jedinke ne čuvaju kao grafovi, već je svaka jedinka funkcija bojanja grafa (za svaki čvor zna se koja je njegova boja). A sama struktura (bridovi) sadržanja je u strukturi grafa, a jedinka posjeduje vezu na taj graf.
 
 \section{Pohlepni algoritam}
 
@@ -1013,11 +1095,57 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 \end{itemize}
 
 \chapter{Rezultati}
+
 \section{Metode testiranja algoritama}
+
+\subsection{Testiranje metaheuristika}
+
+Nekoliko rezultata za metaheuristike je bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utjeću na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga veoma bitan dio je pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika testira s drugačijim parametrima, te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
+
+Metaheuristike se testiraju tako što se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija je funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj pohlepnog algoritma je da osigura validno bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteraciju u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Pokazalo se da nakon nekog broja koraka pohlepni algoritam konvergira ili čak u nekim slučajevima divergira. Odabrano je pet koraka jer se eksperimentiranjem pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve testiranja ostavljena je ta ista inačica.
+
 \section{Slučajno pretraživanje}
+
+Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. Za ovu svrhu korišten je pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu te također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se da slučajna boja iz njegove domene. Nad svakim grafom pokreće pohlepni algoritam pokreće se deset puta, nakon čeka se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
+
+\begin{table}[htb]
+	\caption{Popis grafova za testiranje}
+	\label{tbl:konstante}
+	\centering
+	\begin{tabular}{|l|c|c|c|c|} \hline
+	Naziv grafa & Broj čvorova & Broj bridova & Inicijalna pogreška & Slučajno bojanje\\ \hline \hline
+	graph\_38301107 & 700 & 489300 & $2.26\cdot 10^{09}$ &$4.40\cdot 10^{07}$ \\ \hline 
+	graph\_75806963 & 700 & 489300 & $2.11\cdot 10^{09}$ &$4.59\cdot 10^{07}$ \\ \hline 
+	graph\_2105155221 & 700 & 489300 & $1.94\cdot 10^{09}$ &$4.52\cdot 10^{07}$ \\ \hline 
+	graph\_1259253950 & 700 & 489300 & $2.04\cdot 10^{09}$ &$4.66\cdot 10^{07}$ \\ \hline 
+	graph\_1065301380 & 700 & 489300 & $2.21\cdot 10^{09}$ &$4.57\cdot 10^{07}$ \\ \hline 
+	graph\_2144584312 & 500 & 249500 & $1.58\cdot 10^{09}$ &$2.44\cdot 10^{07}$ \\ \hline 
+	graph\_596114851 & 500 & 249500 & $1.57\cdot 10^{09}$ &$2.47\cdot 10^{07}$ \\ \hline 
+	graph\_1195753610 & 500 & 249500 & $1.39\cdot 10^{09}$ &$2.39\cdot 10^{07}$ \\ \hline 
+	graph\_598677215 & 500 & 249500 & $1.40\cdot 10^{09}$ &$2.28\cdot 10^{07}$ \\ \hline 
+	graph\_1367025351 & 500 & 249500 & $1.70\cdot 10^{09}$ &$2.48\cdot 10^{07}$ \\ \hline 
+	graph\_1371311789 & 900 & 809100 & $2.85\cdot 10^{09}$ &$7.63\cdot 10^{07}$ \\ \hline 
+	graph\_1707332235 & 900 & 809100 & $2.87\cdot 10^{09}$ &$7.69\cdot 10^{07}$ \\ \hline 
+	graph\_1878030959 & 900 & 809100 & $2.72\cdot 10^{09}$ &$7.30\cdot 10^{07}$ \\ \hline 
+	graph\_2056239330 & 900 & 809100 & $2.67\cdot 10^{09}$ &$7.38\cdot 10^{07}$ \\ \hline 
+	graph\_1067592528 & 900 & 809100 & $2.60\cdot 10^{09}$ &$7.43\cdot 10^{07}$ \\ \hline 
+	Kansai-C & 8937 & 2259249 & $1.68\cdot 10^{07}$ &$7.09\cdot 10^{08}$ \\ \hline 
+	Tokai-B & 4244 & 915283 & $1.29\cdot 10^{09}$ &$2.41\cdot 10^{08}$ \\ \hline 
+	Tokai-A & 17066 & 5298396 & $1.83\cdot 10^{10}$ &$9.51\cdot 10^{08}$ \\ \hline 
+	Kansai-B & 4925 & 1283991 & $7.32\cdot 10^{07}$ &$3.21\cdot 10^{08}$ \\ \hline 
+	Tokai-C & 10518 & 2557187 & $5.75\cdot 10^{09}$ &$5.53\cdot 10^{08}$ \\ \hline 
+	Kansai-A & 18807 & 7359859 & $4.69\cdot 10^{09}$ &$1.41\cdot 10^{09}$ \\ \hline 
+	\end{tabular}
+\end{table}
+
+Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva redova veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja), inicijalna pogreška je veća.
+
 \section{Agentski algoritam}
 
+\section{Simulirano kaljenje}
+
 \section{Genetski algoritam}
+
 \section{Genetsko kaljenje}
 
 \section{Metode strojnog učenja za odair pohlepnog algoritma}
