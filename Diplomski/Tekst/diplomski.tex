@@ -827,7 +827,7 @@ Simulirano kaljenje također spada u skupinu evolucijskih algoritama. Njegova sp
 Algoritam kreće od početnog rješenja (jedinke) koja se označava s $X$. Prikaz rješenja je klasičan, svaki čvor je element u nizu a vrijednost elementa je boja čvora. Susjedno rješenje od $X$ u oznaci $S$ je rješenje koje ima sve elemente niza jednake kao i $X$ osim točno jednog elementa. U svakom koraku algoritma iz rješenja $X$ generira se susjedno rješenje $S$. Ako rješenje $S$ ima vrijednost funkcije cilja manju od $X$, tada se $X$ zamjenjuje s $S$. U slučaju da je vrijednost funkcije cilja veća, tada se rješenje prihvaća s vjerojatnošću (ovisi o trenutnoj temperaturi $T$):
  
 \begin{equation}
-	P(X=S) = e^{-\frac{(f(S)-f(X))}{T}}
+	P(X=S) = e^{-\frac{f(S)-f(X)}{T}}
 \end{equation}
 
 Kako temperatura $T$ pada, vjerojatnost prihvaćanja pada u $0$, uz pretpostavku $f(S)\ge f(X)$:
@@ -933,7 +933,7 @@ Na početku se inicijaliziraju jedinke. Slobodna energija se postavi na početnu
 
 \subsection{Karakteristike algoritma}
 
-Algoritam izgleda veoma slično kao i simulirano kaljenje, samo što se odluka za prihvaćanje novog rješenja donosi na temelju praga tj. odstupanja funkcije cilja od stare jedinke. Međudjelovanje jedinki temelji se na slobodnoj energiji, koja se u svakoj iteraciji skuplja kao dodatak koji nije potrošen. To znači da ako u nekom koraku ni jedna nova jedinka nije prihvaćena, slobodna energija će biti $0$, i u sljedećoj iteraciji prihvaćat će se samo strogo bolje nove jedinke. S druge strane ako u nekoj iteraciji jedna jedinka postane puno bolja od roditelja, tada u sljedećoj iteraciji algoritam dopušta novim jedinkama da mogu biti puno gora od roditelja, što omogućuje izlaženje iz lokalnih optimuma i globalno pretraživanje prostora stanja. Za rješavanje optimizacijskog problema bojanja grafova koriste se dvije vrste dobivanja susjednog rješenja (mutacije). Kao i za neke Prethodne algoritme, koriste se lokalna i globalna vrsta bojanja.  
+Algoritam izgleda veoma slično kao i simulirano kaljenje, samo što se odluka za prihvaćanje novog rješenja donosi na temelju praga tj. odstupanja funkcije cilja od stare jedinke. Međudjelovanje jedinki temelji se na slobodnoj energiji, koja se u svakoj iteraciji skuplja kao dodatak koji nije potrošen. To znači da ako u nekom koraku ni jedna nova jedinka nije prihvaćena, slobodna energija će biti $0$, i u sljedećoj iteraciji prihvaćat će se samo strogo bolje nove jedinke. S druge strane ako u nekoj iteraciji jedna jedinka postane puno bolja od roditelja, tada u sljedećoj iteraciji algoritam dopušta novim jedinkama da mogu biti puno gora od roditelja, što omogućuje izlaženje iz lokalnih optimuma i globalno pretraživanje prostora stanja. Za rješavanje optimizacijskog problema bojanja grafova koriste se dvije vrste dobivanja susjednog rješenja (mutacije). Kao i za neke prethodne algoritme, koriste se lokalna i globalna vrsta bojanja.  
 Vremenska složenost algoritma je: $O(G \cdot N)$. S time da je to nešto veća vremenska složenost od simuliranog kaljenja ako se u obzir uzme računanje funkcije cilja za $N$ jedinki.
 
 \section{Pronalaženje najpogodnijeg pohlepnog algoritma}
@@ -1104,13 +1104,26 @@ Nekoliko rezultata za metaheuristike je bitno kako bi se mogle uspoređivati. Dv
 
 Metaheuristike se testiraju tako što se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija je funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj pohlepnog algoritma je da osigura validno bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteraciju u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Pokazalo se da nakon nekog broja koraka pohlepni algoritam konvergira ili čak u nekim slučajevima divergira. Odabrano je pet koraka jer se eksperimentiranjem pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve testiranja ostavljena je ta ista inačica.
 
-\section{Slučajno pretraživanje}
+\section{Grafovi za testiranje}
 
-Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. Za ovu svrhu korišten je pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu te također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se da slučajna boja iz njegove domene. Nad svakim grafom pokreće pohlepni algoritam pokreće se deset puta, nakon čeka se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
+Za testiranje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su generirani iz realnih situacija. Druga vrsta su umjetni grafovi koji su generirani kako bi se moglo proučavati ponašanje algoritama i kako bi se mogli donositi općeniti zaključci. Sintetički primjeri generirani su tako što se promatraju različit broj čvorova i različita gustoća povezanosti istih. Za težine između čvorova uzima se distribucija iz grafova koji su generirani iz realnih situacija kako bi rezultati bili što biliži mogućim primjerima iz stvarnoga svijeta. Na slikama \ref{fig:tokai-hist} i \ref{fig:kansai-hist} vide se distribucije težina (po redu veličine) na dva grafa iz realnog svijeta. Vidljivo je da oko pola težina ima malu vrijednost oko $0$, a ostale težine pripadaju većim vrijednostima.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/tokai-w-hist.pdf}
+	\caption{Tokai graf - distribucija težina}
+	\label{fig:tokai-hist}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/kansai-w-hist.pdf}
+	\caption{Kansai graf - distribucija težina}
+	\label{fig:kansai-hist}
+\end{figure}
 
 \begin{table}[htb]
 	\caption{Popis grafova za testiranje}
-	\label{tbl:konstante}
+	\label{tbl:random-test}
 	\centering
 	\begin{tabular}{|l|c|c|c|c|} \hline
 	Naziv grafa & Broj čvorova & Broj bridova & Inicijalna pogreška & Slučajno bojanje\\ \hline \hline
@@ -1138,6 +1151,11 @@ Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potreb
 	\end{tabular}
 \end{table}
 
+\section{Slučajno pretraživanje}
+
+Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. Za ovu svrhu korišten je pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu te također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se da slučajna boja iz njegove domene. Nad svakim grafom pokreće pohlepni algoritam pokreće se deset puta, nakon čeka se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
+
+Rezultati su prikazani u tablici \ref{tbl:random-test}.
 Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva redova veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja), inicijalna pogreška je veća.
 
 \section{Agentski algoritam}
@@ -1149,6 +1167,8 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 \section{Genetsko kaljenje}
 
 \section{Metode strojnog učenja za odair pohlepnog algoritma}
+
+\section{Analiza rezultata}
 
 \chapter{Zaključak}
 Zaključak.
