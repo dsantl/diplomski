@@ -374,12 +374,12 @@ Na tako zadanom težinskom grafu potrebno je napraviti bojanje grafa uz poštiva
 \begin{definition}
 Bojanje težinskog grafa je optimizacijski problem u kojem se minimizira funkcija cilja:
 \begin{equation}
-f(\phi) = \sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i)
+f(\phi) = 2\sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i)
 \end{equation}
-, gdje je $\omega(e_i)$ težina brida, a $R$ funkcija koja ima vrijednost $1$ ako je $e_i$ konfliktan brid ili $0$ inače. Funkcija $f$ ovisi o bojanju grafa, tj. funkcija cilja jednaka je sumi težina konfliktnih bridova.
+, gdje je $\omega(e_i)$ težina brida, a $R$ funkcija koja ima vrijednost $1$ ako je $e_i$ konfliktan brid ili $0$ inače. Funkcija $f$ ovisi o bojanju grafa, tj. funkcija cilja jednaka je dvostrukoj sumi težina konfliktnih bridova.
 \end{definition}
 
-Zbog tehničkih ograničenja potrebno je uvesti nekoliko matematičkih detalja koji pokrivaju te slučajeve.
+Konstanta $2$ koja množi sumu, matematički je nebitna, ali navodi se zbog implementacije funkcije na računalu. Zbog tehničkih ograničenja potrebno je uvesti nekoliko matematičkih detalja koji pokrivaju te slučajeve.
 
 \begin{definition}
 Funkcija $\phi$ definira se kao funkcija koja svakom ne nepromjenjivom čvoru $v$ grafa \textbf{G} pridružuje prirodan broj iz skupa dopuštenih boja za taj čvor.
@@ -402,7 +402,7 @@ U slučaju da je čvor obojen bojom koja nije u njegovoj domeni, tada je potrebn
 \begin{definition}
 \begin{equation}
 \label{equ:funkcija_cilja}
-f(\phi) = \sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i) + \sum_{i=1}^{V(G)} C(v_i)
+f(\phi) = 2\sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i) + \sum_{i=1}^{V(G)} C(v_i)
 \end{equation}
 Prva suma jednaka je već definiranoj funkciji cilja. Drugi član je suma funkcije $C$ po čvorovima, gdje funkcija $C$ ima vrijednost $\varepsilon$ ako je čvor $v_i$ krivo obojen ili $0$ ako je obojen bojom iz svoje domene.
 \end{definition}
