@@ -1102,6 +1102,10 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 
 \section{Metode ispitivanja algoritama}
 
+\section{Karakteristike računala za ispitivanje}
+
+%TODO
+
 \subsection{Ispitivanje metaheuristika}
 
 Nekoliko je rezultata za metaheuristike bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utjeću na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga, veoma je bitan dio pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika ispituje s drugačijim parametrima, te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima, te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
@@ -1174,7 +1178,7 @@ Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su gen
 Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. Za ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se da slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam pokreće deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
 
 Rezultati su prikazani u tablici \ref{tbl:random-test}.
-Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja), inicijalna pogreška je veća.
+Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja \ref{equ:funkcija_cilja}), inicijalna pogreška je veća.
 
 \section{Agentski algoritam}
 
@@ -1206,6 +1210,8 @@ Za klasičan problem bojanja grafova, kao referenca pri ispitivanju učinkovitos
 	r250.5.col & 65 \\ \hline
 	\end{tabular}
 \end{table}
+
+Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritmom. Prvo se pokreće pohlepni algoritam s parametrima \emph{SDO} za sortiranje i \emph{MC} za bojanje grafova. Zatim se pokreće simulirano kaljenje, nakon čega se provodi \emph{tuneliranje} i zatim opet simulirano kaljenje. Traži se prvi broj boja $k$ s kojima se graf može legalno obojiti. Kako je poznati kromatski broj, može se utvrditi efikasnost algoritma. Na kraju se za svaki graf pokreće simulirano kaljenje koje koristi najviše $\chi$ boja i utvrđuje se razlika.
 
 
 \section{Analiza rezultata}
