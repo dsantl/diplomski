@@ -1186,6 +1186,28 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Metode strojnog učenja za odair pohlepnog algoritma}
 
+
+\section{Ispitivanje nad \emph{DIMACS} bazom grafova}
+
+Za klasičan problem bojanja grafova, kao referenca pri ispitivanju učinkovitosti algoritma koriste se poznati grafovi, najčešće iz \emph{DIMACS} baze. Kako u ovom radu već postoji programsko prilagodljivo rješenje, ispituju se neki grafovi iz navedene baze. U klasičnom problemu grafovi nisu težinski, pa sve metode pohlepnog pristupa nije moguće koristiti. Odlučeno je da se ispitivanje provodi nad simuliranim kaljenjem jer je algoritam pokazao najbolje rezultate za težinske grafove. Naziv grafova nalazi se u tablici \ref{tbl:dimacs}.
+
+
+\begin{table}[htb]
+	\caption{Popis DIMACS grafova}
+	\label{tbl:dimacs}
+	\centering
+	\begin{tabular}{|l||r|} \hline
+	Naziv grafa & $\chi$ - kromatski broj \\ \hline \hline
+	dsjr500.1c.col & 84 \\ \hline
+	le450\_25c.col & 25 \\  \hline
+	r1000.5.col & 234 \\ \hline
+	dsjr500.5.col & 122 \\  \hline
+	le450\_25d.col & 25 \\ \hline
+	r250.5.col & 65 \\ \hline
+	\end{tabular}
+\end{table}
+
+
 \section{Analiza rezultata}
 
 \chapter{Zaključak}
@@ -1204,6 +1226,7 @@ U radu se proučava inačica problema bojanja težinskih grafova, gdje je cilj m
 % TODO: Navedite naslov na engleskom jeziku.
 \engtitle{Adaptive Metaheuristic Methods for Graph Coloring Problem}
 \begin{abstract}
+PROVJERITI I DODATI ENGLESKI keywordove
 In this work we study one instance of the weight graph coloring problem. Goal is to minimize sum of weights of conflicts bridges. Problem come from telecommunication domain where is goal set codes in mobile network. Problem is seen as theoretical problem and also as practical problem. In theory part we analyse the problem and we study a borders of the problem in computability theory. In this work we use a different metaheuristics algorithms. With regression methods we try to find optimal properties of graphs for better convergention of algorithms. On the end of this work we show results and we give conclusions.
 
 \keywords{Keywords.}
