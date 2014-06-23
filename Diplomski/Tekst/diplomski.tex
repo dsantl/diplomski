@@ -941,7 +941,7 @@ Algoritam izgleda veoma slično kao i simulirano kaljenje, samo što se odluka z
 Vremenska složenost algoritma je: $O(G \cdot N)$ s time da je to nešto veća vremenska složenost od simuliranog kaljenja ako se u obzir uzme računanje funkcije cilja za $N$ jedinki.
 
 \section{Pronalaženje najpogodnijeg pohlepnog algoritma}
-
+\label{sec:ml}
 Pohlepni se algoritam u ovom radu koristina dva načina. Prvo se koristi kao metoda koja dovodi rješenje u dovoljno dobro početno rješenje, nakon čega minimizaciju funkcije preuzima neka metaheuristika. Drugi način korištenja je kao dio metaheuristike u obliku operatora (npr. mutacija kod genetskog algoritma), metoda za izbjegavanje lokalnog minimuma (tuneliranje) ili pak metoda koja osigurava da postotak promjene boja naspram inicijalnog grafa ne prođe zadani prag. Kod korištenja pohlepnih algoritama u praksi se često koriste \emph{ad-hoc} metode konfiguriranja istog. Prednost je ovakvih metoda što u relativno kratkom vremenu mogu isprobati različite konfiguracije i zatim odabrati najbolju. Nedostatak metode je u tome što ta konfiguracija ne jamči dobar rad nad svim grafovima (\emph{No free lunch} teorem). Kao uvod u hiper-heuristike i postavljanje temelja za budući rad, iz grafova se želi izvući znanje o utjecaju vrsta sortiranja čvorova. Ovaj dio rada ima dva cilja: Prvi je pronaći optimalni operator usporedbe čvorova koji kombinira sve dostupne operatore tj. vrste sortiranja. Drugi cilj je dovesti u vezu vrstu sortiranja i načina bojanja tj. empirijski pokazati koja vrsta sortiranja je najbolja za koji vrstu bojanja. Rezultati bi mogli pokazati određenu vezu između svojstava grafova i vrste sortiranja što bi se moglo koristi kao uvod u istraživanje hiper-heuristika. Metoda pronalaženja pogodnog pohlepnog algoritma sastoji se od koraka:
 
 \begin{enumerate}
@@ -1100,17 +1100,33 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 
 \chapter{Rezultati}
 
+\section{Karakteristike računala korištenog pri ispitivanju}
+
+\begin{table}[htb]
+	\caption{Karakteristike računala}
+	\label{tbl:karakteristike-PC}
+	\centering
+	\begin{tabular}{|l|l|} \hline
+		Model & Aspire 5755G \\ \hline
+		Operacijski sustav & Linux 3.2.0-23-generic \#36-Ubuntu SMP x86\_64 \\ \hline
+		Procesor & Intel(R) Core(TM) i5-2410M CPU \@ 2.30GHz \\ \hline
+		Memorija & 8GiB - 4GiB SODIMM DDR3 Synchronous 1333 MHz (0.8 ns) \\ \hline
+		Priručna memorija L1 2x & 32KiB \\ \hline
+		Priručna memorija L2 & 256KiB \\ \hline
+		Priručna memorija L3 & 3MiB \\ \hline
+		Pomoćna memorija & 976MiB Linux swap \\ \hline
+		Tvrdi disk & 640GB TOSHIBA MK6465GS \\ \hline
+	\end{tabular}
+\end{table}
+
 \section{Metode ispitivanja algoritama}
 
-\section{Karakteristike računala za ispitivanje}
-
-%TODO
 
 \subsection{Ispitivanje metaheuristika}
 
 Nekoliko je rezultata za metaheuristike bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utjeću na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga, veoma je bitan dio pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika ispituje s drugačijim parametrima, te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima, te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
 
-Metaheuristike se ispituju tako što se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteraciju u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Pokazalo se da nakon nekog broja koraka pohlepni algoritam konvergira ili čak u nekim slučajevima divergira. Odabrano je pet koraka jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
+Metaheuristike se ispituju tako što se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteraciju u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Odabrano je pet koraka jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
 
 \section{Grafovi za ispitivanje}
 
@@ -1190,31 +1206,138 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Metode strojnog učenja za odair pohlepnog algoritma}
 
+U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih grafova. Za generiranje rezultata koriste se dva programska alata: \emph{RapidMiner} i \emph{Eureqa}. \emph{RapidMiner} je programski alat koji nudi mnogobrojne metode strojno učenja uz dodatne mogućnosti parsiranja datoteka i sl. U ovom poglavlju taj alat se koristi kako bi se nad podacima iz grafa provela regresija i kako bi se iz generiranih izraza moglo isčitati znaje o tim podacima. Alat \emph{Eureqa} je alat koji koristi metode simboličke regresije. Simbolička regresija vrsta je regresije gdje model nije unaprijed zadan, već se pomoću genetskog programiranja i sl. metoda generiraju funkcije. U ovom poglavlju alat \emph{Eureqa} prikazuje se kao moguća metoda za dobivanje znanja i pokazuje se primjer izvođenja.
+
+Kao obična regresija koristi se model polinoma drugog stupnja. Ovakav model izabran je iz nekoliko razloga. Kada bi se koristio linearan model, tada bi se informacije iz dobivenog polinoma mogle isčitati samo iz koeficijenata. Polinomi višeg stupnja unose previše parametara i previše mogućnosti za interpretaciju podataka. Polinom drugog stupnja nudi mogućnost potiskivanja parametara jer ako parametar koji je u intervalu od $0$ do $1$ ima potenciju $2$, a neki drugi parametar potenciju $1$, tada veći utjecaj ima parametar s manjom potencijom. Ako pak postoje parametri s istom potencijom, tada koeficjenti određuju koji parametar ima veći utjecaj.
+
+Kako je u središtu ovog istraživanja čvor, tada nije bitno koliko graf sadrži čvorova, već koliko je graf gust (koliko ima bridova). Zbog se koriste grafovi s manjim brojem čvorova (kako bi generiranja rezultata oduzelo manje vremena). Za svaki graf i svako bojanje pohlepni algoritam pokreće se $2000$ puta. Od $2000$ rezultata uzima se $10\%$ najboljih. Iz takvih podataka uzimaju se svi čvorovi koji su obojivi sa svojim parametrima - jedan čvor u jednom pohlepnom algoritmu predstavlja jedan uzorak.
+
+Model regresije:
+\begin{equation}
+	f(\textup{COL, FIT, LDO, SDO}) = a\cdot \textup{COL}^{k_1} + b\cdot \textup{FIT}^{k_2} + c\cdot \textup{LDO}^{k_3} + d\cdot \textup{SDO}^{k_4} + e
+\end{equation}
+
+Velikim troslovnim oznakama označene su metode sortiranja, malim slovima označeni su koeficijenti koje je potrebno naučiti, te oznakama $k_i$ označene su potencije, gdje je $k_i \in \left \{ 1, 2 \right \} $.
+Dobiveni rezultati prikazani su u tablicama \ref{tbl:regresija-ABW}, \ref{tbl:regresija-MC} i \ref{tbl:regresija-MF}. Za svaki parametar prikazana su dva broja. Broj koji je u zagradi je potencija za parametar, a broj desno od njega je vrijednost koeficijenta.
+
+
+\begin{table}[!H]
+	\caption{Regresija nad grafovima - ABW vrsta bojanja}
+	\label{tbl:regresija-ABW}
+	\centering
+	\begin{tabular}{|l|r|r|r|r|r|} \hline
+	Naziv grafa & COL & FIT & LDO & SDO & $e$ \\ \hline \hline
+graph\_500\_0.1 & $ -0.196\; (2) $ & $ 0.005\; (2) $ & $ -0.279\; (2) $ & $ 0.230\; (1) $ & $ 0.478 $\\ \hline
+graph\_500\_0.3 & $ 0.078\; (2) $ & $ -0.099\; (2) $ & $ 0.526\; (1) $ & $ -0.851\; (1) $ & $ 0.764 $\\ \hline
+graph\_500\_0.5 & $ 0.009\; (1) $ & $ 0.126\; (2) $ & $ 0.205\; (2) $ & $ -0.246\; (1) $ & $ 0.570 $\\ \hline
+graph\_500\_0.7 & $ 0.031\; (2) $ & $ 0.103\; (1) $ & $ 2.205\; (1) $ & $ -3.077\; (1) $ & $ 1.381 $\\ \hline
+graph\_500\_0.9 & $ 0.206\; (2) $ & $ 0.100\; (2) $ & $ 16.834\; (1) $ & $ -28.285\; (1) $ & $ 11.872 $\\ \hline
+graph\_700\_0.1 & $ 0.036\; (2) $ & $ 0.041\; (2) $ & $ 0.441\; (2) $ & $ -0.656\; (1) $ & $ 0.737 $\\ \hline
+graph\_700\_0.3 & $ 0.221\; (2) $ & $ 0.148\; (2) $ & $ 0.204\; (2) $ & $ -0.261\; (1) $ & $ 0.574 $\\ \hline
+graph\_700\_0.5 & $ 0.135\; (2) $ & $ -0.238\; (2) $ & $ 0.688\; (1) $ & $ -1.102\; (1) $ & $ 0.882 $\\ \hline
+graph\_700\_0.7 & $ 0.030\; (2) $ & $ -0.239\; (1) $ & $ 2.803\; (2) $ & $ -8.294\; (1) $ & $ 6.011 $\\ \hline
+graph\_700\_0.9 & $ 0.218\; (2) $ & $ 0.004\; (2) $ & $ 16.080\; (1) $ & $ -31.888\; (1) $ & $ 16.203 $\\ \hline
+graph\_900\_0.1 & $ 0.043\; (2) $ & $ 0.120\; (2) $ & $ 0.632\; (2) $ & $ -0.825\; (1) $ & $ 0.757 $\\ \hline
+graph\_900\_0.3 & $ -0.027\; (1) $ & $ 0.032\; (2) $ & $ -0.376\; (2) $ & $ 0.795\; (1) $ & $ 0.079 $\\ \hline
+graph\_900\_0.5 & $ 0.012\; (2) $ & $ -0.047\; (2) $ & $ 0.766\; (2) $ & $ -1.964\; (1) $ & $ 1.713 $\\ \hline
+graph\_900\_0.7 & $ 0.030\; (2) $ & $ -0.239\; (1) $ & $ 2.803\; (2) $ & $ -8.294\; (1) $ & $ 6.011 $\\ \hline
+graph\_900\_0.9 & $ 0.143\; (2) $ & $ -0.126\; (2) $ & $ 18.861\; (1) $ & $ -49.868\; (1) $ & $ 31.369 $\\ \hline
+	\end{tabular}
+\end{table} 
+
+\begin{table}[!H]
+	\caption{Regresija nad grafovima - MC vrsta bojanja}
+	\label{tbl:regresija-MC}
+	\centering
+	\begin{tabular}{|l|r|r|r|r|r|} \hline
+	Naziv grafa & COL & FIT & LDO & SDO & $e$ \\ \hline \hline
+graph\_500\_0.1 & $ 0.104\; (2) $ & $ -0.105\; (2) $ & $ 0.307\; (2) $ & $ -0.460\; (1) $ & $ 0.653 $\\ \hline
+graph\_500\_0.3 & $ 0.234\; (2) $ & $ 0.086\; (2) $ & $ -1.001\; (1) $ & $ 1.036\; (1) $ & $ 0.435 $\\ \hline
+graph\_500\_0.5 & $ 0.039\; (1) $ & $ 0.018\; (2) $ & $ 1.177\; (1) $ & $ -1.547\; (1) $ & $ 0.857 $\\ \hline
+graph\_500\_0.7 & $ -0.047\; (1) $ & $ 0.283\; (2) $ & $ 2.597\; (1) $ & $ -3.913\; (1) $ & $ 1.811 $\\ \hline
+graph\_500\_0.9 & $ 0.319\; (2) $ & $ 0.013\; (2) $ & $ 17.227\; (1) $ & $ -28.663\; (1) $ & $ 11.839 $\\ \hline
+graph\_700\_0.1 & $ -0.069\; (2) $ & $ 0.439\; (1) $ & $ -0.385\; (2) $ & $ 0.497\; (1) $ & $ 0.343 $\\ \hline
+graph\_700\_0.3 & $ -0.010\; (1) $ & $ -0.188\; (2) $ & $ -0.219\; (2) $ & $ 0.536\; (1) $ & $ 0.213 $\\ \hline
+graph\_700\_0.5 & $ -0.084\; (1) $ & $ 0.125\; (2) $ & $ 0.634\; (1) $ & $ -0.935\; (1) $ & $ 0.801 $\\ \hline
+graph\_700\_0.7 & $ -0.269\; (2) $ & $ 0.091\; (1) $ & $ 2.175\; (2) $ & $ -6.504\; (1) $ & $ 4.853 $\\ \hline
+graph\_700\_0.9 & $ 0.074\; (2) $ & $ -0.071\; (2) $ & $ 16.715\; (1) $ & $ -32.657\; (1) $ & $ 16.363 $\\ \hline
+graph\_900\_0.1 & $ 0.079\; (2) $ & $ -0.246\; (2) $ & $ -0.525\; (2) $ & $ 0.593\; (1) $ & $ 0.337 $\\ \hline
+graph\_900\_0.3 & $ -0.055\; (2) $ & $ -0.158\; (2) $ & $ -0.097\; (2) $ & $ 0.191\; (1) $ & $ 0.412 $\\ \hline
+graph\_900\_0.5 & $ 0.046\; (2) $ & $ 0.114\; (2) $ & $ 0.172\; (2) $ & $ -0.452\; (1) $ & $ 0.772 $\\ \hline
+graph\_900\_0.7 & $ 0.010\; (2) $ & $ 0.144\; (2) $ & $ 3.253\; (2) $ & $ -11.790\; (1) $ & $ 8.905 $\\ \hline
+graph\_900\_0.9 & $ 0.032\; (2) $ & $ -0.060\; (2) $ & $ 19.066\; (1) $ & $ -50.029\; (1) $ & $ 31.339 $\\ \hline
+	\end{tabular}
+\end{table} 
+
+\begin{table}[!H]
+	\caption{Regresija nad grafovima - MF vrsta bojanja}
+	\label{tbl:regresija-MF}
+	\centering
+	\begin{tabular}{|l|r|r|r|r|r|} \hline
+	Naziv grafa & COL & FIT & LDO & SDO & $e$ \\ \hline \hline
+graph\_500\_0.1 & $ 0.023\; (1) $ & $ 0.347\; (2) $ & $ -0.201\; (2) $ & $ 0.118\; (1) $ & $ 0.504 $\\ \hline
+graph\_500\_0.3 & $ -0.188\; (2) $ & $ -0.154\; (1) $ & $ 0.025\; (1) $ & $ 0.001\; (1) $ & $ 0.487 $\\ \hline
+graph\_500\_0.5 & $ -0.009\; (1) $ & $ 0.044\; (2) $ & $ 0.125\; (1) $ & $ -0.257\; (1) $ & $ 0.619 $\\ \hline
+graph\_500\_0.7 & $ 0.037\; (2) $ & $ -0.222\; (2) $ & $ 1.631\; (1) $ & $ -2.488\; (1) $ & $ 1.352 $\\ \hline
+graph\_500\_0.9 & $ 0.111\; (2) $ & $ 0.451\; (2) $ & $ 16.637\; (1) $ & $ -28.226\; (1) $ & $ 12.003 $\\ \hline
+graph\_700\_0.1 & $ 0.039\; (2) $ & $ -0.256\; (1) $ & $ -0.071\; (2) $ & $ 0.031\; (1) $ & $ 0.511 $\\ \hline
+graph\_700\_0.3 & $ 0.041\; (1) $ & $ 0.165\; (2) $ & $ -0.136\; (1) $ & $ -0.060\; (1) $ & $ 0.638 $\\ \hline
+graph\_700\_0.5 & $ -0.017\; (1) $ & $ -0.108\; (1) $ & $ 0.256\; (2) $ & $ -0.574\; (1) $ & $ 0.829 $\\ \hline
+graph\_700\_0.7 & $ -0.062\; (2) $ & $ 0.070\; (2) $ & $ 2.352\; (2) $ & $ -6.515\; (1) $ & $ 4.711 $\\ \hline
+graph\_700\_0.9 & $ 0.186\; (2) $ & $ 0.272\; (2) $ & $ 15.036\; (1) $ & $ -31.817\; (1) $ & $ 17.135 $\\ \hline
+graph\_900\_0.1 & $ -0.039\; (2) $ & $ 0.146\; (2) $ & $ 0.180\; (2) $ & $ -0.242\; (1) $ & $ 0.580 $\\ \hline
+graph\_900\_0.3 & $ 0.067\; (1) $ & $ 0.103\; (2) $ & $ -0.164\; (2) $ & $ 0.524\; (1) $ & $ 0.180 $\\ \hline
+graph\_900\_0.5 & $ -0.007\; (2) $ & $ 0.004\; (2) $ & $ 0.436\; (2) $ & $ -1.157\; (1) $ & $ 1.223 $\\ \hline
+graph\_900\_0.7 & $ 0.032\; (1) $ & $ -0.018\; (2) $ & $ 5.044\; (1) $ & $ -10.473\; (1) $ & $ 5.769 $\\ \hline
+graph\_900\_0.9 & $ 0.190\; (2) $ & $ -0.093\; (2) $ & $ 18.498\; (1) $ & $ -49.369\; (1) $ & $ 31.216 $\\ \hline
+	\end{tabular}
+\end{table} 
+
 
 \section{Ispitivanje nad \emph{DIMACS} bazom grafova}
 
 Za klasičan problem bojanja grafova, kao referenca pri ispitivanju učinkovitosti algoritma koriste se poznati grafovi, najčešće iz \emph{DIMACS} baze. Kako u ovom radu već postoji programsko prilagodljivo rješenje, ispituju se neki grafovi iz navedene baze. U klasičnom problemu grafovi nisu težinski, pa sve metode pohlepnog pristupa nije moguće koristiti. Odlučeno je da se ispitivanje provodi nad simuliranim kaljenjem jer je algoritam pokazao najbolje rezultate za težinske grafove. Naziv grafova nalazi se u tablici \ref{tbl:dimacs}.
 
-
 \begin{table}[htb]
 	\caption{Popis DIMACS grafova}
 	\label{tbl:dimacs}
 	\centering
-	\begin{tabular}{|l||r|} \hline
-	Naziv grafa & $\chi$ - kromatski broj \\ \hline \hline
-	dsjr500.1c.col & 84 \\ \hline
-	le450\_25c.col & 25 \\  \hline
-	r1000.5.col & 234 \\ \hline
-	dsjr500.5.col & 122 \\  \hline
-	le450\_25d.col & 25 \\ \hline
-	r250.5.col & 65 \\ \hline
+	\begin{tabular}{|l||r|r|r|} \hline
+	Naziv grafa & $\chi$ - kromatski broj & Broj čvorova & Broj bridova\\ \hline \hline
+	dsjr500.1c.col & 84 & 500 & 121275 \\ \hline 
+	le450\_25c.col & 25 & 450 & 17343 \\  \hline
+	r1000.5.col & 234 & 1000 & 238267 \\ \hline
+	dsjr500.5.col & 122 & 500 & 58862 \\  \hline 
+	le450\_25d.col & 25 & 450 & 17425 \\ \hline
+	r250.5.col & 65 & 250 & 14849 \\ \hline
 	\end{tabular}
 \end{table}
 
 Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritmom. Prvo se pokreće pohlepni algoritam s parametrima \emph{SDO} za sortiranje i \emph{MC} za bojanje grafova. Zatim se pokreće simulirano kaljenje, nakon čega se provodi \emph{tuneliranje} i zatim opet simulirano kaljenje. Traži se prvi broj boja $k$ s kojima se graf može legalno obojiti. Kako je poznati kromatski broj, može se utvrditi efikasnost algoritma. Na kraju se za svaki graf pokreće simulirano kaljenje koje koristi najviše $\chi$ boja i utvrđuje se razlika.
 
+\begin{table}[htb]
+	\caption{Bojenje DIMACS grafova pomoću simuliranog kaljenja}
+	\label{tbl:dimacs-sa}
+	\centering
+	\begin{tabular}{|l||r|r|r|} \hline
+	Naziv grafa & $\chi$ - kromatski broj & Minimalno $k$-bojanje & Broj konfliktnih bridova \\ \hline \hline
+	dsjr500.1c.col & 84 & 500 & 121275 \\ \hline 
+	le450\_25c.col & 25 & 450 & 17343 \\  \hline
+	r1000.5.col & 234 & 1000 & 238267 \\ \hline
+	dsjr500.5.col & 122 & 500 & 58862 \\  \hline 
+	le450\_25d.col & 25 & 450 & 17425 \\ \hline
+	r250.5.col & 65 & 250 & 14849 \\ \hline
+	\end{tabular}
+\end{table}
+
 
 \section{Analiza rezultata}
+
+\subsection{Metaheuristike}
+
+\subsection{Učenje metode sortiranje čvorova}
+
+\subsection{Rezultati nad \emph{DIMACS} bazom}
 
 \chapter{Zaključak}
 Zaključak.
@@ -1224,18 +1347,19 @@ Zaključak.
 
 \begin{sazetak}
 
-U radu se proučava inačica problema bojanja težinskih grafova, gdje je cilj minimizirati sumu težina konfliktnih bridova. Problem je primjenjiv u domeni telekomuniakacija gdje se žele raspodijeliti k\^{o}dovi po mobilnoj mreži. Problem se obrađuje teorijski i praktično. U teorijskom dijelu detaljno se analizira problem i određuju njegove granice rješivosti na računalu. U radu se primjenjuju različiti metaheuristički postupci. Pomoću metoda regresija pokušava se pronaći optimalna svojstva grafova, kako bi konvergencija bila što bolja. Na kraju su prikazani rezultati i zaključci.
+U radu se proučava inačica problema bojanja težinskih grafova, gdje je cilj minimizirati sumu težina konfliktnih bridova. Problem je primjenjiv u domeni telekomuniakacija gdje se žele raspodijeliti k\^{o}dovi po mobilnoj mreži. Problem se obrađuje teorijski i praktično. U teorijskom dijelu detaljno se analizira problem i određuju granice njegove rješivosti na računalu. U radu se primjenjuju različiti metaheuristički postupci. Pomoću metoda regresija pokušava se pronaći optimalna svojstva grafova, kako bi konvergencija bila što bolja. Na kraju su prikazani rezultati i zaključci.
 
-\kljucnerijeci{bojanje grafova, metaheursitka, strojno učenje, regresija, simulirano kaljenje, genetska strategija, genetsko kaljenje, agentski algoritam}
+\kljucnerijeci{bojanje grafova, metaheursitka, strojno učenje, regresija, simulirano kaljenje, evolucijska strategija, genetsko kaljenje, agentski algoritam}
 \end{sazetak}
 
 % TODO: Navedite naslov na engleskom jeziku.
-\engtitle{Adaptive Metaheuristic Methods for Graph Coloring Problem}
+\engtitle{Graph coloring with adaptive metaheuristics}
 \begin{abstract}
-PROVJERITI I DODATI ENGLESKI keywordove
-In this work we study one instance of the weight graph coloring problem. Goal is to minimize sum of weights of conflicts bridges. Problem come from telecommunication domain where is goal set codes in mobile network. Problem is seen as theoretical problem and also as practical problem. In theory part we analyse the problem and we study a borders of the problem in computability theory. In this work we use a different metaheuristics algorithms. With regression methods we try to find optimal properties of graphs for better convergention of algorithms. On the end of this work we show results and we give conclusions.
 
-\keywords{Keywords.}
+In this work we study one instance of the weight graph coloring problem. The goal is to minimize the weighted sum of conflict edges. Problem can be applied in telecommunication domain, where the goal is to set codes in a mobile network. Problem can be observed as a theoretical problem and also as a practical problem. We study the problem in detail in the theoretical part and we determine the borders of the problem in computability theory. In this work we apply different metaheuristics algorithms. With regression methods we try to find the optimal graph properties for better convergention of algorithms. On the end of this work we show results and give a conclusions.
+
+\keywords{graph coloring, metaheuristics, machine learning, regression,  simulated annealing, evolution strategy, genetic annealing, agent algorithm}
+
 \end{abstract}
 
 \end{document}
