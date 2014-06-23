@@ -1210,7 +1210,7 @@ U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih g
 
 Kao obična regresija koristi se model polinoma drugog stupnja. Ovakav model izabran je iz nekoliko razloga. Kada bi se koristio linearan model, tada bi se informacije iz dobivenog polinoma mogle isčitati samo iz koeficijenata. Polinomi višeg stupnja unose previše parametara i previše mogućnosti za interpretaciju podataka. Polinom drugog stupnja nudi mogućnost potiskivanja parametara jer ako parametar koji je u intervalu od $0$ do $1$ ima potenciju $2$, a neki drugi parametar potenciju $1$, tada veći utjecaj ima parametar s manjom potencijom. Ako pak postoje parametri s istom potencijom, tada koeficjenti određuju koji parametar ima veći utjecaj.
 
-Kako je u središtu ovog istraživanja čvor, tada nije bitno koliko graf sadrži čvorova, već koliko je graf gust (koliko ima bridova). Zbog se koriste grafovi s manjim brojem čvorova (kako bi generiranja rezultata oduzelo manje vremena). Za svaki graf i svako bojanje pohlepni algoritam pokreće se $2000$ puta. Od $2000$ rezultata uzima se $10\%$ najboljih. Iz takvih podataka uzimaju se svi čvorovi koji su obojivi sa svojim parametrima - jedan čvor u jednom pohlepnom algoritmu predstavlja jedan uzorak.
+Kako je u središtu ovog istraživanja čvor, tada nije bitno koliko graf sadrži čvorova, već koliko je graf gust (koliko ima bridova). Zbog toga se koriste grafovi s manjim brojem čvorova (kako bi generiranja rezultata oduzelo manje vremena). Za svaki graf i svako bojanje pohlepni algoritam pokreće se $2000$ puta. Od $2000$ rezultata uzima se $10\%$ najboljih. Iz takvih podataka uzimaju se svi čvorovi koji su obojivi sa svojim parametrima - jedan čvor u jednom pohlepnom algoritmu predstavlja jedan uzorak.
 
 Model regresije:
 \begin{equation}
@@ -1293,6 +1293,34 @@ graph\_900\_0.9 & $ 0.190\; (2) $ & $ -0.093\; (2) $ & $ 18.498\; (1) $ & $ -49.
 	\end{tabular}
 \end{table} 
 
+Može se očekivati da funkcija usporedbe pri sortiranju čvorova nije jednostavna tj. da nije polinom. Zato se ideja proširuje na simboličku regresiju. Ovo ispitivanje je ilustrativno i prikazuje dodatnu mogućnost pri istraživanju sortiranaj čvorova. Graf za ispitivanje je "\emph{graph\_700\_0.5}". Odabrana je vrsta bojanja \emph{ABW}. Skup elementarnih operatora i funkcija:
+
+\begin{itemize}
+	\item $c$  konstanta
+	\item $+$ operator zbrajanja
+	\item $-$ operator oduzimanja
+	\item $\cdot $ operator množenja
+	\item $/$ operator dijeljenja
+	\item $sin$
+	\item $cos$
+	\item $e^x$
+	\item $ln$ 
+	\item logistička funkcija
+\end{itemize} 
+
+U tablici \ref{tbl:sym-reg} su prikazana dva rješenja koja su se pojavila. Prvo rješenja je jednostavnije, ali ima veću empirijsku pogrešku. Za drugo rješenje vrijedi obrunto.
+
+\begin{table}[htb]
+	\caption{Simbolička regresija nad grafom}
+	\label{tbl:sym-reg}
+	\centering
+	\begin{tabular}{|l|r|} \hline
+	Izraz & Empirijska pogreška (MSE)\\ \hline \hline
+	$f = 0.348/SDO + 4.756\cdot COL \cdot SDO - 4.178\cdot COL$ & 0.085474763\\ \hline
+	$f = \textup{logistic}(0.637\cdot cos(112.588/SDO) - 0.057 - FIT)$ & 0.07911826 \\ \hline
+	\end{tabular}
+\end{table}
+
 
 \section{Ispitivanje nad \emph{DIMACS} bazom grafova}
 
@@ -1313,7 +1341,7 @@ Za klasičan problem bojanja grafova, kao referenca pri ispitivanju učinkovitos
 	\end{tabular}
 \end{table}
 
-Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritmom. Prvo se pokreće pohlepni algoritam s parametrima \emph{SDO} za sortiranje i \emph{MC} za bojanje grafova. Zatim se pokreće simulirano kaljenje, nakon čega se provodi \emph{tuneliranje} i zatim opet simulirano kaljenje. Traži se prvi broj boja $k$ s kojima se graf može legalno obojiti. Kako je poznati kromatski broj, može se utvrditi efikasnost algoritma. Na kraju se za svaki graf pokreće simulirano kaljenje koje koristi najviše $\chi$ boja i utvrđuje se razlika.
+Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritmom. Prvo se pokreće pohlepni algoritam s parametrima \emph{SDO} za sortiranje i \emph{MC} za bojanje grafova. Zatim se pokreće simulirano kaljenje, nakon čega se provodi \emph{tuneliranje} i zatim opet simulirano kaljenje. Traži se prvi broj boja $k$ s kojima se graf može legalno obojiti. Kako je poznati kromatski broj, može se utvrditi efikasnost algoritma. Na kraju se za svaki graf pokreće simulirano kaljenje koje koristi najviše $\chi$ boja i utvrđuje se razlika. U tablici \ref{tbl:dimacs-sa} prikazani su grafovi, njihovi kromatski brojevi i minimalni kromatski broj pronađen pomoću simuliranog kaljenja. Uz to nalazi se broj konfliktnih bridova nakon optimizacije koja koristi točno kromatski broj za ispitivanje $k$-legalnog bojanja (uzima se median).
 
 \begin{table}[htb]
 	\caption{Bojenje DIMACS grafova pomoću simuliranog kaljenja}
@@ -1321,14 +1349,32 @@ Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritm
 	\centering
 	\begin{tabular}{|l||r|r|r|} \hline
 	Naziv grafa & $\chi$ - kromatski broj & Minimalno $k$-bojanje & Broj konfliktnih bridova \\ \hline \hline
-	dsjr500.1c.col & 84 & 500 & 121275 \\ \hline 
-	le450\_25c.col & 25 & 450 & 17343 \\  \hline
-	r1000.5.col & 234 & 1000 & 238267 \\ \hline
-	dsjr500.5.col & 122 & 500 & 58862 \\  \hline 
-	le450\_25d.col & 25 & 450 & 17425 \\ \hline
-	r250.5.col & 65 & 250 & 14849 \\ \hline
+	dsjr500.1c.col & 84 & 87 & 3 \\ \hline 
+	le450\_25c.col & 25 & 28 & 20 \\  \hline
+	r1000.5.col & 234 & 266 & 36 \\ \hline
+	dsjr500.5.col & 122 & 133 & 11 \\  \hline 
+	le450\_25d.col & 25 & 28 & 20 \\ \hline
+	r250.5.col & 65 & 69 & 4 \\ \hline
 	\end{tabular}
 \end{table}
+
+U tablici \ref{tbl:dimacs-sa-time} prikazana su vremena izvođenja simuliranog kaljenja s istim parametrima za različite grafove. Uzima se srednje vrijeme izvođenja.
+
+\begin{table}[htb]
+	\caption{Bojenje DIMACS - vremena izvođenja za kromatski broj i minimalno $k$-legalno bojenje}
+	\label{tbl:dimacs-sa-time}
+	\centering
+	\begin{tabular}{|l||r|r|} \hline
+	Naziv grafa & Vrijeme za kromatski broj (s) & Vrijeme za $k$-legalno bojanje (s) \\ \hline \hline
+	dsjr500.1c.col & 74.0916 & 75.811 \\ \hline 
+	le450\_25c.col & 8.187 & 8.9182 \\  \hline
+	r1000.5.col & 181.67 & 206.095 \\ \hline
+	dsjr500.5.col & 44.239 & 47.276  \\  \hline 
+	le450\_25d.col &  8.187 & 8.422  \\ \hline
+	r250.5.col & 17.3896 & 17.6512 \\ \hline
+	\end{tabular}
+\end{table}
+
 
 
 \section{Analiza rezultata}
@@ -1337,7 +1383,7 @@ Za svaki graf pokreće se simulirano kaljenje u kombinaciji s pohlepnim algoritm
 
 \subsection{Učenje metode sortiranje čvorova}
 
-\subsection{Rezultati nad \emph{DIMACS} bazom}
+\subsection{\emph{DIMACS} baza}
 
 \chapter{Zaključak}
 Zaključak.
