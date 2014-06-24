@@ -78,12 +78,12 @@ U praksi potrebno je konstruirati algoritam koji zahtjeva malo vremenskih i memo
 
 Rad opisuje rješavanje problema bojanja grafova pomoću genetskog algoritma.
 Posebna pažnja posvećena je operatoru mutacije.
-Jedinke su prikazane nizom cijelih brojeva. Svakom čvoru u grafu pridružen je jedinstveni cijeli broj - identifikacija.
+Jedinke su prikazane nizom cijelih brojeva. Svakom čvoru u grafu pridružen je jedinstveni cijeli broj -- identifikacija.
 Jedinka je prikazana nizom u kojem je svakoj identifikaciji (čvoru)
 pridružen broj boje. Funkcija cilja je broj korištenih boja.
 Inicijalna populacija generira se slučajnim dodjeljivanjem
 boja svakom čvoru u grafu.
-Dodatno se koristi operator ispravaka koji popravlja jedinku tako da izabere dva susjedna čvora koji imaju istu boju i zatim jednome od njih promjeni boju.
+Dodatno se koristi operator ispravaka koji popravlja jedinku tako da izabere dva susjedna čvora koji imaju istu boju i zatim jednome od njih promijeni boju.
 Mutacija se vrši nad jedinkom tako da se prvo reducira broj korištenih boja. To se može napraviti tako da se odaberu dva čvora i pridruži im se boja koja nije jedna od dvije odabrane.
 Zatim se primijeni operator ispravaka nad tom jedinkom. To se sve ponavlja sve dok se ne generira legalno pobojani graf.
 Rezultati su uspoređivani s klasičnim implementacijama genetskih algoritama i
@@ -93,7 +93,7 @@ Ispitivanje se obavljalo nad nekim primjerima iz DIMACS baze.
 
 \subsection*{Efficient Graph Coloring With Parallel Genetic Algorithms \cite{lit2}}
 
-Koristi se paralelni genetski algoritam i to migracijski model. Osim toga,
+Koristi se paralelni genetski algoritam, i to migracijski model. Osim toga,
 definirani su i novi genetski operatori. Jedinka je prikazana pomoću 
 particije skupa. 
 
@@ -102,15 +102,15 @@ Dobiveni su rezultati:
 \begin{enumerate}
 \item Uvijek je bolje koristiti migraciju od izolacije. Za neke se operatore može odrediti najbolji parametar, dok za većinu drugih to nije pronađeno.
 
-\item U migraciji je bolje koristiti najbolje jedinke. Samo u nekim slučajevima kod CEX operatora je bolje koristiti slučajno odabrane jedinke.
+\item U migraciji je bolje koristiti najbolje jedinke. Samo u nekim slučajevima kod CEX operatora bolje je koristiti slučajno odabrane jedinke.
 
 \item First Fit je uvijek bolja mutacija od Transposition mutacije. First Fit najbolje se ponaša uz CEX i GPX operator. Transposition mutacija relativno dobro radi sa SPPX operatorom.
 
-\item CEX i GPX operatori su bili najbolji uz korištenje First Fit mutacije.
+\item CEX i GPX operatori bili su najbolji uz korištenje First Fit mutacije.
 Nakon toga slijedi USIX. SPPX je jako brz operator, ali da bi bio uspješan,
 potrebno ga je izvršiti u više iteracija.
 
-\item Najbrži operator križanja je CEX s First Fit mutacijom. Najsporji je UISX.
+\item Najbrži operator križanja je CEX s First Fit mutacijom. Najsporiji je UISX.
 \end{enumerate}
 
 
@@ -120,14 +120,14 @@ Opisuje se jedna inačica ACO \engl{Ant colony optimization} algoritma. Ideja je
 jednom bojom (odabiru se čvorovi koji će se bojati u zadanu boju). Radi se o 
 proširenju ANTCOL-a. Uz kemijske se tragove dodaje heuristika (npr. 
 broj čvorova koji su iste boje kao i trenutni korak). Graf koji mravi rješavaju
-nije orginalni graf koji je zadan, već je to graf gdje su povezana dva čvora
+nije originalni graf koji je zadan, već je to graf gdje su povezana dva čvora
 koja u originalnom grafu nisu susjedna. Prema tome se računa vjerojatnost da 
 se nekom čvoru pridoda neka boja. 
 
 
 \subsection*{Breaking the Symmetry of the Graph Colouring Problem with Genetic Algorithms \cite{lit5}}
 
-Razbija se simetrija u klasičnom problemu bojanja grafova. Različite jedinke mogu predstavljati isto pobojane grafove. Problem se pokušava rješitit tako  što se na početku fiksiraju boje za određene čvorove. U našem problemu, članak se može koristiti kod pristupa pri pohlepnom algoritmu.
+Razbija se simetrija u klasičnom problemu bojanja grafova. Različite jedinke mogu predstavljati isto pobojane grafove. Problem se pokušava riješiti tako  da se na početku fiksiraju boje za određene čvorove. U našem problemu, članak se može koristiti kod pristupa pri pohlepnom algoritmu.
 
 \subsection*{New Graph Coloring Algorithms \cite{lit7}}
 
@@ -139,7 +139,7 @@ Problem koji je veoma sličan praktičnoj primjeni problema koji se rješava. Ko
 
 \subsection*{Evolutionary Algorithms for Real-World Instances of the Automatic Frequency Planning Problem in GSM Networks \cite{lit12}}
 
-Rad koji je vrlo sličan problematici koja se rješava u diplomskom radu. U radu je primjećeno da operator križanja mora biti vrlo napredan ili ga uopće ne koristiti, te se predlaže korištenje evolucijske strategije $(\mu, \lambda)$ 
+Rad koji je vrlo sličan problematici koja se rješava u diplomskom radu. U radu je primijećeno da operator križanja mora biti vrlo napredan ili ga uopće ne koristiti, te se predlaže korištenje evolucijske strategije $(\mu, \lambda)$ 
 
 \subsection*{Optimization by Simulated Annealing: An Experimental Evaluation; Part II, Graph Coloring and Number Partitioning \cite{lit13}}
 
@@ -147,7 +147,7 @@ Opisuje se korištenje simuliranog kaljenja u optimizacijskim algoritmima. Pokaz
 
 \subsection*{Genetic Annealing Optimization: Design and Real World Applications \cite{lit18}}
 
-Jedan od rijetkih članaka koji opisuje metaheuristiku - genetsko kaljenje. Analizira se metaheuristika u kojoj su uzete dobre strane genetskog algoritma i dobre strane simuliranog kaljenja. Algoritam pokazuje dobre rezultate, ali nedostatak može predstavljati velika populacija za koju je potrebno računati funkcije cilja čija je vremenska složenost velika.
+Jedan od rijetkih članaka koji opisuje metaheuristiku -- genetsko kaljenje. Analizira se metaheuristika u kojoj su uzete dobre strane genetskog algoritma i dobre strane simuliranog kaljenja. Algoritam pokazuje dobre rezultate, ali nedostatak može predstavljati velika populacija za koju je potrebno računati funkcije cilja čija je vremenska složenost velika.
 
 
 \chapter{Formalni opis problema}
@@ -161,9 +161,9 @@ Ono što se u ovom radu naziva baznom stanicom je radijska pristupna mreža \eng
 
 Za što kvalitetniji rad mreže potrebno je optimirati parametre \emph{RAN}-a. Jedan od parametra je \emph{scrambling} k\^{o}d. \emph{Scrambling} k\^{o}d služi kako bi mobilni uređaj mogao razlikovati bazne stanice. Svakoj baznoj stanici potrebno je pridružiti različit k\^{o}d. Problem je u tome što je dostupno samo 512 različitih kodova. To znači da neke bazne stanice moraju imati isti k\^{o}d (ako se u sustavu nalazi više od 512 baznih stanica). Ako neke dvije bazne stanice imaju isti k\^{o}d i mobilni uređaj se nalazi u dosegu signala od obje stanice, tada uređaj ne može odrediti s kojom baznom stanicom komunicira. Tada može doći do prekida poziva, što uzrokuje pad kvalitete usluge.
 
-Potrebno je dodijeliti \emph{scrambling} k\^{o}dove tako da dvije bazne stanice koje mogu biti istovremeno vezane za jedan mobilni uređaj nemaju isti k\^{o}d ili ako je to nemoguće, dodijeliti k\^{o}dove tako da je negativan utjecaj na kvalitetu usluge što manji. Postoje još neka tehnička ograničenja koja je potrebno uvažiti, a biti će navedena u nastavku.
+Potrebno je dodijeliti \emph{scrambling} k\^{o}dove tako da dvije bazne stanice koje mogu biti istovremeno vezane za jedan mobilni uređaj nemaju isti k\^{o}d ili ako je to nemoguće, dodijeliti k\^{o}dove tako da je negativan utjecaj na kvalitetu usluge što manji. Postoje još neka tehnička ograničenja koja je potrebno uvažiti, a bit će navedena u nastavku.
 
-Iako postoji 512 različitih k\^{o}dova, svaka bazna stanica ima ograničen skup k\^{o}dova koje može koristiti. Za svaku baznu stanicu zadan je skup mogućih k\^{o}dova. Za neke bazne stanice postoji svojstvo nepromjenjivost, što znači da k\^{o}d koji je trenutno zadan za tu baznu stanicu mora ostati takav. Takve se vrste baznih stanica nazivaju \textbf{nepromjenjivima}. Početno stanje mreže definirano je k\^{o}dovima koji su pridijeljeni nekoj baznoj stanici. Osim toga, za svaku baznu stanicu poznata je njezina vrsta. Vrsta može biti označena slovima: \emph{A, B ili C}. Bazne stanice različitih vrsta ne utječu jedna na drugu.
+Iako postoji 512 različitih k\^{o}dova, svaka bazna stanica ima ograničen skup k\^{o}dova koje može koristiti. Za svaku baznu stanicu zadan je skup mogućih k\^{o}dova. Za neke bazne stanice postoji svojstvo nepromjenjivosti, što znači da k\^{o}d koji je trenutno zadan za tu baznu stanicu mora ostati takav. Takve se vrste baznih stanica nazivaju \textbf{nepromjenjivima}. Početno stanje mreže definirano je k\^{o}dovima koji su pridijeljeni nekoj baznoj stanici. Osim toga, za svaku baznu stanicu poznata je njezina vrsta. Vrsta može biti označena slovima: \emph{A, B ili C}. Bazne stanice različitih vrsta ne utječu jedna na drugu.
 
 \subsection{Ulazni i izlazni podaci}
 
@@ -202,7 +202,7 @@ Jednostavni graf \textbf{G} sastoji se od nepraznog konačnog skupa \textbf{V(G)
 \end{definition}
 
 \begin{definition}
-Skup vrhova koji su susjedni vrhu \textbf{v} zovemo susjedstvo vrha \textbf{v} i označavamo s oznakom \textbf{H(v)}.
+Skup vrhova koji su susjedni vrhu \textbf{v} zovemo susjedstvo vrha \textbf{v} i označavamo oznakom \textbf{H(v)}.
 \end{definition}
 
 \begin{definition}
@@ -225,7 +225,7 @@ Bojanje grafa s najviše \textbf{k} boja nazivamo \textbf{k-bojanje} grafa.
 \end{definition}
 
 \begin{definition}
-Ako se graf može obojiti s najviše \textbf{k} boja tada takvo bojanje nazivamo \textbf{legalno k-bojanje} grafa. 
+Ako se graf može obojiti s najviše \textbf{k} boja, tada takvo bojanje nazivamo \textbf{legalno k-bojanje} grafa. 
 \end{definition}
 
 \begin{definition}
@@ -243,7 +243,7 @@ Podskup skupa V(G) nazivamo \textbf{nezavisni skup} ako u njemu ne postoje dva �
 \end{definition}
 
 \begin{definition}
-Brid koji spaja dva čvora iste boje nazivamo \textbf{konfliktni brid}.
+Brid koji spaja dva čvora iste boje nazivamo \textbf{konfliktnim bridom}.
 \end{definition}
 
 \begin{definition}
@@ -252,7 +252,7 @@ Dva čvora koja spaja konfliktni brid nazivamo \textbf{konfliktnim čvorovima}.
 
 \begin{definition}
 Particiju skupa V(G) na k disjunktnih nepraznih podskupova $V_1,..., V_k$
- tako da vrijedi $V(G) = \bigcup_{j=1}^{k}V_j$ zovemo \textbf{k-dioba} grafa G. Ako su podskupovi  $V_1 ,..., V_k$  ujedno i nezavisni skupovi onda se to naziva \textbf{legalna k-dioba} grafa G.
+ tako da vrijedi $V(G) = \bigcup_{j=1}^{k}V_j$ zovemo \textbf{k-dioba} grafa G. Ako su podskupovi  $V_1 ,..., V_k$  ujedno i nezavisni skupovi, onda se to naziva \textbf{legalna k-dioba} grafa G.
 \end{definition}
 
 \begin{theorem}
@@ -297,7 +297,7 @@ Problem odluke za koji postoji algoritam čije trajanje ovisi polinomno o velič
 \end{definition}
 
 \begin{definition}
-\textbf{Kombinatorna optimizacija} je grana optimizacije, gdje je domena funkcije skup s konačnim brojem elemenata.
+\textbf{Kombinatorna optimizacija} je grana optimizacije gdje je domena funkcije skup s konačnim brojem elemenata.
 \end{definition}
 
 \begin{definition}
@@ -360,33 +360,33 @@ Skup svih dozvoljenih rješenja u optimizaciji nazivamo \textbf{prostor pretrage
 
 Dokaz teorema može se pronaći u \cite{lit15}.
 
-Kako se ne zna ništa više o funkcijama (npr. simbolički zapis), već samo ulazni i izlazni parovi, ne može se koristiti nikakvo unutarnje znanje koje bi nekom algoritmu dalo prednost. Ako je poznat broj koraka $m$ tada za bilo koji algoritam, sume vjerojatnosti su međusobno jednake, pri čemu se gleda vjerojatnost da se pojavio neki niz izlaznih vrijednosti funkcije $d_m^y$.
-Iz niza izlaznih vrijednost $d_m^y$ može se lako izvući minimalna ili maksimalna vrijednost koja je tada konačan izlaz algoritma. Dakle, ne postoji algoritam koji bi bio dominantniji za sve funkcije cilja $f$. Zbog toga je potrebno svaki optimizacijski problem promatrati veoma usko i koristiti dodatne informacije o samoj funkciji $f$.
+Kako se ne zna ništa više o funkcijama (npr. simbolički zapis), već samo ulazni i izlazni parovi, ne može se koristiti nikakvo unutarnje znanje koje bi nekom algoritmu dalo prednost. Ako je poznat broj koraka $m$, tada za bilo koji algoritam, sume vjerojatnosti su međusobno jednake, pri čemu se gleda vjerojatnost da se pojavio neki niz izlaznih vrijednosti funkcije $d_m^y$.
+Iz niza izlaznih vrijednosti $d_m^y$ može se lako izvući minimalna ili maksimalna vrijednost koja je tada konačan izlaz algoritma. Dakle, ne postoji algoritam koji bi bio dominantniji za sve funkcije cilja $f$. Zbog toga je potrebno svaki optimizacijski problem promatrati veoma usko i koristiti dodatne informacije o samoj funkciji $f$.
 
-Prethodne definicije i teoremi služe kako bi se uskladili nazivi za matematičke pojmove koji će se koristiti u radu. Sve definicije uzete su iz \cite{lit16, lit15, lit19}, gdje se među ostalim mogu naći i druge definicije i teoremi vezani za teoriju grafova, računsku teoriju složenosti i "\emph{No free lunch}" teorem.
+Prethodne definicije i teoremi služe kako bi se uskladili nazivi za matematičke pojmove koji će se koristiti u radu. Sve definicije uzete su iz \cite{lit16, lit15, lit19}, gdje se među ostalim mogu naći i druge definicije i teoremi povezani s teorijom grafova, računarskom teorijom složenosti i "\emph{No free lunch}" teoremom.
 
 \subsection{Bojanje težinskih grafova}
 
-Za navedeni telekomunikacijski problem potrebno je odabrati prikladan matematički model. Već je spomenuto da se bazne stanice modeliraju čvorovima u grafu. Postavlja se pitanje što predstavlja brid u tome grafu. Očigledno je da jedna bazna stanice utječe na drugu baznu stanicu, tj. mobilni uređaj istovremeno vidi više baznih stanica. To znači da bi brid mogao predstavljati relaciju vidi li neka bazna stanica drugu. Problem se može razviti i korak dalje. Nije svejedno na kojoj su udaljenosti bazne stanice te koja je njihova snaga. To znači da dvije bliže (ili jače vezane) bazne stanice više utječu jedna na drugo nego što to čine dvije udaljenije. Ideja je svakom bridu dodijeliti težinu koja predstavlja neku mjeru koliko jedna bazna stanica utječe na drugu. To znači da brid između dva čvora daje mjeru međusobnog utjecaja čvorova. Ako je utjecaj premali (tehnički nevidljiv), tada brid između ta dva čvora ne postoji.
+Za navedeni telekomunikacijski problem potrebno je odabrati prikladan matematički model. Već je spomenuto da se bazne stanice modeliraju čvorovima u grafu. Postavlja se pitanje što predstavlja brid u tome grafu. Očigledno je da jedna bazna stanice utječe na drugu baznu stanicu, tj. mobilni uređaj istovremeno vidi više baznih stanica. To znači da bi brid mogao predstavljati relaciju vidi li neka bazna stanica drugu. Problem se može razviti i korak dalje. Nije svejedno na kojoj su udaljenosti bazne stanice te koja je njihova snaga. To znači da dvije bliže (ili jače vezane) bazne stanice više utječu jedna na drugo nego što to čine dvije udaljenije. Ideja je svakom bridu dodijeliti težinu koja predstavlja neku mjeru koliko jedna bazna stanica utječe na drugu. To znači da brid između dva čvora daje mjeru međusobnog utjecaja čvorova. Ako je utjecaj premalen (tehnički nevidljiv), tada brid između ta dva čvora ne postoji.
 
 Na tako zadanom težinskom grafu potrebno je napraviti bojanje grafa uz poštivanje svih tehničkih uvjeta. Zato se u ovom radu klasični problem bojanja grafova poopćuje:
 
 \begin{definition}
 Bojanje težinskog grafa je optimizacijski problem u kojem se minimizira funkcija cilja:
 \begin{equation}
-f(\phi) = 2\sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i)
+f(\phi) = 2\sum_{i=1}^{E(G)} \omega(e_i) \cdot R(e_i),
 \end{equation}
-, gdje je $\omega(e_i)$ težina brida, a $R$ funkcija koja ima vrijednost $1$ ako je $e_i$ konfliktan brid ili $0$ inače. Funkcija $f$ ovisi o bojanju grafa, tj. funkcija cilja jednaka je dvostrukoj sumi težina konfliktnih bridova.
+gdje je $\omega(e_i)$ težina brida, a $R$ funkcija koja ima vrijednost $1$ ako je $e_i$ konfliktan brid ili $0$ inače. Funkcija $f$ ovisi o bojanju grafa, tj. funkcija cilja jednaka je dvostrukoj sumi težina konfliktnih bridova.
 \end{definition}
 
 Konstanta $2$ koja množi sumu, matematički je nebitna, ali navodi se zbog implementacije funkcije na računalu. Zbog tehničkih ograničenja potrebno je uvesti nekoliko matematičkih detalja koji pokrivaju te slučajeve.
 
 \begin{definition}
-Funkcija $\phi$ definira se kao funkcija koja svakom ne nepromjenjivom čvoru $v$ grafa \textbf{G} pridružuje prirodan broj iz skupa dopuštenih boja za taj čvor.
+Funkcija $\phi$ definira se kao funkcija koja svakom nenepromjenjivom čvoru $v$ grafa \textbf{G} pridružuje prirodan broj iz skupa dopuštenih boja za taj čvor.
 \end{definition}
 
 \begin{definition}
-Ako su dva čvora \textbf{nepromjenjiva} spojena bridom i imaju iste boje, tada smatramo da taj brid nije \textbf{konfliktan}.
+Ako su dva \textbf{nepromjenjiva} čvora spojena bridom i imaju iste boje, tada smatramo da taj brid nije \textbf{konfliktan}.
 \end{definition}
 
 Razlog ovakvoj definiciji je taj da se bridovi koji spajaju dva nepromjenjiva čvora različitih boja ne mogu nikada poboljšati, pa prema tome neovisni su o funkciji bojanja grafa $\phi$.
@@ -417,16 +417,16 @@ U konkretnom problemu $\alpha=66\%$.
 
 Sažetak problema kojeg modeliramo pomoću težinskog grafa glasi:
 \begin{itemize}
-	\item Svaki čvor može poprimiti jednu boju iz skupa dopuštenih boja za taj čvor
-	\item Svaki čvor spada u jednu grupu tj. vrstu (A, B ili C)
-	\item Neki čvorovi su definirani kao nepromjenjivi, njima se boja nikad ne smije mijenjati
-	\item Dodatan uvjet je da postotak promijenjenih čvorova naprema inicijalnom stanju ne smije biti veći od 66\%
+	\item Svaki čvor može poprimiti jednu boju iz skupa dopuštenih boja za taj čvor.
+	\item Svaki čvor spada u jednu grupu tj. vrstu (A, B ili C).
+	\item Neki čvorovi su definirani kao nepromjenjivi, njima se boja nikad ne smije mijenjati.
+	\item Dodatan uvjet je da postotak promijenjenih čvorova naprema inicijalnom stanju ne smije biti veći od 66\%.
 	\item Optimizacija se provodi nad funkcijom cilja definiranom formulom (\ref{equ:funkcija_cilja}).
 \end{itemize}
 
 \section{Analiza problema bojanja težinskih grafova}
 
-U ovom odjeljku analizirat ćese zadani matematički problem optimizacije. U svakom koraku analize uspoređuje se klasičan problem bojanja grafova i bojanje težinskih grafova. Kreće se od analize prostora pretrage. Zatim se dokazuje u kojoj se klasi problemi nalaze. Na kraju se pokazuje da "\emph{No free lunch}" teorem vrijedi i za bojanje grafova i kakve posljedice donosi.
+U ovom odjeljku analizirat će se zadani matematički problem optimizacije. U svakom koraku analize uspoređuje se klasičan problem bojanja grafova i bojanje težinskih grafova. Kreće se od analize prostora pretrage. Zatim se dokazuje u kojoj se klasi problemi nalaze. Na kraju se pokazuje da "\emph{No free lunch}" teorem vrijedi i za bojanje grafova i kakve posljedice donosi.
 
 \subsection{Prostor pretrage stanja}
 
@@ -436,7 +436,7 @@ Kod klasičnog problema bojanja grafova analiziraju se dva problema. Prvi je odr
 N = k^{V(G)} 
 \end{equation}
 
-Valja primijetiti da u ovom brojanju veličine prostora stanja postoji više jednako vrijednih bojanja. U bojanju nije bitna točna boja, već je bitno da različiti skupovi čvorova imaju različite boje. Točno pitanje je na koliko načina možemo čvorove podijeliti u $k$ skupova (teorem \ref{thm:dioba}).  
+Valja primijetiti da u ovom brojanju veličine prostora stanja postoji više jednako vrijednih bojanja. U bojanju nije bitna točna boja, već je bitno da različiti skupovi čvorova imaju različite boje. Točno pitanje je na koliko načina možemo čvorove podijeliti u $k$ skupova (Teorem \ref{thm:dioba}).  
 
 \begin{equation}
 N = \sum_{i=1}^{k} S(V(G), i)
@@ -444,13 +444,13 @@ N = \sum_{i=1}^{k} S(V(G), i)
 
 Oznaka $S(m,n)$ je za \emph{Stirlingov} broj druge vrste, gdje je $m$ broj različitih elemenata (čvorovi) koje smještamo u $n$ istovrsnih skupova boja, tako da svaka boja ima barem jedan čvor. Kako je dopušteno da skupovi mogu biti prazni, tada se problem pretvori u disjunktne probleme gdje se koristi samo $i$ skupova. 
 
-Ako se zahtjeva da svaka od $k$ boja mora biti iskorištena, ekvivalentno da ni jedan od $k$ skupova ne smije biti prazan, tada je ukupan broj stanja nešto manji:
+Ako se zahtijeva da svaka od $k$ boja mora biti iskorištena, ekvivalentno da nijedan od $k$ skupova ne smije biti prazan, tada je ukupan broj stanja nešto manji:
 
 \begin{equation}
 N = S(V(G), k) = \frac{1}{k!}\sum_{i=0}^{k} (-1)^i \binom{k}{i}(k-i)^{V(G)}  
 \end{equation}
 
-Ako se čvrsto zahtjeva da svaka boja mora biti barem na jednome čvoru, tada je to \emph{Stirlingov} broj druge vrste, gdje je i navedena formula za izračun $S(m,n)$.
+Ako se čvrsto zahtijeva da svaka boja mora biti barem na jednome čvoru, tada je to \emph{Stirlingov} broj druge vrste, gdje je i navedena formula za izračun $S(m,n)$.
 
 Neka se promatra problem traženja kromatskog broja grafa $\chi(G)$, tj. minimalni broj boja $k$, a da se graf može legalno obojiti. Maksimalni broj za koji je to potrebno provjeriti je broj čvorova u grafu, jer je u tom slučaju svaki čvor povezan sa svakim drugim i svaki čvor mora imati svoju boju. Kromatski broj grafa je dakle ograničen odozgo brojem čvorova. Za svaki broj $k$ do $V(G)$ treba provjeriti je li je graf \textbf{k-obojiv}. Ukupan broj stanja je:
 
@@ -524,13 +524,13 @@ K_i \le M = 512
 N = \prod_{i=1}^{V(G)} K_i \le \prod_{i=1}^{V(G)} M = M^{V(G)}
 \end{equation}
 
-Broj stanja eksponencijalno ovisi o broju čvorova, što je isto kao i za klasičan problem bojanja grafa, jako velik broj stanja. I u ovom je slučaju važno primijetiti da su neka stanja ekvivalentna. Broj jedinstvenih stanja broj je particija skupa čvorova u skupove boja, ali uz ograničenje da barem jedan čvor ima neku od zadanih $M$ boja, tada vrijedi ova nejednakost za broj različitih stanja:
+Broj stanja eksponencijalno ovisi o broju čvorova, što je isto kao i za klasičan problem bojanja grafa, jako velik broj stanja. I u ovom je slučaju važno primijetiti da su neka stanja ekvivalentna. Broj jedinstvenih stanja broj je particija skupa čvorova u skupove boja, ali uz ograničenje da barem jedan čvor ima neku od zadanih $M$ boja. Tada vrijedi ova nejednakost za broj različitih stanja:
 
 \begin{equation}
 N \le \sum_{i=1}^{M} S(V(G), i)
 \end{equation}
 
-Broj stanja je manji jer se poštuje ograničenje da čvorovi mogu poprimiti neku od boja u podskupu od ukupnog konstantnog broja boja $M$. Kada je $k\ge M$ tada je broj stanja optimizacijskog problema manji od broja stanja u problemu gdje se traži odgovor na pitanje je li je graf \textbf{k-obojiv}. Ovo će razmatranje biti zanimljivo i u sljedećem poglavlju, gdje se problem svrstava u klase računske teorije složenosti.
+Broj stanja je manji jer se poštuje ograničenje da čvorovi mogu poprimiti neku od boja u podskupu ukupnog konstantnog broja boja $M$. Kada je $k\ge M$ tada je broj stanja optimizacijskog problema manji od broja stanja u problemu gdje se traži odgovor na pitanje je li je graf \textbf{k-obojiv}. Ovo će razmatranje biti zanimljivo i u sljedećem poglavlju, gdje se problem svrstava u klase računske teorije složenosti.
 
 \subsection{Pozadina problema iz perspektive računske teorije složenosti}
 
@@ -538,14 +538,14 @@ Problem odluke je li je graf \textbf{k-obojiv} spada u klasu \textbf{NP-potpunih
 Postupak dokazivanja da problem spada u klasu \textbf{NP-teških} problema ima nekoliko koraka. Prvi korak je pronalaženje nekog \textbf{NP-potpunog} ili \textbf{NP-teškog} problema koji će se koristiti u dokazu. Zatim se pokaže da je taj \emph{postojeći} problem moguće polinomno reducirati na problem za koji se dokazuje da je \textbf{NP-težak}. U ovom radu provodi se dokaz. 
 
 \begin{proof}
-Odaberemo \textbf{NP-potpun problem} koji ispituje je li je graf $G$ \textbf{k-obojiv}. Kako bismo riješili taj problem, koristimo zadani optimizacijski problem. Ulaz u optimizacijski algoritam među ostalim su graf $G$ i ograničenja boja za svaki od čvorova. Svakom čvoru daje se skup $\{1,2,...,k\}$ s bojama. Svim bridovima daje se težina $1$. Tada se pokreće jezgra s optimizacijskim problemom koja će riješiti taj problem. Ako je rezultat optimizacije tj. funkcije cilja $f=0$, tada je graf \textbf{k-obojiv}, inače nije. U konstantnom vremenu možemo reducirati problem, iz čega slijedi da je optimizacijski problem \textbf{NP-težak}.  
+Odaberemo \textbf{NP-potpun problem} koji ispituje je li je graf $G$ \textbf{k-obojiv}. Kako bismo riješili taj problem, koristimo zadani optimizacijski problem. Ulaz u optimizacijski algoritam između ostalog su graf $G$ i ograničenja boja za svaki od čvorova. Svakom čvoru daje se skup $\{1,2,...,k\}$ s bojama. Svim bridovima daje se težina $1$. Tada se pokreće jezgra s optimizacijskim problemom koja će riješiti taj problem. Ako je rezultat optimizacije, tj. funkcije cilja, $f=0$, tada je graf \textbf{k-obojiv}, inače nije. U konstantnom vremenu možemo reducirati problem, iz čega slijedi da je optimizacijski problem \textbf{NP-težak}.  
 \end{proof}
 
-Zanimljivo je primijetiti da \textbf{NP-potpun} problem k-obojivosti može imati više stanja od \textbf{NP-teškog} problema optimizacije što znači mogućnost kraćeg vremena izvođenja od vremena provjere k-obojivosti. Kako nije poznat odnos \emph{NP} i \emph{P} klase, za ovaj optimizacijski problem nameće se korištenje heuristika. U ovom tehničkom problemu nije potrebno do kraja minimizirati funkciju cilja, nego dobiti dovoljno malu vrijednost $f$ koja će uzrokovati bolju kvalitetu mobilne mreže. 
+Zanimljivo je primijetiti da \textbf{NP-potpun} problem k-obojivosti može imati više stanja od \textbf{NP-teškog} problema optimizacije, što znači mogućnost kraćeg vremena izvođenja od vremena provjere k-obojivosti. Kako nije poznat odnos \emph{NP} i \emph{P} klase, za ovaj optimizacijski problem nameće se korištenje heuristika. U ovom tehničkom problemu nije potrebno do kraja minimizirati funkciju cilja, nego dobiti dovoljno malu vrijednost $f$ koja će uzrokovati bolju kvalitetu mobilne mreže. 
 
 \subsection{Posljedica "\emph{No free lunch}" teorema}
 
-U originalnom članku, gdje se dokazuje "\emph{No free lunch}" teorem \cite{lit15}, pretpostavlja se da sve funkcije cilja imaju iste domene i kodomene. Za problem bojanja grafova to nije tako, jer funkcija cilja nema istu kodomenu za sve grafove. Funkcija cilja definirana je kao: $f:\mathbb{X}^{V(G)} \rightarrow \mathbb{R}$, ali kako računalo ima konačnu memoriju, tada je funkcija zapravo definirana kao: $f:\mathbb{X}^{V(G)} \rightarrow \mathbb{Y}$, gdje je $\mathbb{Y}$ konačni podskup realnih brojeva koji se mogu prikazati na računalu, a $\mathbb{X}$ skup boja. Problem za "\emph{No free lunch}" teorem je taj da veličina domene funkcije cilja ovisi o broju čvorova grafa. Broj grafova je beskonačan jer možemo uzeti proizvoljan broj čvorova, što znači da postoji i beskonačan broj mogućih funkcija cilja. Teorem radi samo ako je broj funkcija cilja ograničen (teorem \ref{thm:nofreelunch}). Kako je na nekom računalu nemoguće prikazati proizvoljno veliki graf, broj čvorova može se ograničiti s nekom granicom $L$. Tada je moguće prebrojati sve funkcije cilja $f$, što je napravljeno u nastavku rada.
+U originalnom članku, gdje se dokazuje "\emph{No free lunch}" teorem \cite{lit15}, pretpostavlja se da sve funkcije cilja imaju iste domene i kodomene. Za problem bojanja grafova to nije tako, jer funkcija cilja nema istu kodomenu za sve grafove. Funkcija cilja definirana je kao: $f:\mathbb{X}^{V(G)} \rightarrow \mathbb{R}$, ali kako računalo ima konačnu memoriju, tada je funkcija zapravo definirana kao: $f:\mathbb{X}^{V(G)} \rightarrow \mathbb{Y}$, gdje je $\mathbb{Y}$ konačni podskup realnih brojeva koji se mogu prikazati na računalu, a $\mathbb{X}$ skup boja. Problem za "\emph{No free lunch}" teorem je taj da veličina domene funkcije cilja ovisi o broju čvorova grafa. Broj grafova je beskonačan jer možemo uzeti proizvoljan broj čvorova, što znači da postoji i beskonačan broj mogućih funkcija cilja. Teorem radi samo ako je broj funkcija cilja ograničen (Teorem \ref{thm:nofreelunch}). Kako je na nekom računalu nemoguće prikazati proizvoljno veliki graf, broj čvorova može se ograničiti s nekom granicom $L$. Tada je moguće prebrojati sve funkcije cilja $f$, što je napravljeno u nastavku rada.
 
 \begin{proof}
 Pitanje je koliko funkcija postoji, ako je broj članova domene ograničen s $L$.
@@ -559,8 +559,8 @@ Ukupan broj funkcija je suma po svim $k$ do granice $L$ (koristi se suma za geom
 	\end{equation}
 \end{proof} 
 
-Ako se ograniči broj čvorova, dobije se konačan broj funkcija te je to lako ugraditi u teorem \ref{thm:nofreelunch}. Teorem govori o tome kako ne postoji nikakvo znanje o funkciji. U ovom problemu funkcija cilja direktno ovisi o grafu tj. strukturi i to je važna informacija koja treba biti iskorištena da bi se dobili bolji algoritmi. Glavna je posljedica ovog teorema razvoj pohlepnih algoritama koji koriste znanje o strukturi (grafu) i primjena tih algoritama u metaheurističkim postupcima. 
-Važno je uočiti da svaki graf posjeduje vlastitu funkciju cilja. To znači da se korištenjem algoritama na slijepo koji rade na nekim grafovima ne može jamčiti efikasnost na drugim.
+Ako se ograniči broj čvorova, dobije se konačan broj funkcija te je to lako ugraditi u Teorem \ref{thm:nofreelunch}. Teorem govori o tome kako ne postoji nikakvo znanje o funkciji. U ovom problemu, funkcija cilja direktno ovisi o grafu tj. strukturi i to je važna informacija koja treba biti iskorištena kako bi se dobili bolji algoritmi. Glavna je posljedica ovog teorema razvoj pohlepnih algoritama koji koriste znanje o strukturi (grafu) i primjena tih algoritama u metaheurističkim postupcima. 
+Važno je uočiti da svaki graf posjeduje vlastitu funkciju cilja. To znači da se korištenje algoritama na slijepo koji rade na nekim grafovima ne može jamčiti efikasnost na drugim.
 
 U članku \cite{lit9} opisuje se kako postoje slučajevi u kojima hiper-heuristike mogu imati "\emph{Free lunch}" svojstvo. Hiper-heuristike su algoritmi koji traže najbolji algoritam koji može riješiti neki problem, tj. pronaći ekstrem funkcije cilja. Kako je gore opisano, svaki graf ima svoju funkciju cilja. Ako je skup funkcija cilja dovoljno malen, moguće je da hiper-heuristika uvijek pronađe neki algoritam koji je bolji od svih ostalih za konkretnu funkciju cilja. Ovo nije dokazano za bojanje grafova (tako ni za optimizacijski problem bojanja), ali daje motivaciju u razvoju algoritama. U zadnjem dijelu opisa algoritama u ovom radu koriste se metode strojnog učenja kako bi se izvuklo znanje za primjenu u nekim pohlepnim algoritmima, tj. kako bi se odabrao najbolji pohlepan algoritam, što je zapravo jednostavan oblik hiper-heuristike. Osim toga, u implementaciji je otvoren prostor gdje se lako mogu donositi odluke i dinamički birati algoritmi koji u trenutnoj točci u prostoru stanja daju bolje rezultate od drugih algoritama.
 
@@ -568,13 +568,13 @@ U članku \cite{lit9} opisuje se kako postoje slučajevi u kojima hiper-heuristi
 
 \section{Uvod}
 
-Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Prva skupinu čine pohlepni pohlepni algoritmi, a drugi algoritmi s kojima se i rad bavi su metaheuristike. Proučavaju se četiri metaheuristike: agentski algoritam, simulirano kaljenje, genetski algoritam i genetsko kaljenje. Započinje se s konstruiranjem hiper-heuristike nad pohlepnim algoritmima, gdje se želi pokazati koji je pohlepni algoritam najbolji u raznim slučajevima. Pri ispitivanju algoritama treba biti veoma oprezan. Prethodna razmatranja upućuju na to da neki algoritam (metaheuristika s određenim parametrima) može dati bolje rezultate od drugih algoritama na nekim grafovima, dok je na nekim grafovima obrnuta situacija. To se može usporediti s pojmom \emph{prenaučenosti} iz strojnog učenja. Zbog toga je za ovaj problem potrebno graditi algoritme koji su prilagodljivi.
+Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Prva skupinu čine pohlepni pohlepni algoritmi, a drugi su algoritmi s kojima se i rad bavi metaheuristike. Proučavaju se četiri metaheuristike: agentski algoritam, simulirano kaljenje, genetski algoritam i genetsko kaljenje. Započinje se s konstruiranjem hiper-heuristike nad pohlepnim algoritmima, gdje se želi pokazati koji je pohlepni algoritam najbolji u raznim slučajevima. Pri ispitivanju algoritama treba biti veoma oprezan. Prethodna razmatranja upućuju na to da neki algoritam (metaheuristika s određenim parametrima) može dati bolje rezultate od drugih algoritama na nekim grafovima, dok je na nekim grafovima obrnuta situacija. To se može usporediti s pojmom \emph{prenaučenosti} iz strojnog učenja. Zbog toga je za ovaj problem potrebno graditi algoritme koji su prilagodljivi.
 
 \subsection{Mogući problemi}
 
-Mogući problemi mogu se podijeliti na dva dijela: problemi vezani uz ograničenja i problemi vezani uz implementaciju. Problemi vezani uz ograničenja su: velik broj čvorova i bridova koji se mogu pojaviti, velika razlika između težina bridova (razlika za više redova veličina), nepromjenjivi čvorovi koji su okruženi promjenjivim čvorovima. Velik broj čvorova i bridova uzrukuje i sporji rad algoritma. Razlika između težina bridova može kod algoritama koji koriste tu razliku uzrokovati neočekivano ponašanje (npr. dugo zadržavanje na manjim vrijednostima funkcije cilja). Neopromjenjivi čvorovi koji za susjede imaju promjenjive čvorove mogu uzrokovati sporu konvergenciju, a često je zbog takvh čvorova minimum funkcije cilja relativno velika vrijednost, pa je teško razlikovati lokalni od globalnog minimuma. 
+Mogući problemi mogu se podijeliti na dva dijela: problemi vezani uz ograničenja i problemi vezani uz implementaciju. Problemi vezani uz ograničenja su: velik broj čvorova i bridova koji se mogu pojaviti, velika razlika između težina bridova (razlika za više redova veličina), nepromjenjivi čvorovi koji su okruženi promjenjivim čvorovima. Velik broj čvorova i bridova uzrukuje i sporiji rad algoritma. Razlika između težina bridova može kod algoritama koji koriste tu razliku uzrokovati neočekivano ponašanje (npr. dugo zadržavanje na manjim vrijednostima funkcije cilja). Neopromjenjivi čvorovi koji za susjede imaju promjenjive čvorove mogu uzrokovati sporu konvergenciju, a često je zbog takvh čvorova minimum funkcije cilja relativno velika vrijednost, pa je teško razlikovati lokalni od globalnog minimuma. 
 
-Problemi vezani uz implementaciju su zapravo problemi dizajna algoritama i struktura podataka. S jedne je strane potrebno osigurati brze operacije nad grafom, a s druge strane grafovi mogu zauzimati velik dio memorijskog prostora. Zato je potrebno dizajnirati strukturu grafa koja ne zauzima previše memorijskog prostora, a omogućuje brze operacije. Moguće probleme stvaraju i populacijski algoritmi kod kojih je potrebno čuvati više rješenja. Zbog toga se jedinke ne čuvaju kao grafovi, već je svaka jedinka funkcija bojanja grafa (za svaki čvor zna se koja je njegova boja). Sama struktura (bridovi) sadržanja je u strukturi grafa, a jedinka posjeduje vezu na taj graf.
+Problemi vezani uz implementaciju su zapravo problemi dizajna algoritama i struktura podataka. S jedne je strane potrebno osigurati brze operacije nad grafom, a s druge strane grafovi mogu zauzimati velik dio memorijskog prostora. Zato je potrebno dizajnirati strukturu grafa koja ne zauzima previše memorijskog prostora, a omogućuje brze operacije. Moguće probleme stvaraju i populacijski algoritmi kod kojih je potrebno čuvati više rješenja. Zbog toga se jedinke ne čuvaju kao grafovi, već je svaka jedinka funkcija bojanja grafa (za svaki čvor zna se koja je njegova boja). Sama struktura (bridovi) sadržana je u strukturi grafa, a jedinka posjeduje vezu na taj graf.
 
 \section{Pohlepni algoritam}
 
@@ -584,25 +584,25 @@ U radu se koriste sljedeće metode za sortiranje i bojanje čvorova (za svaku od
 Vrste sortiranja čvorova:
 
 \begin{itemize}
-	\item \emph{COL} - sortiranje čvorova prema koliziji (broj susjednih čvorova koji imaju istu boju kao i promatrani čvor)
-	\item \emph{FIT} - sortiranje čvorova prema pogrešci koju generiraju (suma težina konfliktnih bridova iz tog čvora)
-	\item \emph{LDO} - sortiranje prema stupnju čvora $H(v)$
-	\item \emph{RND} - slučajan raspored čvorova
-	\item \emph{SDO} - sortiranje prema zasićenju (broj različitih boja susjednih čvorova)
-	\item \emph{SDOLDO} - sortiranje prema zasićenju, a ako dva čvora imaju isto zasićenje drugi kriterij je stupanj čvorova [članak]
-	\item \emph{STDORD} - sortiranje prema oznaci čvora (čvorovi su numerirani)
+	\item \emph{COL} -- sortiranje čvorova prema koliziji (broj susjednih čvorova koji imaju istu boju kao i promatrani čvor)
+	\item \emph{FIT} -- sortiranje čvorova prema pogrešci koju generiraju (suma težina konfliktnih bridova iz tog čvora)
+	\item \emph{LDO} -- sortiranje prema stupnju čvora $H(v)$
+	\item \emph{RND} -- slučajan raspored čvorova
+	\item \emph{SDO} -- sortiranje prema zasićenju (broj različitih boja susjednih čvorova)
+	\item \emph{SDOLDO} -- sortiranje prema zasićenju, a ako dva čvora imaju isto zasićenje drugi kriterij je stupanj čvorova [članak]
+	\item \emph{STDORD} -- sortiranje prema oznaci čvora (čvorovi su numerirani)
 \end{itemize}
 
 Vrste bojanja čvorova su:
 
 \begin{itemize}
-	\item \emph{ABW} - susjedi čvora sortiraju se silazno prema težini brida, obilazi se svaki susjed i uzima se njegova boja. Ako je ta boja jedna od dopuštenih za promatrani čvor, ta boja više ne može biti odabrana. Kada na raspolaganju ostane samo jedna boja ili su svi susjedi posjećeni, uzima se jedna od boja koja je još uvijek na raspolaganju. 
-	\item \emph{MC} - za svaku dopuštenu boju čvora može se izračunati vrijednost kolizije za promatrani čvor. Boja koja minimizira koliziju za neki čvor odabire se kao nova boja za taj čvor.
-	\item \emph{MF} - isto kao i \emph{MC}, samo što se umjesto kolizije računa greška promatranog čvora (suma težina konfliktnih bridova vezanih za taj čvor)
-	\item \emph{RND} - daje se slučajna dopuštena boja
-	\item \emph{START} - čvoru se daje početna boja (ako je dopuštena) ili se boja ne mijenja ako u inicijalnom bojanju boja nije bila dopuštena
-	\item \emph{SWAP} - čvoru se daje neka boja gdje apsolutno odstupanje od greške (sume konfliktnih bridova) naspram trenutne greške nije veće od nekog praga
-	\item \emph{TRG} - čvoru se daje neka boja čija nova greška (suma konfliktnih bridova) ne prelazi neku fiksnu vrijednost. 
+	\item \emph{ABW} -- susjedi čvora sortiraju se silazno prema težini brida, obilazi se svaki susjed i uzima se njegova boja. Ako je ta boja jedna od dopuštenih za promatrani čvor, ta boja više ne može biti odabrana. Kada na raspolaganju ostane samo jedna boja ili su svi susjedi posjećeni, uzima se jedna od boja koja je još uvijek na raspolaganju. 
+	\item \emph{MC} -- za svaku dopuštenu boju čvora može se izračunati vrijednost kolizije za promatrani čvor. Boja koja minimizira koliziju za neki čvor odabire se kao nova boja za taj čvor.
+	\item \emph{MF} -- isto kao i \emph{MC}, samo što se umjesto kolizije računa greška promatranog čvora (suma težina konfliktnih bridova vezanih za taj čvor)
+	\item \emph{RND} -- daje se slučajna dopuštena boja
+	\item \emph{START} -- čvoru se daje početna boja (ako je dopuštena) ili se boja ne mijenja ako u inicijalnom bojanju boja nije bila dopuštena
+	\item \emph{SWAP} -- čvoru se daje neka boja gdje apsolutno odstupanje od greške (sume konfliktnih bridova) naspram trenutne greške nije veće od nekog praga
+	\item \emph{TRG} -- čvoru se daje neka boja čija nova greška (suma konfliktnih bridova) ne prelazi neku fiksnu vrijednost. 
 \end{itemize}
 
 Način na koji se vrši lokalna pretraga, odnosno donosi odluka o bojanju čvora važan je dio rješavanja problema bojanja grafova. Jedan od takvih načina opisan je u radu \cite{lit11}, što daje motivaciju za proučavanje postupaka bojanja. Za svaki čvor može se reći da ima određen stupanj slobode. Stupanj slobode može se definirati kao mogućnost odabira boja za neki čvor. Svaki čvor ako odabire boju nekom heuristikom, npr. želi minimizirati svoj doprinos greške, odabire boju koja odgovara minimalnoj lokalnoj grešci. Ako čvor ima npr. velik broj susjeda tada je njegov stupanj slobode manji, jer može odabrati manji broj boja kako bi minimizirao lokalnu grešku. Zato se sortiranjem čvorova po svojstvu (svojstvo koje opisuje koliko je čvor slobodan) daje prednost prvenstva bojanja čvorovima koje je teže obojiti tj. imaju manji stupanj slobode. Time se pokušava usrednjiti vrijednost stupnjeva slobode, jer čvorovi koji kasnije odabiru boju mogu odabrati veći skup boja i time bolje se prilagoditi odluci susjeda koji imaju manji stupanj slobode. Takve analize mogu se pronaći u \cite{lit5, lit12}.
@@ -643,7 +643,7 @@ Neka pohlepni algoritam poreda prva tri čvora kako je to označeno na slici \re
 \end{figure}
 
 
-Moguće bi rješenje navedenog problema moglo biti u pretraživanju susjednih čvorova. Neka su boje označene brojevima, gdje je prva boja označena s $1$. Prvi čvor odabere se slučajno. Za odabrani se čvor odabere boja s minimalnom oznakom, a nema je u susjednim čvorovima. Sljedeći će čvor biti neki od susjeda trenutnog čvora. Ako čvor nema susjeda za odabir, onda se traži čvor koji nije obojen ali ima obojenog susjeda (pretpostavka je da je graf povezan). Ovako opisan algoritam uvijek će dobro bojati graf na slici \ref{fig:crown_empty}. Potrebno je, ako ima, pronaći graf na kojem ovakav pohlepni algoritam koji se još i naziva \emph{uspinjanje na vrh} ne radi dobro. Primjer takvog grafa i odabir čvorova može se vidjeti na slici \ref{fig:hill_climbing}. Brojevi u čvorovima predstavljaju poredak obilaženja grafa. Na slici \ref{fig:hill_climbing_ok} odabir čvorova je takav da je ukupan broj boja, a da funkcija cilja bude $0$ jednak $3$. To je ujedno i minimalni broj boja, jer u grafu postoje tri čvora koja su međusobno povezana, što bi značilo da s manjim brojem boja nije moguće legalno bojati graf. Na slici \ref{fig:hill_climbing_wrong} odabir čvorova je bio takav da u zadnjem posjećenom čvoru $8$ bilo potrebno odabrati novu boju da bi graf bio legalno obojen. Kako se pokazalo da je graf moguće bojati s $3$ boje, zaključak je da algoritam ne daje uvijek točan rezultat.
+Moguće bi rješenje navedenog problema moglo biti u pretraživanju susjednih čvorova. Neka su boje označene brojevima, gdje je prva boja označena s $1$. Prvi čvor odabere se slučajno. Za odabrani se čvor odabere boja s minimalnom oznakom, a nema je u susjednim čvorovima. Sljedeći će čvor biti neki od susjeda trenutnog čvora. Ako čvor nema susjeda za odabir, onda se traži čvor koji nije obojen ali ima obojenog susjeda (pretpostavka je da je graf povezan). Ovako opisan algoritam uvijek će dobro bojati graf na slici \ref{fig:crown_empty}. Potrebno je, ako ima, pronaći graf na kojem ovakav pohlepni algoritam koji se još i naziva \emph{uspinjanje na vrh}, ne radi dobro. Primjer takvog grafa i odabir čvorova može se vidjeti na slici \ref{fig:hill_climbing}. Brojevi u čvorovima predstavljaju poredak obilaženja grafa. Na slici \ref{fig:hill_climbing_ok} odabir čvorova je takav da je ukupan broj boja, a da funkcija cilja bude $0$, jednak $3$. To je ujedno i minimalni broj boja, jer u grafu postoje tri čvora koja su međusobno povezana, što bi značilo da s manjim brojem boja nije moguće legalno bojati graf. Na slici \ref{fig:hill_climbing_wrong} odabir čvorova je bio takav da u zadnjem posjećenom čvoru $8$ bilo potrebno odabrati novu boju da bi graf bio legalno obojen. Kako se pokazalo da je graf moguće bojati s $3$ boje, zaključak je da algoritam ne daje uvijek točan rezultat.
 
 \begin{figure}
         \centering
@@ -666,7 +666,7 @@ Moguće bi rješenje navedenog problema moglo biti u pretraživanju susjednih č
 
 \section{Agentski algoritam}
 
-Agentski algoritam inspiriran je dobrim rezultatima pohlepnog algoritma. Glavna jedinica algoritma je agent. Agenti se raspoređuju po grafu, gdje se neki agent postavlja na neki čvor grafa. \emph{Globalna iteracija} je jedna iteracija algoritma u kojoj svaki agent svome čvoru pridruži neku boju. Agenti se boduju i to tako da na početku svi imaju $0$ bodova, a nakon globalne iteracije broj bodova je za nekog agenta jednak maksimalnoj pogrešci nekog susjednog čvora, na koji se i agent pomakne. Zatim se agenti sortiraju prema bodovima i u sljedećoj globalnoj iteraciji pravo na bojanje prvo dobiva agent s najviše bodova. Slično kao i kod pohlepnog algoritma, prvo se obrađuju \emph{teški čvorovi}, a to je u ovom algoritmu modelirano pomoću bodovanja. Agenti se, osim akcije pomaka na \emph{najbolji} čvor, mogu se pomaknuti na slučajan susjedni čvor ili pak ostati na čvoru na kojem jesu, ali tada bodovi za agenta ostaju isti. Algoritam posjeća na mravlje algoritme \engl{ant colony optimization} \cite{lit3}, ali kako se algoritam daje lošije rezultate za klasični problem bojanja grafova u radu je odlučeno koristiti agentski algoritam.
+Agentski algoritam inspiriran je dobrim rezultatima pohlepnog algoritma. Glavna jedinica algoritma je agent. Agenti se raspoređuju po grafu, gdje se neki agent postavlja na neki čvor grafa. \emph{Globalna iteracija} je jedna iteracija algoritma u kojoj svaki agent svome čvoru pridruži neku boju. Agenti se boduju i to tako da na početku svi imaju $0$ bodova, a nakon globalne iteracije broj bodova je za nekog agenta jednak maksimalnoj pogrešci nekog susjednog čvora, na koji se i agent pomakne. Zatim se agenti sortiraju prema bodovima i u sljedećoj globalnoj iteraciji pravo na bojanje prvo dobiva agent s najviše bodova. Slično kao i kod pohlepnog algoritma, prvo se obrađuju \emph{teški čvorovi}, a to je u ovom algoritmu modelirano pomoću bodovanja. Agenti se, osim akcije pomaka na \emph{najbolji} čvor, mogu pomaknuti na slučajan susjedni čvor ili pak ostati na čvoru na kojem jesu. Tada bodovi za agenta ostaju isti. Algoritam posjeća na mravlje algoritme \engl{ant colony optimization} \cite{lit3}, ali kako se algoritam daje lošije rezultate za klasični problem bojanja grafova u radu je odlučeno koristiti agentski algoritam.
 
 \subsection{Parametri algoritma}
 
@@ -737,15 +737,15 @@ Vremenska složenost algoritma ovisi o broju agenata i broju globalnih iteracija
 
 \section{Algoritam evolucijske strategije}
 
-Skupina evolucijskih algoritama veoma je popularna u rješavanju optimizacijskih problema. Takvi algoritmi spadaju u još veću skupini algoritama koji se nazivaju \emph{metaheuristike}, što znači da konkretno ponašanje algoritma ovisi o postavljenim parametrima. Svim evolucijskim algoritmima zajedničko je što posjeduju populaciju rješenja, te iz koraka u korak evoluiraju rješenje, što nužno ne mora značiti dobivanje boljeg rješenja, već algoritmi provode usmjereno pretraživanje prostora stanja. Evolucijska strategija vrsta je evolucijskog algoritma kod kojeg je dominantan operator mutacije. Genetski algoritam je poopćenje evolucijskih strategija jer se koristi operator selekcije, te se operator križanja koristi češće od operatora mutacije. Operator selekcije koristi se za odabir roditelja. Operator križanja je operator koji kombinira roditelje (rješenja) i njihovom kombinacijom (nije definirano kako) generira djecu (nova rješenja). Križanje se koristi kako bi se prostor stanja finije pretraživao, tj. kako bi se vršila lokalna pretraga. Operator mutacije djeluje nad jednim djetetom i mijenja izgled te jedinke. Mutacija se koristi kako bi se pretraga pomakla u neki drugi dio prostora stanja i zadužena je za sprečavanje konvergencije u lokalne ekstreme. 
+Skupina evolucijskih algoritama veoma je popularna u rješavanju optimizacijskih problema. Takvi algoritmi spadaju u još veću skupinu algoritama koji se nazivaju \emph{metaheuristike}, što znači da konkretno ponašanje algoritma ovisi o postavljenim parametrima. Svim evolucijskim algoritmima zajedničko je što posjeduju populaciju rješenja, te iz koraka u korak evoluiraju rješenje, što nužno ne mora značiti dobivanje boljeg rješenja, već algoritmi provode usmjereno pretraživanje prostora stanja. Evolucijska strategija vrsta je evolucijskog algoritma kod kojeg je dominantan operator mutacije. Genetski algoritam je poopćenje evolucijskih strategija jer se koristi operator selekcije, te se operator križanja koristi češće od operatora mutacije. Operator selekcije koristi se za odabir roditelja. Operator križanja je operator koji kombinira roditelje (rješenja) i njihovom kombinacijom (nije definirano kako) generira djecu (nova rješenja). Križanje se koristi kako bi se prostor stanja finije pretraživao, tj. kako bi se vršila lokalna pretraga. Operator mutacije djeluje nad jednim djetetom i mijenja izgled te jedinke. Mutacija se koristi kako bi se pretraga pomaknula u neki drugi dio prostora stanja i zadužena je za sprječavanje konvergencije u lokalne ekstreme. 
 
 \subsection{Genetski algoritam}
 
-Kao preliminarni dio ovog rada, isprobano je nekoliko vrsta genetskih algoritama. Jednostavni genetski algoritam koristi turnirsku selekciju, operator križanja s jednom točkom prekida, te mutacijom koja slučajno promijeni nekoliko gena u zapisu rješenja. Algoritam se pokazao veoma lošim na problemu optimizacijskog problema bojanja grafova. Ako se kao rješenje koristi niz brojeva, gdje svaki element predstavlja jedan čvor u grafu, a vrijednost elementa boju, tada operator križanja nema previše smisla zbog toga što su čvorovi povezani u određenu strukturu, a križanje s jednom točkom prekida nema znanje o tome. Drugi je problem slučajna mutacija, koja može rješenje staviti u neki drugi dio prostora stanja, ali je teško odrediti njen utjecaj i jako ovisi o konkretnom grafu. Drugi je korak bilo korištenje hibridnog genetskog algoritma u kojem je za operator mutacije korišten pohlepni algoritam. Rezultati u ovom slučaju također nisu bili dobri, tj. algoritam se ponašao kao slučajna pretraga prostora. Najveći je problem podešavanje parametara i njihova osjetljivost. Jedno od mogućih pristupa je kreiranje operatora križanja koji je usko povezan uz domenu problema, jedan od primjera naveden je u \cite{lit17}. Drugi pristup je izbacivanje operatora križanja, čime se efektivno dobiva evolucijska strategija. Takav se pristup koristi u članku \cite{lit12}, gdje je zamijećeno loše ponašanje genetskog algoritma tj. jednostavnih operatora križanja. U ovom radu koristi se evolucijska strategija. Takav je izbor načinjen zbog očekivanog manjeg vremena izvođenja evolucijske strategije, jer se koristi jedan operator manje, za razliku od genetskog algoritma. Mutacija u tom slučaju poprima dvojaku ulogu, tj. potrebno je implementirati više vrsta mutacija - one koje će obavljati lokalnu pretragu i one koje će obavljati globalnu pretragu.
+Kao preliminarni dio ovog rada, isprobano je nekoliko vrsta genetskih algoritama. Jednostavni genetski algoritam koristi turnirsku selekciju, operator križanja s jednom točkom prekida te mutaciju koja slučajno promijeni nekoliko gena u zapisu rješenja. Algoritam se pokazao veoma lošim na problemu optimizacijskog problema bojanja grafova. Ako se kao rješenje koristi niz brojeva, gdje svaki element predstavlja jedan čvor u grafu, a vrijednost elementa boju, tada operator križanja nema previše smisla zbog toga što su čvorovi povezani u određenu strukturu, a križanje s jednom točkom prekida nema znanje o tome. Drugi je problem slučajna mutacija, koja može rješenje staviti u neki drugi dio prostora stanja, ali je teško odrediti njezin utjecaj i jako ovisi o konkretnom grafu. Drugi je korak bilo korištenje hibridnog genetskog algoritma u kojem je za operator mutacije korišten pohlepni algoritam. Rezultati u ovom slučaju također nisu bili dobri, tj. algoritam se ponašao kao slučajna pretraga prostora. Najveći je problem podešavanje parametara i njihova osjetljivost. Jedno od mogućih pristupa je kreiranje operatora križanja koji je usko povezan uz domenu problema, jedan od primjera naveden je u \cite{lit17}. Drugi pristup je izbacivanje operatora križanja, čime se efektivno dobiva evolucijska strategija. Takav se pristup koristi u članku \cite{lit12}, gdje je zamijećeno loše ponašanje genetskog algoritma tj. jednostavnih operatora križanja. U ovom radu koristi se evolucijska strategija. Takav je izbor načinjen zbog očekivanog manjeg vremena izvođenja evolucijske strategije, jer se koristi jedan operator manje, za razliku od genetskog algoritma. Mutacija u tom slučaju poprima dvojaku ulogu, tj. potrebno je implementirati više vrsta mutacija -- one koje će obavljati lokalnu pretragu i one koje će obavljati globalnu pretragu.
 
 \subsection{Evolucijska strategija}
 
-Odabrana je evolucijska strategija koja se koristi u članku \cite{lit17}. Koristi se ($\mu$, $\lambda$) evolucijska strategija. Oznake $\mu$ i $\lambda$ služe za oznake skupova jedinki (rješenja). Skup $\mu$ je skup roditeljskih jedinki iz kojih se stvara skup djece $\lambda$. Iz toga proizlazi da broj elemenata u skupu $\lambda$ mora biti veći ili jednak broju elemenata u skupu $\mu$. Jedinka je predstavljena kao niz brojeva, gdje svaki element predstavlja neki čvor, a vrijednost elementa je boja čvora. U svakoj iteraciji algoritam uniformno bira $|\lambda|$ jedinki iz skupa roditelja. Može se dogoditi da je neka jedinka više puta odabrana. Za svaku odabranu jedinku koristi se operator mutacije. Slučajnim se odabirom bira između mutacije koja ima lokalni karakter tj. trenutno rješenje nastoji poboljšati lokalnom pretragom prostora stanja i mutacije koja skače iz okoline trenutne točke prostora stanja. Mutacija se implementira pomoću vrsta bojanja. Sve se takve mutiranje jedinke stavljaju u skup $\lambda$. Na kraju postupka najboljih $|\mu|$ jedinki kopira se u $\mu$ skup. Poželjno je koristiti elitizam kako se najbolje rješenje kroz iteracije ne bi izgubilo.
+Odabrana je evolucijska strategija koja se koristi u članku \cite{lit17}. Koristi se ($\mu$, $\lambda$) evolucijska strategija. Oznake $\mu$ i $\lambda$ služe za oznake skupova jedinki (rješenja). Skup $\mu$ je skup roditeljskih jedinki iz kojih se stvara skup djece $\lambda$. Iz toga proizlazi da broj elemenata u skupu $\lambda$ mora biti veći ili jednak broju elemenata u skupu $\mu$. Jedinka je predstavljena kao niz brojeva, gdje svaki element predstavlja neki čvor, a vrijednost elementa je boja čvora. U svakoj iteraciji, algoritam uniformno bira $|\lambda|$ jedinki iz skupa roditelja. Može se dogoditi da je neka jedinka više puta odabrana. Za svaku odabranu jedinku koristi se operator mutacije. Slučajnim se odabirom bira između mutacije koja ima lokalni karakter, tj. trenutno rješenje nastoji poboljšati lokalnom pretragom prostora stanja, i mutacije koja skače iz okoline trenutne točke prostora stanja. Mutacija se implementira pomoću vrsta bojanja. Sve se takve mutirane jedinke stavljaju u skup $\lambda$. Na kraju postupka najboljih $|\mu|$ jedinki kopira se u $\mu$ skup. Poželjno je koristiti elitizam kako se najbolje rješenje kroz iteracije ne bi izgubilo.
 
 \subsection{Parametri algoritma}
 
@@ -808,7 +808,7 @@ Najvažnija je stvar u algoritmu operator mutacije. Operator mutacije kao argume
 \subsection{Karakteristike algoritma}
 
 Algoritam ima relativno velik broj parametara, što ga čini teškim za prilagodbu konkretnom problemu (grafu). Veličine skupova za roditelje i djecu trebali bi biti relativno mali zbog vremena izvođenja. Većina je parametara vezana za mutaciju i to je najosjetljiviji dio algoritma. Potrebno je osigurati čestu lokalnu pretragu, ali i s druge strane, osigurati skakanje iz lokalnih minimuma. Algoritam često zapinje na platoima. Iako konvergencija može biti brža od agentskog algoritma, vrijeme izvođenja je duže.
-Vremenska složenost algoritma je ($LS$ je skraćeno za $LAMBDA\_SIZE$): $O(N\cdot(LS \cdot M + LS\cdot log(LS)))=O(N\cdot LS\cdot M + N\cdot LS \cdot log(LS))$. U praksi je čest slučaj: $LS\le M$, pa je vremenska složenost: $O(N\cdot LS \cdot M)$. Algoritam polinomno ovisi o tri parametra, što predstavlja problem ako su oni relativno veliki. S jedne je strane potrebno osigurati dovoljan broj koraka algoritma kako bi se došlo do željene vrijednost funkcije cilja, broj djece $LS$ ne smije biti premalen - kako bi se zadržao genetski kod, a veličina mutacije $M$ ne smije biti prevelika zbog velikog odstupanja, a s druge strane ne smije biti premala zbog spore konvergencije. 
+Vremenska složenost algoritma je ($LS$ je skraćeno za $LAMBDA\_SIZE$): $O(N\cdot(LS \cdot M + LS\cdot log(LS)))=O(N\cdot LS\cdot M + N\cdot LS \cdot log(LS))$. U praksi je čest slučaj: $LS\le M$, pa je vremenska složenost: $O(N\cdot LS \cdot M)$. Algoritam polinomno ovisi o tri parametra, što predstavlja problem ako su oni relativno veliki. S jedne je strane potrebno osigurati dovoljan broj koraka algoritma kako bi se došlo do željene vrijednost funkcije cilja, broj djece $LS$ ne smije biti premalen -- kako bi se zadržao genetski kod, a veličina mutacije $M$ ne smije biti prevelika zbog velikog odstupanja, a s druge strane ne smije biti premala zbog spore konvergencije. 
 
 \section{Simulirano kaljenje}
 
@@ -873,7 +873,7 @@ Algoritam je relativno jednostavan za implementaciju. Dobra je strana što je za
 \textup{T\_start} = -\frac{dE}{ln(P)} = 1.443 \cdot dE
 \end{equation}  
 
-Parametar $\alpha$ potrebno je namjestiti kako temperatura ne bi padala prebrzo - zapinjanje u lokalnim optimumima, ili kako ne bi padala presporo - slaba konvergencija. Vremenska složenost algoritma je: $O(G\cdot E)$, što je veoma dobro svojstvo jer samo dva parametra utječu na vrijeme izvođenja i to polinomno. 
+Parametar $\alpha$ potrebno je namjestiti kako temperatura ne bi padala prebrzo -- zapinjanje u lokalnim optimumima, ili kako ne bi padala presporo -- slaba konvergencija. Vremenska složenost algoritma je: $O(G\cdot E)$, što je veoma dobro svojstvo jer samo dva parametra utječu na vrijeme izvođenja, i to polinomno. 
 
 \section{Genetsko kaljenje}
 
@@ -894,7 +894,7 @@ Genetsko kaljenje \cite{lit18} je algoritam koji kombinira dvije ideje: genetski
 
 \subsection{Detalji algoritma}
 
-Na početku se inicijaliziraju jedinke. Slobodna energija se postavi na početnu energiju i algoritam kreće u rad. Svaka jedinka dobije dio slobodne energije u obliku praga $T$. To znači da jedinka može odstupati od svog roditelja za najviše prag $T$ da bude prihvaćena kao nova jedinka. Ako je prihvaćena, energija koja nije iskorištena, a to je razlika energije stare jedinke i nove jedinke (gdje se prag $T$ nadodaje staroj jedinki), dodaje se u slobodnu energiju za tu iteraciju. Na kraju, da se ne bi dogodila divergencija, slobodna energija se množi s nekim faktorom $\alpha \in [0,1]$.  
+Na početku se inicijaliziraju jedinke. Slobodna energija postavi se na početnu energiju i algoritam kreće u rad. Svaka jedinka dobije dio slobodne energije u obliku praga $T$. To znači da jedinka može odstupati od svog roditelja za najviše prag $T$ da bude prihvaćena kao nova jedinka. Ako je prihvaćena, energija koja nije iskorištena, a to je razlika energije stare jedinke i nove jedinke (gdje se prag $T$ nadodaje staroj jedinki), dodaje se u slobodnu energiju za tu iteraciju. Na kraju, da se ne bi dogodila divergencija, slobodna energija množi se faktorom $\alpha \in [0,1]$.  
 
 \begin{singlespace}
 	\begin{lstlisting}[caption=Pseudok\^{o}d genetskog kaljenja]
@@ -913,6 +913,8 @@ Na početku se inicijaliziraju jedinke. Slobodna energija se postavi na početnu
 						D = f(UNIT[i]) + T - f(new_unit)
 						FREE_ENERGY = FREE_ENERGY + D
 						UNIT[i] = new_unit
+					ELSE
+						FREE_ENERGY = FREE_ENERGY + f(UNIT[i]) + T
 					END IF
 				END FOR
 			FREE_ENERGY = FREE_ENERGY * ALFA
@@ -937,28 +939,29 @@ Na početku se inicijaliziraju jedinke. Slobodna energija se postavi na početnu
 
 \subsection{Karakteristike algoritma}
 
-Algoritam izgleda veoma slično kao i simulirano kaljenje, samo što se odluka za prihvaćanje novog rješenja donosi na temelju praga tj. odstupanja funkcije cilja od stare jedinke. Međudjelovanje jedinki temelji se na slobodnoj energiji, koja se u svakoj iteraciji skuplja kao dodatak koji nije potrošen. To znači da ako u nekom koraku ni jedna nova jedinka nije prihvaćena, slobodna energija će biti $0$, a u sljedećoj će se iteraciji prihvaćat samo strogo bolje nove jedinke. S druge strane ako u nekoj iteraciji jedna jedinka postane puno bolja od roditelja, tada u sljedećoj iteraciji algoritam dopušta novim jedinkama da mogu biti puno gore od roditelja, što omogućuje izlaženje iz lokalnih optimuma i globalno pretraživanje prostora stanja. Za rješavanje optimizacijskog problema bojanja grafova koriste se dvije vrste dobivanja susjednog rješenja (mutacije). Kao i za neke prethodne algoritme, koriste se lokalna i globalna vrsta bojanja.  
-Vremenska složenost algoritma je: $O(G \cdot N)$ s time da je to nešto veća vremenska složenost od simuliranog kaljenja ako se u obzir uzme računanje funkcije cilja za $N$ jedinki.
+Algoritam izgleda veoma slično kao i simulirano kaljenje, samo što se odluka za prihvaćanje novog rješenja donosi na temelju praga, tj. odstupanja funkcije cilja od stare jedinke. Međudjelovanje jedinki temelji se na slobodnoj energiji, koja se u svakoj iteraciji skuplja kao dodatak koji nije potrošen. Ako se nova jedinka ne prihvaća tada slobodna energija ostaje neiskorištena i ostaje u sustavu, što omogućuje veću netoleranciju u idućem koraku. To je mehanizam algoritma za izbjegavanje lokalnih optimuma.
+Za rješavanje optimizacijskog problema bojanja grafova koriste se dvije vrste dobivanja susjednog rješenja (mutacije). Kao i za neke prethodne algoritme, koriste se lokalna i globalna vrsta bojanja.  
+Vremenska složenost algoritma je: $O(G \cdot N)$, s time da je to nešto veća vremenska složenost od simuliranog kaljenja ako se u obzir uzme računanje funkcije cilja za $N$ jedinki.
 
 \section{Pronalaženje najpogodnijeg pohlepnog algoritma}
 \label{sec:ml}
-Pohlepni se algoritam u ovom radu koristina dva načina. Prvo se koristi kao metoda koja dovodi rješenje u dovoljno dobro početno rješenje, nakon čega minimizaciju funkcije preuzima neka metaheuristika. Drugi način korištenja je kao dio metaheuristike u obliku operatora (npr. mutacija kod genetskog algoritma), metoda za izbjegavanje lokalnog minimuma (tuneliranje) ili pak metoda koja osigurava da postotak promjene boja naspram inicijalnog grafa ne prođe zadani prag. Kod korištenja pohlepnih algoritama u praksi se često koriste \emph{ad-hoc} metode konfiguriranja istog. Prednost je ovakvih metoda što u relativno kratkom vremenu mogu isprobati različite konfiguracije i zatim odabrati najbolju. Nedostatak metode je u tome što ta konfiguracija ne jamči dobar rad nad svim grafovima (\emph{No free lunch} teorem). Kao uvod u hiper-heuristike i postavljanje temelja za budući rad, iz grafova se želi izvući znanje o utjecaju vrsta sortiranja čvorova. Ovaj dio rada ima dva cilja: Prvi je pronaći optimalni operator usporedbe čvorova koji kombinira sve dostupne operatore tj. vrste sortiranja. Drugi cilj je dovesti u vezu vrstu sortiranja i načina bojanja tj. empirijski pokazati koja vrsta sortiranja je najbolja za koji vrstu bojanja. Rezultati bi mogli pokazati određenu vezu između svojstava grafova i vrste sortiranja što bi se moglo koristi kao uvod u istraživanje hiper-heuristika. Metoda pronalaženja pogodnog pohlepnog algoritma sastoji se od koraka:
+Pohlepni se algoritam u ovom radu koristina dva načina. Prvo se koristi kao metoda koja dovodi rješenje u dovoljno dobro početno rješenje, nakon čega minimizaciju funkcije preuzima neka metaheuristika. Drugi način korištenja je kao dio metaheuristike u obliku operatora (npr. mutacija kod genetskog algoritma), metoda za izbjegavanje lokalnog minimuma (tuneliranje) ili pak metoda koja osigurava da postotak promjene boja naspram inicijalnog grafa ne prođe zadani prag. Kod korištenja pohlepnih algoritama u praksi se često koriste \emph{ad-hoc} metode konfiguriranja istog. Prednost je ovakvih metoda što u relativno kratkom vremenu mogu isprobati različite konfiguracije i zatim odabrati najbolju. Nedostatak metode je u tome što ta konfiguracija ne jamči dobar rad nad svim grafovima (\emph{No free lunch} teorem). Kao uvod u hiper-heuristike i postavljanje temelja za budući rad, iz grafova se želi izvući znanje o utjecaju vrsta sortiranja čvorova. Ovaj dio rada ima dva cilja: Prvi je pronaći optimalni operator usporedbe čvorova koji kombinira sve dostupne operatore tj. vrste sortiranja. Drugi cilj je dovesti u vezu vrstu sortiranja i načina bojanja tj. empirijski pokazati koja vrsta sortiranja je najbolja za koji vrstu bojanja. Rezultati bi mogli pokazati određenu vezu između svojstava grafova i vrste sortiranja, što bi se moglo koristiti kao uvod u istraživanje hiper-heuristika. Metoda pronalaženja pogodnog pohlepnog algoritma sastoji se od koraka:
 
 \begin{enumerate}
-	\item Generiranje grafa
-	\item Odabira vrste bojanja za pohlepni algoritam
-	\item Pokretanje pohlepnog algoritma s vrstom sortiranja \emph{RND}
-	\item Iz svih pokretanja pohlepnog algoritma uzeti određen postotak najboljih rezultata
+	\item Generiranje grafa.
+	\item Odabira vrste bojanja za pohlepni algoritam.
+	\item Pokretanje pohlepnog algoritma s vrstom sortiranja \emph{RND}.
+	\item Iz svih pokretanja pohlepnog algoritma uzeti određen postotak najboljih rezultata.
 	\item Za svaki čvor izračunati relativnu poziciju kao $\frac{x+1}{N}$ gdje je $x$ indeks u slučajno sortiranom nizu čvorova, a $N$ ukupan broj čvorova u grafu. 
-	\item Za svaku relativnu poziciju izračunati svojstva tog čvora (stupanj, zasićenje, koliziju, grešku)
-	\item Nekom od metoda regresije pronaći funkciju čiji su argumenti svojstva čvora, a rezultat je relativna pozicija
+	\item Za svaku relativnu poziciju izračunati svojstva tog čvora (stupanj, zasićenje, koliziju, grešku).
+	\item Nekom od metoda regresije pronaći funkciju čiji su argumenti svojstva čvora, a rezultat je relativna pozicija.
 \end{enumerate}
 
 Tako dobivena funkcija može se koristiti kao vrsta sortiranja. Za neke se vrste regresija veoma lako interpretiraju rezultati, pa je lako odrediti u kojoj mjeri svojstva čvora utječu na dobar rezultat. Za različite vrste bojanja moguće je uspoređivati funkcije i uočiti ovisnosti. Za različite grafove usporedbom funkcija može se izvući znanje o pogodnom algoritmu za pojedine vrste grafova. Ovaj rezultat može se koristiti kao temeljno znanje za proučavanje automatskog odabira algoritama \cite{lit14}.
 
 \section{Tuneliranje}
 
-\emph{Tuneliranje} je tehnika koja se može ugraditi u bilo koji optimizacijski algoritam i služi za izlazak iz lokalnog minimuma. Tehnika je vrlo slična \emph{mutacijama} kod evolucijskih algoritama. Razlika je u tome što ova tehnika ne odabire slučajno novu točku iz prostora pretraživanja stanja, već nastoji odabrati točku koja ima približnu vrijednost funkcije cilja kao i trenutna točka koja se promatra (npr. relativna razlika funkcija cilja mora biti manja od nekog praga). Kako nova točka u prostoru pretrage ima sličnu vrijednost funkcije cilja, algoritam nastoji pronaći minimum u toj okolini, a to teorijski znači da funkcija cilja može samo padati. U praksi se može dogoditi da i poraste jer se za novu točku ne zahtijeva da vrijednosti budu identične, već približno jednake. Nova se točka traži tako što se po redu pretražuje dimenzija po dimenzija linearno. U problemu optimizacije bojanja grafa to znači da se po redu za svaki čvor ispituju boje, i ako za trenutni čvor nova boja za čvor ne utječe na vrijednost greške tada se ta boja ostavlja tome čvoru. Ako se u pohlepnom algoritmu kao vrsta bojanja koristi "\emph{SWAP}" metoda, dobiva se očekivani efekt. 
+\emph{Tuneliranje} je tehnika koja se može ugraditi u bilo koji optimizacijski algoritam i služi za izlazak iz lokalnog minimuma. Tehnika je vrlo slična \emph{mutacijama} kod evolucijskih algoritama. Razlika je u tome što ova tehnika ne odabire slučajno novu točku iz prostora pretraživanja stanja, već nastoji odabrati točku koja ima približnu vrijednost funkcije cilja kao i trenutna točka koja se promatra (npr. relativna razlika funkcija cilja mora biti manja od nekog praga). Kako nova točka u prostoru pretrage ima sličnu vrijednost funkcije cilja, algoritam nastoji pronaći minimum u toj okolini, a to teorijski znači da funkcija cilja može samo padati. U praksi se može dogoditi da i poraste jer se za novu točku ne zahtijeva da vrijednosti budu identične, već približno jednake. Nova se točka traži tako što se po redu pretražuje dimenzija po dimenzija linearno. U problemu optimizacije bojanja grafa to znači da se po redu za svaki čvor ispituju boje, i ako za trenutni čvor nova boja za čvor ne utječe na vrijednost greške, tada se ta boja ostavlja tome čvoru. Ako se u pohlepnom algoritmu kao vrsta bojanja koristi "\emph{SWAP}" metoda, dobiva se očekivani efekt. 
 
 U navedenom pseudok\^{o}du nova se točka postavlja u trenutnu. Zatim se vanjska petlja vrti po dimenzijama i za svaku se ispituju se svi elementi (npr. boje). Element koji za apsolutno odstupanje daje vrijednost manju od praga $T$, postavlja se kao element za tu dimenziju i potraga kreće na sljedeću dimenziju.
 
@@ -981,7 +984,7 @@ U navedenom pseudok\^{o}du nova se točka postavlja u trenutnu. Zatim se vanjska
 
 \section{Upravljanje postotkom promijenjenih čvorova}
 
-Kako je sekundarni kriterij optimizacije da postotak promijenjenih čvorova naspram inicijalnog stanja ne prođe neku granicu (konkretno 66\%), potrebno je ostvariti mehanizam koji to omogućuje. U ovom se radu koristi pristup težnje boje da postane početna. U vrste bojanja implementira se mehanizam biranje boja koji, ako je početna boja jedna od mogućih, dodjeljuje početne boje vjerojatnije od svih ostalih. 
+Kako je sekundarni kriterij optimizacije da postotak promijenjenih čvorova naspram inicijalnog stanja ne prođe neku granicu (konkretno 66\%), potrebno je ostvariti mehanizam koji to omogućuje. U ovom se radu koristi pristup težnje boje da postane početna. U vrste bojanja implementira se mehanizam biranja boja koji, ako je početna boja jedna od mogućih tada se početna boja iskorištava za bojanje čvora.
 
 \chapter{Programsko rješenje}
 
@@ -990,31 +993,31 @@ Kako je sekundarni kriterij optimizacije da postotak promijenjenih čvorova nasp
 Za rješavanje zadanog optimizacijskog problema bojanja grafova i ispitivanja navedenih algoritama, odlučeno je da će se izgraditi infrastruktura koja omogućuje brzi razvoj i ispitivanje algoritama. Ideja je izgraditi radnu okolinu u kojoj korisnik može iskoristiti već napisane module za standardne operacije koje se koriste i jednostavno ih uvesti u svoj algoritam. Koristi se jezik \emph{Java} zbog relativno visoke apstrakcije, mogućnosti objektnog oblikovanja aplikacije i prenosivosti. Veoma važan cilj koji se nastoji ostvariti je infrastruktura koja je lako nadopunjiva novim modulima za buduću upotrebu. Moduli aplikacije koji su razvijeni za ovaj rad:
 
 \begin{enumerate}
-	\item \emph{main} - glavna metoda za pokretanje algoritama
-	\item \emph{common} - generičke strukture podataka
-	\item \emph{input} - implementacije različitih ulaznih formata
-	\item \emph{output} - implementacija različitih izlaznih formata
+	\item \emph{main} -- glavna metoda za pokretanje algoritama
+	\item \emph{common} -- generičke strukture podataka
+	\item \emph{input} -- implementacije različitih ulaznih formata
+	\item \emph{output} -- implementacija različitih izlaznih formata
 	\item \emph{algorithm} - apstrakcija algoritma bojanja grafova
-	\item \emph{unit} - jedinka (prikaz rješenja) koja se koristi u populacijskim algoritmima
-	\item \emph{algorithmset} - modul za spremanje implementacija algoritama
-	\item \emph{greedy} - implementacija pohlepnog algoritma
+	\item \emph{unit} -- jedinka (prikaz rješenja) koja se koristi u populacijskim algoritmima
+	\item \emph{algorithmset} -- modul za spremanje implementacija algoritama
+	\item \emph{greedy} -- implementacija pohlepnog algoritma
 	\item \emph{color\_selector} - implementacije vrsta bojanja
-	\item \emph{order} - implementacija različitih vrsta sortiranja čvorova
-	\item \emph{agents} - implementacija agentskog algoritma
-	\item \emph{genetic} - implementacija genetskog algoritma (strategije)
-	\item \emph{simulated\_annealing} - implementacija simuliranog kaljenja
-	\item \emph{structure} - najviša apstrakcija grafa - jednostavni graf
-	\item \emph{weight\_graph} - apstrakcija težinskog grafa 
-	\item \emph{ericsson\_graph} - graf koji posjeduje strukture pogodne za rješavanje optimizacijskog problema
-	\item \emph{stat} - generičke (statičke) metode koje se koriste za računanje statistika ili svojstava koja ne spadaju u druge strukture
-	\item \emph{machine\_learning} - modul za izvlačenje značajki iz grafa i pripremu podataka za strojno učenje
+	\item \emph{order} -- implementacija različitih vrsta sortiranja čvorova
+	\item \emph{agents} -- implementacija agentskog algoritma
+	\item \emph{genetic} -- implementacija genetskog algoritma (strategije)
+	\item \emph{simulated\_annealing} -- implementacija simuliranog kaljenja
+	\item \emph{structure} -- najviša apstrakcija grafa - jednostavni graf
+	\item \emph{weight\_graph} -- apstrakcija težinskog grafa 
+	\item \emph{ericsson\_graph} -- graf koji posjeduje strukture pogodne za rješavanje optimizacijskog problema
+	\item \emph{stat} -- generičke (statičke) metode koje se koriste za računanje statistika ili svojstava koja ne spadaju u druge strukture
+	\item \emph{machine\_learning} -- modul za izvlačenje značajki iz grafa i pripremu podataka za strojno učenje
 \end{enumerate}
 
 U nastavku slijedi detaljni opis nekih modula koji su najvažniji za rad infrastrukture. Detaljne upute o korištenju infrastrukture priložene su u digitalnom obliku uz ovaj rad.
 
 \subsection{Modul \emph{input}}
 
-Funkcija ovog modula je osigurati učitavanja raznih formata zapisa grafa u datotekama. Graf u datoteci može biti zapisan proizvoljnim formatom, pa je cilj modula da obuhvati što više formata. Jedan od formata je specifičan za optimizacijski problem. Implementirani su i neki jednostavni formati. 
+Funkcija ovog modula je osigurati učitavanja raznih formata zapisa grafa u datotekama. Graf u datoteci može biti zapisan proizvoljnim formatom, pa je cilj modula da obuhvati što više formata. Jedan od formata specifičan je za optimizacijski problem. Implementirani su i neki jednostavni formati. 
 
 \subsection{Modul "\emph{output}"}
 
@@ -1022,7 +1025,7 @@ Kao što je funkcija prethodnog modula učitavanje, tako je funkcija ovog modula
 
 \subsection{Modul "\emph{algorithm}"}
 
-Modul implementira strategiju kao oblikovni obrazac. Korisnik pri pokretanju algoritma stvara kontekst u kojem navodi konkretan algoritam. Nakon toga, sučelje prema korisniku je samo kontekst. Svi algoritmi moraju imati implementirano isto sučelje. Kao što se može vidjeti u programskom odsječku \ref{alg:strategija} klasa \emph{GraphAlgorithmContext} ima privatni atribut tj. referencu koja pokazuje na konkretan algoritam. Algoritam se zadaje preko konstruktora. Implementirane su dvije metode istog naziva: \emph{startAlgorithm}, koje kao parametar primaju strukturu podataka graf (\emph{Graph}). Metode se razlikuju u drugom parametru, gdje se kao argument može dati skup identifikatora čvorova koje algoritam ne smije bojati. To nije jednako kao i nepromjenjivi čvorovi (jer to algoritam rješava interno), već se tu zadaju čvorovi koji su možda prije obojeni i s pokretanjem novog algoritma korisnik ih ne želi mijenjati. 
+Modul implementira strategiju kao oblikovni obrazac. Korisnik pri pokretanju algoritma stvara kontekst u kojem navodi konkretan algoritam. Nakon toga, sučelje prema korisniku je samo kontekst. Svi algoritmi moraju imati implementirano isto sučelje. Kao što se može vidjeti u programskom odsječku \ref{alg:strategija} klasa \emph{GraphAlgorithmContext} ima privatni atribut tj. referencu koja pokazuje na konkretan algoritam. Algoritam se zadaje preko konstruktora. Implementirane su dvije metode istog naziva: \emph{startAlgorithm}, koje kao parametar primaju strukturu podataka graf (\emph{Graph}). Metode se razlikuju u drugom parametru, gdje se kao argument može dati skup identifikatora čvorova koje algoritam smije bojati. One koje ne smije bojati nisu jednaki nepromjenjivim čvorovima (jer to algoritam rješava interno), već se tu čvorovi koji su možda prije obojeni i s pokretanjem novog algoritma korisnik ih ne želi mijenjati, pa zadaje samo skup čvorova koji smiju mijenjati boju. 
 
 \begin{singlespace}
 	\begin{lstlisting}[label=alg:strategija, language=Java, caption=Definicija klase i metoda za oblikovni obrazac strategija]
@@ -1048,7 +1051,7 @@ Modul implementira strategiju kao oblikovni obrazac. Korisnik pri pokretanju alg
 	\end{lstlisting}
 \end{singlespace}
 
-U programskom odsječku \ref{alg:algorithm} pokazana je implementacija klase \emph{GraphColoringAlgorithm}. Klasa je apstrakcija algoritma za bojanje grafova. Pri stvaranju novog konkretnog algoritma korisnik je obavezan implementirati metodu \emph{algorithm}, koja je središte implementacije svakog algoritma. Uz to korisnik ima mogućnost ispitivanja smije li pobojati čvor ili ne - \emph{checkNode}. Parametre algoritma korisnik zadaje pri pozivu konstruktora za konkretni algoritam.
+U programskom odsječku \ref{alg:algorithm} pokazana je implementacija klase \emph{GraphColoringAlgorithm}. Klasa je apstrakcija algoritma za bojanje grafova. Pri stvaranju novog konkretnog algoritma, korisnik je obavezan implementirati metodu \emph{algorithm}, koja je središte implementacije svakog algoritma. Uz to, korisnik ima mogućnost ispitivanja smije li pobojati čvor ili ne -- \emph{checkNode}. Parametre algoritma korisnik zadaje pri pozivu konstruktora za konkretni algoritam.
 
 \begin{singlespace}
 	\begin{lstlisting}[label=alg:algorithm, language=Java, caption=Apstraktna klasa algoritma]
@@ -1092,10 +1095,10 @@ U programskom odsječku \ref{alg:algorithm} pokazana je implementacija klase \em
 Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u populacijskim algoritmima. Zbog prirode problema koja donosi grafove s velikim brojem čvorova i brojem bridova, neučinkovito je pamtiti više instanci grafa zbog nedostatka memorije. Zbog toga se pamte samo parovi čvor-boja, a struktura grafa zadana je referencom. Klasa \emph{GeneralUnit} pruža operacije: 
 
 \begin{itemize}
-	\item Brzo dohvaćanje funkcije cilja - \emph{getError()} - $O(1)$
-	\item Dohvaćanje broja čvorova - \emph{getSize()} - $O(1)$
-	\item Postavljanje boje čvoru - \emph{setColor(id, color)} - $O(H(v))$
-	\item Postavljanje strukture graf u boje jedinke - \emph{updateGraph()} - $O(V(G))$
+	\item brzo dohvaćanje funkcije cilja -- \emph{getError()} -- $O(1)$
+	\item dohvaćanje broja čvorova -- \emph{getSize()} -- $O(1)$
+	\item postavljanje boje čvoru -- \emph{setColor(id, color)} -- $O(H(v))$
+	\item postavljanje strukture grafa u boje jedinke -- \emph{updateGraph()} -- $O(V(G))$
 \end{itemize}
 
 \chapter{Rezultati}
@@ -1124,9 +1127,9 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 
 \subsection{Ispitivanje metaheuristika}
 
-Nekoliko je rezultata za metaheuristike bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utjeću na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga, veoma je bitan dio pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika ispituje s drugačijim parametrima, te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima, te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
+Nekoliko je rezultata za metaheuristike bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utječu na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga, veoma je bitan dio pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika ispituje s drugačijim parametrima te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima, te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
 
-Metaheuristike se ispituju tako što se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteraciju u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Odabrano je pet koraka jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
+Metaheuristike se ispituju tako da se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteracije u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Odabrano je pet koraka, jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi, tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
 
 \section{Grafovi za ispitivanje}
 
@@ -1191,7 +1194,7 @@ Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su gen
 
 \section{Slučajno pretraživanje}
 
-Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. Za ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se da slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam pokreće deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
+Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. U ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se dodijeli slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam pokreće deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
 
 Rezultati su prikazani u tablici \ref{tbl:random-test}.
 Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja \ref{equ:funkcija_cilja}), inicijalna pogreška je veća.
@@ -1206,7 +1209,7 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Minimizacija postotka promijenjenih čvorova}
 
-\section{Metode strojnog učenja za odair pohlepnog algoritma}
+\section{Metode strojnog učenja za odabir pohlepnog algoritma}
 
 U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih grafova. Za generiranje rezultata koriste se dva programska alata: \emph{RapidMiner} i \emph{Eureqa}. \emph{RapidMiner} je programski alat koji nudi mnogobrojne metode strojno učenja uz dodatne mogućnosti parsiranja datoteka i sl. U ovom poglavlju taj alat se koristi kako bi se nad podacima iz grafa provela regresija i kako bi se iz generiranih izraza moglo isčitati znaje o tim podacima. Alat \emph{Eureqa} je alat koji koristi metode simboličke regresije. Simbolička regresija vrsta je regresije gdje model nije unaprijed zadan, već se pomoću genetskog programiranja i sl. metoda generiraju funkcije. U ovom poglavlju alat \emph{Eureqa} prikazuje se kao moguća metoda za dobivanje znanja i pokazuje se primjer izvođenja.
 
