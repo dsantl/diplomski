@@ -611,7 +611,7 @@ Način na koji se vrši lokalna pretraga, odnosno donosi odluka o bojanju čvora
 
 Važno je pokazati kako pohlepni algoritam neće uvijek pronaći globalni minimum funkcije cilja. Neka je zadan graf na slici \ref{fig:greedy_alg}.
 Slika \ref{fig:crown_empty} prikazuje graf koji je potrebno bojati korištenjem samo dvije boje. Neka su težine svih bridova jednake $1$. Slika \ref{fig:crown_normal} prikazuje 2-legalno obojen graf čija je vrijednost funkcije cilja u optimizaciji jednaka $0$. 
-Neka pohlepni algoritam poreda prva tri čvora kako je to označeno na slici \ref{fig:crown_wrong}. Tim poretkom čvorovi biraju svoje boje. Čvor $1$ može odabrati proizvoljnu boju, čvor $2$ odabere istu boju kao i čvor $1$, a treći čvor koji je vezan na čvor $1$ odabire neku novu boju. Ostali čvorovi mogu proizvoljim redosljedom birati svoje boje, ali više ne postoji način na koji bi čvorovi odabrali boje, a da graf bude 2-legalno obojen. Greška se dogodila pri odabiru boje za čvor $2$, jer ni jedan susjed nije bio obojen i čvor $2$ imao je mogućnost odabira iste boje kao i čvor $1$.
+Neka pohlepni algoritam poreda prva tri čvora kako je to označeno na slici \ref{fig:crown_wrong}. Tim poretkom čvorovi biraju svoje boje. Čvor $1$ može odabrati proizvoljnu boju, čvor $2$ odabire istu boju kao i čvor $1$, a treći čvor koji je vezan na čvor $1$ odabire neku novu boju. Ostali čvorovi mogu proizvoljim redosljedom birati svoje boje, ali više ne postoji način na koji bi čvorovi odabrali boje, a da graf bude 2-legalno obojen. Greška se dogodila pri odabiru boje za čvor $2$, jer ni jedan susjed nije bio obojen i čvor $2$ imao je mogućnost odabira iste boje kao i čvor $1$.
 
 \begin{figure}
         \centering
@@ -1204,6 +1204,8 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Genetsko kaljenje}
 
+\section{Minimizacija postotka promijenjenih čvorova}
+
 \section{Metode strojnog učenja za odair pohlepnog algoritma}
 
 U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih grafova. Za generiranje rezultata koriste se dva programska alata: \emph{RapidMiner} i \emph{Eureqa}. \emph{RapidMiner} je programski alat koji nudi mnogobrojne metode strojno učenja uz dodatne mogućnosti parsiranja datoteka i sl. U ovom poglavlju taj alat se koristi kako bi se nad podacima iz grafa provela regresija i kako bi se iz generiranih izraza moglo isčitati znaje o tim podacima. Alat \emph{Eureqa} je alat koji koristi metode simboličke regresije. Simbolička regresija vrsta je regresije gdje model nije unaprijed zadan, već se pomoću genetskog programiranja i sl. metoda generiraju funkcije. U ovom poglavlju alat \emph{Eureqa} prikazuje se kao moguća metoda za dobivanje znanja i pokazuje se primjer izvođenja.
@@ -1375,15 +1377,66 @@ U tablici \ref{tbl:dimacs-sa-time} prikazana su vremena izvođenja simuliranog k
 	\end{tabular}
 \end{table}
 
+Na slikama \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{fig:r1000.5-234}, \ref{fig:r1000.5-266}, \ref{fig:r1000.5-270} prikazana su ponašanja algoritma za dva grafa.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_65_1_iter_err_.png}
+	\caption{Graf r250.5 - korištenje $65$ boja sa simuliranim kaljenjem}
+	\label{fig:r250.5-65}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_67_1_iter_err_.png}
+	\caption{Graf r250.5 - korištenje $67$ boja sa simuliranim kaljenjem}
+	\label{fig:r250.5-67}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_69_1_iter_err_.png}
+	\caption{Graf r250.5 - korištenje $69$ boja sa simuliranim kaljenjem}
+	\label{fig:r250.5-69}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_234_1_iter_err_.png}
+	\caption{Graf r1000.5 - korištenje $234$ boja sa simuliranim kaljenjem}
+	\label{fig:r1000.5-234}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_266_1_iter_err_.png}
+	\caption{Graf r1000.5 - korištenje $266$ boja sa simuliranim kaljenjem}
+	\label{fig:r1000.5-266}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Slike/test_270_1_iter_err_.png}
+	\caption{Graf r1000.5 - korištenje $270$ boja sa simuliranim kaljenjem}
+	\label{fig:r1000.5-270}
+\end{figure}
+
 
 
 \section{Analiza rezultata}
 
-\subsection{Metaheuristike}
+\subsection{Agentski algoritam}
+
+\subsection{Simulirano kaljenje}
+
+\subsection{Genetski algoritam}
+
+\subsection{Genetsko kaljenje}
+
+\subsection{Minimizacija postotka promijenjenih čvorova}
 
 \subsection{Učenje metode sortiranje čvorova}
 
+
+
 \subsection{\emph{DIMACS} baza}
+
+Cilj je ispitivanja algoritma nad \emph{DIMACS} bazom pokazati kako se algoritmi mogu koristiti i za rješavanje klasičnog problema bojenja grafova. Rezultati pokazuju kako je mali postotak bridova na kraju konfliktan (ako se koristi minimalan broj boja). Rezultati heuristika koje se koriste za klasičan problem daju bolje rezultate nego pokazani algoritam u ovom radu, ali to je i očekivano, jer nije puno vremena utrošeno na dobivanje idealnih parametara za klasičan problem. Slike \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{fig:r1000.5-234}, \ref{fig:r1000.5-266} i \ref{fig:r1000.5-270} pokazuju kako je simulirano kaljenje u kombinaciji s pohlepnim algoritmom vrlo agresivna metoda za postizanje minimalne kolizije na samom početku. U sredini izvršavanja algoritma radi se metoda \emph{tuneliranja}, što se može zamjetiti na rezultatima jer se često nakon toga kolizija smanji. Da bi se rezultati poboljšali potrebno je za svaki graf namjestiti idealne parametre. Osim toga bilo bi poželjno razviti determinističke metode koje rješavaju konfliktne bridove na kraju izvršavanja metaheuristika, jer kao što se iz rezultata vidi takvih bridova na kraju izvršavanja nema puno. Vremena izvršavanja ovise o veličini grafa, tj. o njegovoj gustoći. Vidljivo je da kada se koristi više boja, vrijeme izvršavanja je veće, što se može objasniti implementacijom metoda za odabir boja.
 
 \chapter{Zaključak}
 Zaključak.
