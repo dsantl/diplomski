@@ -1135,14 +1135,14 @@ Metaheuristike se ispituju tako da se početno stanje grafa dovede pomoću pohle
 
 Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su generirani iz realnih situacija. Druga vrsta su umjetni grafovi koji su generirani kako bi se moglo proučavati ponašanje algoritama i kako bi se mogli donositi općeniti zaključci. Sintetički primjeri generirani su tako što se promatraju različit broj čvorova i različita gustoća povezanosti istih. Za težine između čvorova uzima se distribucija iz grafova koji su generirani iz realnih situacija kako bi rezultati bili što bliži mogućim primjerima iz stvarnoga svijeta. Na slikama \ref{fig:tokai-hist} i \ref{fig:kansai-hist} vide se distribucije težina (po redu veličine) na dva grafa iz realnog svijeta. Vidljivo je da oko pola težina ima malu vrijednost oko $0$, a ostale težine pripadaju većim vrijednostima.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/tokai-w-hist.pdf}
 	\caption{Tokai graf - distribucija težina}
 	\label{fig:tokai-hist}
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/kansai-w-hist.pdf}
 	\caption{Kansai graf - distribucija težina}
 	\label{fig:kansai-hist}
@@ -1203,6 +1203,8 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Simulirano kaljenje}
 
+U tablicama \ref{tbl:sa-cs1}, \ref{tbl:sa-cs2}, \ref{tbl:sa-cs3} i \ref{tbl:sa-cs4} prikazane su ovisnosti krajnjeg rezultata i vremena izvođenja o korištenim vrstama bojanja. 
+
 \begin{table}[htb]
 	\caption{Vrijeme izvođenja simuliranog kaljenja uz razne vrste bojanja -- Tokai-A}
 	\label{tbl:sa-cs1}
@@ -1229,9 +1231,41 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 	MC & RND & 160.0 & 74.9 \\ \hline
 	MC & SWAP & 90.0 & 107.278 \\  \hline 
 	MF & RND & 112.26 & 91.6 \\ \hline
-	MF & SWAP & 78 & 149.82 \\ \hline
+	MF & SWAP & 78.0 & 149.82 \\ \hline
 	\end{tabular}
 \end{table}
+
+\begin{table}[htb]
+	\caption{Vrijeme izvođenja simuliranog kaljenja uz razne vrste bojanja -- Kansai-A}
+	\label{tbl:sa-cs3}
+	\centering
+	\begin{tabular}{|l||l|r|r|} \hline
+	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
+	ABW & RND & 6506.88 & 7.7 \\ \hline 
+	ABW & SWAP & 5915.60 & 47.0 \\  \hline
+	MC & RND & 6570.84 & 39.4 \\ \hline
+	MC & SWAP & 5988.07 & 134.35 \\  \hline 
+	MF & RND & 5579.18 & 70.1 \\ \hline
+	MF & SWAP & 5082.61 & 117.24 \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\caption{Vrijeme izvođenja simuliranog kaljenja uz razne vrste bojanja -- Kansai-C}
+	\label{tbl:sa-cs4}
+	\centering
+	\begin{tabular}{|l||l|r|r|} \hline
+	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
+	ABW & RND & 67.0 & 5.68 \\ \hline 
+	ABW & SWAP & 50.81 & 36.2 \\  \hline
+	MC & RND & 66.46 & 60.1 \\ \hline
+	MC & SWAP & 58.99 &  90.15 \\  \hline 
+	MF & RND & 60.34 & 79.07 \\ \hline
+	MF & SWAP & 50.33 & 115.04 \\ \hline
+	\end{tabular}
+\end{table}
+
+
 
 \section{Genetski algoritam}
 
@@ -1256,7 +1290,7 @@ Velikim troslovnim oznakama označene su metode sortiranja, malim slovima označ
 Dobiveni rezultati prikazani su u tablicama \ref{tbl:regresija-ABW}, \ref{tbl:regresija-MC} i \ref{tbl:regresija-MF}. Za svaki parametar prikazana su dva broja. Broj koji je u zagradi je potencija za parametar, a broj desno od njega je vrijednost koeficijenta.
 
 
-\begin{table}[!H]
+\begin{table}[htb]
 	\caption{Regresija nad grafovima - ABW vrsta bojanja}
 	\label{tbl:regresija-ABW}
 	\centering
@@ -1280,7 +1314,7 @@ graph\_900\_0.9 & $ 0.143\; (2) $ & $ -0.126\; (2) $ & $ 18.861\; (1) $ & $ -49.
 	\end{tabular}
 \end{table} 
 
-\begin{table}[!H]
+\begin{table}[htb]
 	\caption{Regresija nad grafovima - MC vrsta bojanja}
 	\label{tbl:regresija-MC}
 	\centering
@@ -1304,7 +1338,7 @@ graph\_900\_0.9 & $ 0.032\; (2) $ & $ -0.060\; (2) $ & $ 19.066\; (1) $ & $ -50.
 	\end{tabular}
 \end{table} 
 
-\begin{table}[!H]
+\begin{table}[htb]
 	\caption{Regresija nad grafovima - MF vrsta bojanja}
 	\label{tbl:regresija-MF}
 	\centering
@@ -1412,38 +1446,38 @@ U tablici \ref{tbl:dimacs-sa-time} prikazana su vremena izvođenja simuliranog k
 
 Na slikama \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{fig:r1000.5-234}, \ref{fig:r1000.5-266}, \ref{fig:r1000.5-270} prikazana su ponašanja algoritma za dva grafa.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_65_1_iter_err_.png}
 	\caption{Graf r250.5 - korištenje $65$ boja sa simuliranim kaljenjem}
 	\label{fig:r250.5-65}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_67_1_iter_err_.png}
 	\caption{Graf r250.5 - korištenje $67$ boja sa simuliranim kaljenjem}
 	\label{fig:r250.5-67}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_69_1_iter_err_.png}
 	\caption{Graf r250.5 - korištenje $69$ boja sa simuliranim kaljenjem}
 	\label{fig:r250.5-69}
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_234_1_iter_err_.png}
 	\caption{Graf r1000.5 - korištenje $234$ boja sa simuliranim kaljenjem}
 	\label{fig:r1000.5-234}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_266_1_iter_err_.png}
 	\caption{Graf r1000.5 - korištenje $266$ boja sa simuliranim kaljenjem}
 	\label{fig:r1000.5-266}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_270_1_iter_err_.png}
 	\caption{Graf r1000.5 - korištenje $270$ boja sa simuliranim kaljenjem}
 	\label{fig:r1000.5-270}
@@ -1455,7 +1489,25 @@ Na slikama \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{f
 
 \subsection{Agentski algoritam}
 
+%TODO ovisnost bojanja
+
+\textbf{Broj agenata} važan je parametar, ali i kritičan parametar u smislu korištenja vremena. Ako ima više agenata konvergencija algoritma je bolja. Za praktične svrhe preporuča se da broj agenata bude između jedne četvrtine broja čvorova i jedne polovine broja čvorova.
+
+\textbf{Vjerojatnost ostajanja agenta na trenutnom čvoru} mora biti veoma mala. Što je vjerojatnost veća, to algoritam sporije konvergira. Ne preporuča se premala vrijednost (tj. $0$), jer tada se gubi svojstvo preispitivanja odluke, što daje lošje rezultate.
+
+\textbf{Vjerojatnost pomaka agenta na slučajni čvor u susjedstvu} mora biti manja od $0.5$ da bi se dobili očekivani rezultati. Preporučena vrijednost je $0.3$.
+
 \subsection{Simulirano kaljenje}
+
+Tablice \ref{tbl:sa-cs1}, \ref{tbl:sa-cs2}, \ref{tbl:sa-cs3} i \ref{tbl:sa-cs4} prikazuju kako različita bojanja utjeću na krajnji rezultat (drugi parametri su konstantni). Najmanje vremena troši kombinacija \emph{ABW-RND}, ali isto tako daje najlošije rezultate. Najduže vrijeme izvođenja imaju kombinacije \emph{MC-SWAP} i \emph{MF-SWAP} što je i očekivano zbog implementacije. Gotovo nikad se ne isplati koristiti kao lokalno bojanje \emph{MC}, jer koristi dosta vremena, ali ne daje bolje rezultate. Kombinacija \emph{MF-SWAP} ima dobar učinak, ali troši i puno vremena. Globalna vrsta bojenja \emph{SWAP} daje bolje rezultate od \emph{RND} vrste bojenja, što pokazuje da se isplati provoditi \emph{tuneliranje}. Vrsta bojenja \emph{ABW} troši manje vremena od ostalih vrsta bojenja i daje relativno dobre rezultate. Kao optimalna kombinacija preporuča se \emph{ABW-SWAP} jer vrijeme izvođenja je relativno malo, a dobijaju se dobri rezultati optimizacije.
+
+\textbf{Početna temperatura} parametar je algoritma koji najviše ovisi o veličini i gustoći grafa. Što je graf kompleksniji, parametar mora biti veći. Osim toga parametar ovisi o konkretnim vrijednostima težina u grafu. Ovaj parametar teorijski se može izračunati, samo u ovoj optimizaciji problem su neuravnotežene težine bridova. Zato je teško odrediti pravu početnu vrijednost. Rezultati pokazuju da vrijednost početne temperature može biti manja od $1$ (za ispitne grafove). Važno je ne staviti preveliku vrijednost, jer tada algoritam može divergirati. Ako se koristi vrsta bojenja \emph{RND} tada je poželjno da taj parametar ima nešto veću vrijednost. 
+
+\textbf{Broj iteracija s istom temperaturom} je parametar koji određuje koliko susjednih rješenja će biti generirano s istom temperaturom. Algoritam nije jako osjetljiv na ovaj parametar, ali ne preporuča se korištenja velike vrijednosti ($>500$) jer se povećanjem ovog parametra linearno povećava i vrijeme izvođenja algoritma. Preporučena vrijednost je $\sim 100$.
+
+\textbf{Faktor smanjenja temperature} treba imati relativno veliku vrijednost u intervalu $\in[0,1]$. Potrebno je smanjivati temperaturu, ali istovremeno paziti da temperatura ne padne prebrzo. Parametar je vezan za ukupan broj iteracija.
+
+\textbf{Vjerojatnost lokalne vrste bojanja} je važan parametar koji treba postaviti tako da se osigura dovoljan broj minimizacija, ali istovremeno da se omogući pretraživanje lošjih rješenja. Pokazuje se da parametar mora biti veći od $0.5$ i preporuča se da bude manji od $0.9$.
 
 \subsection{Genetski algoritam}
 
