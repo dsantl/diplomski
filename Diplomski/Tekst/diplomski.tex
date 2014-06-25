@@ -69,8 +69,8 @@
 
 \chapter{Uvod}
 
-U ovom radu obrađuje se jedna od inačica matematičkog problema poznatog pod nazivom bojanje grafa \engl{graph coloring}. Motivacija za rješavanje ovog problema dolazi iz domene telekomunikacija. Problem dodjelivanja frekvencija (k\^{o}dova) s ciljem da ne dolazi do međusobne interferencije može se lako prevesti u problem bojanja grafova. Bojanje grafova poznat je matematički problem i postoji više smjerova za njegovo rješavanje na računalu \cite{lit8}. Specifičnost ovog problema su zadana ograničenja. Za razliku od klasičnog bojanja grafa, ovaj problem modeliran je pomoću težinskog grafa. Cilj je isti, obojiti graf tako da dva susjedna čvora nemaju istu boju. Ograničenja koja se pojavljuju vezana su uz dostupnost boja za svaki čvor i dodatne informacije koje svaki čvor posjeduje. U radu se prvo analizira matematički problem. Kako je problem iz perspektive računarske teorije \emph{NP-težak} i nije poznato je li postoji deterministički algoritam koji bi mogao veće instance problema rješavati u kratkom vremenskom roku, proučavaju se različiti heuristički pristupi. Osim toga analiza problema je veoma važna kako bi se dobila mjera u kojoj je problem rješiv na računalu. Nakon teorijske obrade problema, obrađuju se metaheursitični postupci koji su korišteni u radu. Za ovaj rad posebno je izrađeno okruženje za razvoj algoritama i alata za analizu problema. U radu se daje pogled na izrađenu infrastrukturu. Na kraju obavljena su mjerenja te analiza rezultata. Kako se rad temelji na metaheurističnim postupcima važno je odrediti ponašanje parametara s različitim vrstama grafova, što daje temeljno znanje o konstrukciji samopodešavajućih metaheuristika. Nakon mjerenja donose se zaključci i smjernice za daljni rad na problemu.
-U praksi potrebno je konstruirati algoritam koji zahtjeva malo vremenskih i memorijskih resursa. Grafovi koji se mogu pojaviti kao ulaz mogu biti veoma veliki i gusti, što znači da je uz samo ispitivanje ponašanja heuristika potrebno razmišljati i o konkretnim implementacijama. Neke heuristike već same po sebi zahtjevaju dosta resursa. Veoma važan dio rada je istražiti je li se isplati koristiti heuristike koje su malo zahtjevnije u cilju dobivanje boljeg rješenja. Ovaj rad je uvod u dizajniranje konačnog algoritma koji bi mogao biti primjenjiv u praksi. 
+U ovom radu obrađuje se jedna od inačica matematičkog problema poznatog pod nazivom bojanje grafa \engl{graph coloring}. Motivacija za rješavanje ovog problema dolazi iz domene telekomunikacija. Problem dodjeljivanja frekvencija (k\^{o}dova) s ciljem da ne dolazi do međusobne interferencije može se lako prevesti u problem bojanja grafova. Bojanje grafova poznat je matematički problem i postoji više smjerova za njegovo rješavanje na računalu \cite{lit8}. Specifičnost ovog problema su zadana ograničenja. Za razliku od klasičnog bojanja grafa, ovaj problem modeliran je pomoću težinskog grafa. Cilj je isti, obojiti graf tako da dva susjedna čvora nemaju istu boju. Ograničenja koja se pojavljuju vezana su uz dostupnost boja za svaki čvor i dodatne informacije koje svaki čvor posjeduje. U radu se prvo analizira matematički problem. Kako je problem iz perspektive računarske teorije \emph{NP-težak} i nije poznato je li postoji deterministički algoritam koji bi mogao veće instance problema rješavati u kratkom vremenskom roku, proučavaju se različiti heuristički pristupi. Osim toga analiza problema je veoma važna kako bi se dobila mjera u kojoj je problem rješiv na računalu. Nakon teorijske obrade problema, obrađuju se metaheuristički postupci koji su korišteni u radu. Za ovaj rad posebno je izrađeno okruženje za razvoj algoritama i alata za analizu problema. U radu se daje pogled na izrađenu infrastrukturu. Na kraju obavljena su mjerenja te analiza rezultata. Kako se rad temelji na metaheurističkim postupcima važno je odrediti ponašanje parametara s različitim vrstama grafova, što daje temeljno znanje o konstrukciji samopodešavajućih metaheuristika. Nakon mjerenja donose se zaključci i smjernice za daljnji rad na problemu.
+U praksi potrebno je konstruirati algoritam koji zahtjeva malo vremenskih i memorijskih resursa. Grafovi koji se mogu pojaviti kao ulaz mogu biti veoma veliki i gusti, što znači da je uz samo ispitivanje ponašanja heuristika potrebno razmišljati i o konkretnim implementacijama. Neke heuristike već same po sebi zahtijevaju dosta resursa. Veoma važan dio rada je istražiti je li se isplati koristiti heuristike koje su malo zahtjevnije u cilju dobivanje boljeg rješenja. Ovaj rad je uvod u dizajniranje konačnog algoritma koji bi mogao biti primjenjiv u praksi.
 
 \section{Sažetci korištenih znanstvenih članaka}
 
@@ -755,8 +755,8 @@ Odabrana je evolucijska strategija koja se koristi u članku \cite{lit17}. Koris
 	\item Ukupan broj iteracija - $N$
 	\item Broj mutacija nad jednom jedinkom - $M$
 	\item Vjerojatnost mutacije gena pomoću lokalne pretrage - $PROP$
-	\item Način bojanja za lokalnu pretragu - $CS\_GLOBAL$
-	\item Način bojanja za globalnu pretragu - $CS\_LOCAL$
+	\item Način bojanja za globalnu pretragu - $CS\_GLOBAL$
+	\item Način bojanja za lokalnu pretragu - $CS\_LOCAL$
 \end{enumerate}
 
 \subsection{Detalji algoritma}
@@ -822,8 +822,8 @@ Simulirano kaljenje također spada u skupinu evolucijskih algoritama. Njegova sp
 	\item Broj iteracija s istom temperaturom - $E$
 	\item Faktor smanjenja temperature - $\alpha$
 	\item Vjerojatnost lokalne vrste bojanja - $PROP$
-	\item Način bojanja za lokalnu pretragu - $CS\_GLOBAL$
-	\item Način bojanja za globalnu pretragu - $CS\_LOCAL$
+	\item Način bojanja za globalnu pretragu - $CS\_GLOBAL$
+	\item Način bojanja za lokalnu pretragu - $CS\_LOCAL$
 \end{enumerate}
 
 \subsection{Detalji algoritma}
@@ -887,8 +887,8 @@ Genetsko kaljenje \cite{lit18} je algoritam koji kombinira dvije ideje: genetski
 	\item Početna energija - $E$
 	\item Faktor hlađenja - $\alpha$
 	\item Vjerojatnost lokalne vrste bojanja - $PROP$
-	\item Način bojanja za lokalnu pretragu - $CS\_GLOBAL$
-	\item Način bojanja za globalnu pretragu - $CS\_LOCAL$
+	\item Način bojanja za globalnu pretragu - $CS\_GLOBAL$
+	\item Način bojanja za lokalnu pretragu - $CS\_LOCAL$
 \end{enumerate}
 
 
@@ -1129,11 +1129,11 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 
 Nekoliko je rezultata za metaheuristike bitno kako bi se mogle uspoređivati. Dva svojstva koja najviše utječu na dobrotu metaheuristike su najmanja postignuta vrijednost funkcije cilja i stvarno vrijeme izvođenja. Osim toga, veoma je bitan dio pronalaženje optimalnih parametara metaheuristika. Zbog toga se na skupu ispitnih grafova jedna metaheuristika ispituje s drugačijim parametrima te se najbolji dobiveni rezultat neke metaheuristike uspoređuje s ostalim najboljim rezultatima drugih metaheuristika. Rad metaheuristika proučava se kroz iteracije. Pronalazi se ovisnost broja korištenih iteracija i vrijednosti funkcije cilja, ovisnost broja korištenih iteracija i postotka promjene inicijalnih boja te ovisnost promjene inicijalnih boja o vrijednosti funkcije cilja. Takve ovisnosti mogu pokazati neke karakteristike algoritma, kao što su brzina konvergencije, vrijeme zadržavanja u lokalnim minimumima, te dati smjer za korištenje vrsta odabira boja pri nekoj metaheuristici.
 
-Metaheuristike se ispituju tako da se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteracije u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Odabrano je pet koraka, jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi, tj. da pohlepni algoritam ne bi utjecao na brzinu kovergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
+Metaheuristike se ispituju tako da se početno stanje grafa dovede pomoću pohlepnog algoritma u neku točku čija funkcija cilja ima puno manju vrijednost od početnog grafa. Cilj je pohlepnog algoritma da osigura valjano bojenje za svaki čvor, te da se greška dovede do manje vrijednosti. Koristi se pohlepni algoritam u pet koraka. Iz iteracije u iteraciju pohlepni algoritam nastoji bojiti graf pomoću \emph{SDO} sortiranja i \emph{ABW} odabira boja. Ako algoritam zastane u lokalnom minimumu, pomoću \emph{FIT} sortiranja i \emph{MF} odabira boja nastoji se iskočiti iz tog minimuma. Odabrano je pet koraka, jer se eksperimentiranjem to pokazalo kao najbolja opcija, a da bi algoritmi i grafovi bili usporedivi, tj. da pohlepni algoritam ne bi utjecao na brzinu konvergencije, za sve slučajeve ispitivanja ostavljena je ta ista inačica.
 
 \section{Grafovi za ispitivanje}
 
-Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su generirani iz realnih situacija. Druga vrsta su umjetni grafovi koji su generirani kako bi se moglo proučavati ponašanje algoritama i kako bi se mogli donositi općeniti zaključci. Sintetički primjeri generirani su tako što se promatraju različit broj čvorova i različita gustoća povezanosti istih. Za težine između čvorova uzima se distribucija iz grafova koji su generirani iz realnih situacija kako bi rezultati bili što biliži mogućim primjerima iz stvarnoga svijeta. Na slikama \ref{fig:tokai-hist} i \ref{fig:kansai-hist} vide se distribucije težina (po redu veličine) na dva grafa iz realnog svijeta. Vidljivo je da oko pola težina ima malu vrijednost oko $0$, a ostale težine pripadaju većim vrijednostima.
+Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su generirani iz realnih situacija. Druga vrsta su umjetni grafovi koji su generirani kako bi se moglo proučavati ponašanje algoritama i kako bi se mogli donositi općeniti zaključci. Sintetički primjeri generirani su tako što se promatraju različit broj čvorova i različita gustoća povezanosti istih. Za težine između čvorova uzima se distribucija iz grafova koji su generirani iz realnih situacija kako bi rezultati bili što bliži mogućim primjerima iz stvarnoga svijeta. Na slikama \ref{fig:tokai-hist} i \ref{fig:kansai-hist} vide se distribucije težina (po redu veličine) na dva grafa iz realnog svijeta. Vidljivo je da oko pola težina ima malu vrijednost oko $0$, a ostale težine pripadaju većim vrijednostima.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{Slike/tokai-w-hist.pdf}
@@ -1197,11 +1197,41 @@ Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su gen
 Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. U ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se dodijeli slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam pokreće deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
 
 Rezultati su prikazani u tablici \ref{tbl:random-test}.
-Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicjalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja \ref{equ:funkcija_cilja}), inicijalna pogreška je veća.
+Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicijalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja \ref{equ:funkcija_cilja}), inicijalna pogreška je veća.
 
 \section{Agentski algoritam}
 
 \section{Simulirano kaljenje}
+
+\begin{table}[htb]
+	\caption{Vrijeme izvođenja simuliranog kaljenja uz razne vrste bojanja -- Tokai-A}
+	\label{tbl:sa-cs1}
+	\centering
+	\begin{tabular}{|l||l|r|r|} \hline
+	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
+	ABW & RND & 2194.437 & 7.58 \\ \hline 
+	ABW & SWAP & 1945.341 & 34.4 \\  \hline
+	MC & RND & 2213.458 & 67.48 \\ \hline
+	MC & SWAP & 2004.668 & 226.281 \\  \hline 
+	MF & RND & 1923.029 & 93.192 \\ \hline
+	MF & SWAP & 1823.024 & 134.927 \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]
+	\caption{Vrijeme izvođenja simuliranog kaljenja uz razne vrste bojanja -- Tokai-C}
+	\label{tbl:sa-cs2}
+	\centering
+	\begin{tabular}{|l||l|r|r|} \hline
+	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
+	ABW & RND & 150.75 & 6.2 \\ \hline 
+	ABW & SWAP & 90.0 & 24.6 \\  \hline
+	MC & RND & 160.0 & 74.9 \\ \hline
+	MC & SWAP & 90.0 & 107.278 \\  \hline 
+	MF & RND & 112.26 & 91.6 \\ \hline
+	MF & SWAP & 78 & 149.82 \\ \hline
+	\end{tabular}
+\end{table}
 
 \section{Genetski algoritam}
 
@@ -1211,11 +1241,11 @@ Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vid
 
 \section{Metode strojnog učenja za odabir pohlepnog algoritma}
 
-U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih grafova. Za generiranje rezultata koriste se dva programska alata: \emph{RapidMiner} i \emph{Eureqa}. \emph{RapidMiner} je programski alat koji nudi mnogobrojne metode strojno učenja uz dodatne mogućnosti parsiranja datoteka i sl. U ovom poglavlju taj alat se koristi kako bi se nad podacima iz grafa provela regresija i kako bi se iz generiranih izraza moglo isčitati znaje o tim podacima. Alat \emph{Eureqa} je alat koji koristi metode simboličke regresije. Simbolička regresija vrsta je regresije gdje model nije unaprijed zadan, već se pomoću genetskog programiranja i sl. metoda generiraju funkcije. U ovom poglavlju alat \emph{Eureqa} prikazuje se kao moguća metoda za dobivanje znanja i pokazuje se primjer izvođenja.
+U poglavlju \ref{sec:ml} opisan je način generiranja značajki iz različitih grafova. Za generiranje rezultata koriste se dva programska alata: \emph{RapidMiner} i \emph{Eureqa}. \emph{RapidMiner} je programski alat koji nudi mnogobrojne metode strojno učenja uz dodatne mogućnosti parsiranja datoteka i sl. U ovom poglavlju taj alat se koristi kako bi se nad podacima iz grafa provela regresija i kako bi se iz generiranih izraza moglo iščitati znanje o tim podacima. Alat \emph{Eureqa} je alat koji koristi metode simboličke regresije. Simbolička regresija vrsta je regresije gdje model nije unaprijed zadan, već se pomoću genetskog programiranja i sl. metoda generiraju funkcije. U ovom poglavlju alat \emph{Eureqa} prikazuje se kao moguća metoda za dobivanje znanja i pokazuje se primjer izvođenja.
 
-Kao obična regresija koristi se model polinoma drugog stupnja. Ovakav model izabran je iz nekoliko razloga. Kada bi se koristio linearan model, tada bi se informacije iz dobivenog polinoma mogle isčitati samo iz koeficijenata. Polinomi višeg stupnja unose previše parametara i previše mogućnosti za interpretaciju podataka. Polinom drugog stupnja nudi mogućnost potiskivanja parametara jer ako parametar koji je u intervalu od $0$ do $1$ ima potenciju $2$, a neki drugi parametar potenciju $1$, tada veći utjecaj ima parametar s manjom potencijom. Ako pak postoje parametri s istom potencijom, tada koeficjenti određuju koji parametar ima veći utjecaj.
+Kao obična regresija koristi se model polinoma drugog stupnja. Ovakav model izabran je iz nekoliko razloga. Kada bi se koristio linearan model, tada bi se informacije iz dobivenog polinoma mogle iščitati samo iz koeficijenata. Polinomi višeg stupnja unose previše parametara i previše mogućnosti za interpretaciju podataka. Polinom drugog stupnja nudi mogućnost potiskivanja parametara jer ako parametar koji je u intervalu od $0$ do $1$ ima potenciju $2$, a neki drugi parametar potenciju $1$, tada veći utjecaj ima parametar s manjom potencijom. Ako pak postoje parametri s istom potencijom, tada koeficijenti određuju koji parametar ima veći utjecaj.
 
-Kako je u središtu ovog istraživanja čvor, tada nije bitno koliko graf sadrži čvorova, već koliko je graf gust (koliko ima bridova). Zbog toga se koriste grafovi s manjim brojem čvorova (kako bi generiranja rezultata oduzelo manje vremena). Za svaki graf i svako bojanje pohlepni algoritam pokreće se $2000$ puta. Od $2000$ rezultata uzima se $10\%$ najboljih. Iz takvih podataka uzimaju se svi čvorovi koji su obojivi sa svojim parametrima - jedan čvor u jednom pohlepnom algoritmu predstavlja jedan uzorak.
+Kako je u središtu ovog istraživanja čvor, tada nije bitno koliko graf sadrži čvorova, već koliko je graf gust (koliko ima bridova). Zbog toga se koriste grafovi s manjim brojem čvorova (kako bi generiranja rezultata oduzelo manje vremena). Za svaki graf i svako bojanje pohlepni algoritam pokreće se $2000$ puta. Od $2000$ rezultata uzima se $10\%$ najboljih. Iz takvih podataka uzimaju se svi čvorovi koji su obojivi sa svojim parametrima -- jedan čvor u jednom pohlepnom algoritmu predstavlja jedan uzorak.
 
 Model regresije:
 \begin{equation}
@@ -1298,7 +1328,7 @@ graph\_900\_0.9 & $ 0.190\; (2) $ & $ -0.093\; (2) $ & $ 18.498\; (1) $ & $ -49.
 	\end{tabular}
 \end{table} 
 
-Može se očekivati da funkcija usporedbe pri sortiranju čvorova nije jednostavna tj. da nije polinom. Zato se ideja proširuje na simboličku regresiju. Ovo ispitivanje je ilustrativno i prikazuje dodatnu mogućnost pri istraživanju sortiranaj čvorova. Graf za ispitivanje je "\emph{graph\_700\_0.5}". Odabrana je vrsta bojanja \emph{ABW}. Skup elementarnih operatora i funkcija:
+Može se očekivati da funkcija usporedbe pri sortiranju čvorova nije jednostavna tj. da nije polinom. Zato se ideja proširuje na simboličku regresiju. Ovo ispitivanje je ilustrativno i prikazuje dodatnu mogućnost pri istraživanju sortiranja čvorova. Graf za ispitivanje je "\emph{graph\_700\_0.5}". Odabrana je vrsta bojanja \emph{ABW}. Skup elementarnih operatora i funkcija:
 
 \begin{itemize}
 	\item $c$  konstanta
@@ -1313,7 +1343,7 @@ Može se očekivati da funkcija usporedbe pri sortiranju čvorova nije jednostav
 	\item logistička funkcija
 \end{itemize} 
 
-U tablici \ref{tbl:sym-reg} su prikazana dva rješenja koja su se pojavila. Prvo rješenja je jednostavnije, ali ima veću empirijsku pogrešku. Za drugo rješenje vrijedi obrunto.
+U tablici \ref{tbl:sym-reg} su prikazana dva rješenja koja su se pojavila. Prvo rješenja je jednostavnije, ali ima veću empirijsku pogrešku. Za drugo rješenje vrijedi obrnuto.
 
 \begin{table}[htb]
 	\caption{Simbolička regresija nad grafom}
@@ -1435,18 +1465,18 @@ Na slikama \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{f
 
 \subsection{Učenje metode sortiranje čvorova}
 
-Pri interpretaciji ovog rezultata treba biti veoma oprezan. Podaci sigurno pokazuju određeno ponašanje algoritama, ali njihov krajnji cilj, a to je dobivanje metode za sortiranje ne treba uzimati kao gotovo rješenje. Kvaliteta rješenja ovisi o broju pokretanja algoritma i broju čvorova za učenje. Teorijski broj pokretanja algoritama bi trebao biti $V(G)!$ tako da se pokriju sva moguća sortiranja i onda iz najboljih izvući čvorove. Ovo je u praksi nemoguće jer je broj čvorova relativno velik broj. Drugi problem vezan je za broj čvorova tj. broj uzoraka. U tablicama \ref{tbl:regresija-ABW}, \ref{tbl:regresija-MC} i \ref{tbl:regresija-MF} prikazani su dobiveni rezultati za neke grafove. Za \emph{ABW} vrstu bojenja vidljivo je da najveći utjecaj ima \emph{SDO} vrsta sortiranja, jer su sve potencije u stupcu \emph{SDO} jednake $1$ (za razliku od drugih stupaca). Kod nekih grafova usporedno se pojavljuje i relativno velik koeficijent, što znači da i \emph{LDO} utjeće na krajnji rezultat pohlepnog algoritma. Ostala svojstva kao što je vidljivo u tablici \ref{tbl:regresija-ABW}, mogu se zanemariti. Ovoje veoma sličan rezultat kao u članku \cite{lit7}, gdje je isporban algoritam koji kao prvo svojstvo sortiranja koristi \emph{SDO}, a kao drugo \emph{LDO}.
+Pri interpretaciji ovog rezultata treba biti veoma oprezan. Podaci sigurno pokazuju određeno ponašanje algoritama, ali njihov krajnji cilj, a to je dobivanje metode za sortiranje ne treba uzimati kao gotovo rješenje. Kvaliteta rješenja ovisi o broju pokretanja algoritma i broju čvorova za učenje. Teorijski broj pokretanja algoritama bi trebao biti $V(G)!$ tako da se pokriju sva moguća sortiranja i onda iz najboljih izvući čvorove. Ovo je u praksi nemoguće jer je broj čvorova relativno velik broj. Drugi problem vezan je za broj čvorova tj. broj uzoraka. U tablicama \ref{tbl:regresija-ABW}, \ref{tbl:regresija-MC} i \ref{tbl:regresija-MF} prikazani su dobiveni rezultati za neke grafove. Za \emph{ABW} vrstu bojenja vidljivo je da najveći utjecaj ima \emph{SDO} vrsta sortiranja, jer su sve potencije u stupcu \emph{SDO} jednake $1$ (za razliku od drugih stupaca). Kod nekih grafova usporedno se pojavljuje i relativno velik koeficijent, što znači da i \emph{LDO} utječe na krajnji rezultat pohlepnog algoritma. Ostala svojstva kao što je vidljivo u tablici \ref{tbl:regresija-ABW}, mogu se zanemariti. Ovoje veoma sličan rezultat kao u članku \cite{lit7}, gdje je isproban algoritam koji kao prvo svojstvo sortiranja koristi \emph{SDO}, a kao drugo \emph{LDO}.
 
 Za \emph{MC} vrstu bojenja, \emph{SDO} način sortiranja je također dominantan, \emph{LDO} ima malo veći utjecaj, a moguće je da za neke grafove i \emph{FIT} daje dodatan doprinos (za graf "\emph{graph\_700\_0.1}"). Za \emph{MF} vrstu bojanja rezultati su nešto zanimljivi. Za manje gušće grafove kao dominantno svojstvo pojavljuje se \emph{FIT} sortiranje. U drugim slučajevima \emph{SDO} ostaje kao dominantno svojstvo.
 
-U većini slučajeva (za sve vrste bojenja) \emph{SDO} i \emph{LDO} su dominantna svojstva. Razlog može biti u tome što su kolizija (\emph{COL}) i greška čvora (\emph{FIT}) parametri koji se minimiziraju, pa su te vrijednosti često jednake $0$ i zbog toga gube utjecaj u provođenju regresije. 
+U većini slučajeva (za sve vrste bojenja) \emph{SDO} i \emph{LDO} su dominantna svojstva. Razlog može biti u tome što su kolizija (\emph{COL}) i greška čvora (\emph{FIT}) parametri koji se minimiziraju, pa su te vrijednosti često jednake $0$ i zbog toga gube utjecaj u provođenju regresije.
 
-U tablici \ref{tbl:sym-reg} prikazana su dva rezultata provođenja simboličke regresije. Pri korištenju simboličke regresije treba biti oprezan jer rezultati na kraju ponekan mogu biti teški za tumačenje. Ako promatramo prvi red u tablici, vidimo jednostavan zapis formule koji se može donekle tumačiti. U drugom redu nalazi se malo kompliciranja funkcija koja i nema previše smisla. Na primjer, teško je protumačiti što točno znači funkcija kosinus. Što je funkcija kompliciranija to se dobija manja empirijska pogreška. Zbog toga se može dogoditi da se funkcija generirala na temelju šuma što nije dobro za generalizaciju. Ovim rezultatima želi se pokazati kako je istraživanje ovog područja moguće ostvariti na relativno jednostavan način pomoću dostupnih alata.
+U tablici \ref{tbl:sym-reg} prikazana su dva rezultata provođenja simboličke regresije. Pri korištenju simboličke regresije treba biti oprezan jer rezultati na kraju ponekad mogu biti teški za tumačenje. Ako promatramo prvi red u tablici, vidimo jednostavan zapis formule koji se može donekle tumačiti. U drugom redu nalazi se malo kompliciranja funkcija koja i nema previše smisla. Na primjer, teško je protumačiti što točno znači funkcija kosinus. Što je funkcija kompliciranija to se dobiva manja empirijska pogreška. Zbog toga se može dogoditi da se funkcija generirala na temelju šuma što nije dobro za generalizaciju. Ovim rezultatima želi se pokazati kako je istraživanje ovog područja moguće ostvariti na relativno jednostavan način pomoću dostupnih alata.
 
 
 \subsection{\emph{DIMACS} baza}
 
-Cilj je ispitivanja algoritma nad \emph{DIMACS} bazom pokazati kako se algoritmi mogu koristiti i za rješavanje klasičnog problema bojenja grafova. Rezultati pokazuju kako je mali postotak bridova na kraju konfliktan (ako se koristi minimalan broj boja). Rezultati heuristika koje se koriste za klasičan problem daju bolje rezultate nego pokazani algoritam u ovom radu, ali to je i očekivano, jer nije puno vremena utrošeno na dobivanje idealnih parametara za klasičan problem. Slike \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{fig:r1000.5-234}, \ref{fig:r1000.5-266} i \ref{fig:r1000.5-270} pokazuju kako je simulirano kaljenje u kombinaciji s pohlepnim algoritmom vrlo agresivna metoda za postizanje minimalne kolizije na samom početku. U sredini izvršavanja algoritma radi se metoda \emph{tuneliranja}, što se može zamjetiti na rezultatima jer se često nakon toga kolizija smanji. Da bi se rezultati poboljšali potrebno je za svaki graf namjestiti idealne parametre. Osim toga bilo bi poželjno razviti determinističke metode koje rješavaju konfliktne bridove na kraju izvršavanja metaheuristika, jer kao što se iz rezultata vidi takvih bridova na kraju izvršavanja nema puno. Vremena izvršavanja ovise o veličini grafa, tj. o njegovoj gustoći. Vidljivo je da kada se koristi više boja, vrijeme izvršavanja je veće, što se može objasniti implementacijom metoda za odabir boja.
+Cilj je ispitivanja algoritma nad \emph{DIMACS} bazom pokazati kako se algoritmi mogu koristiti i za rješavanje klasičnog problema bojenja grafova. Rezultati pokazuju kako je mali postotak bridova na kraju konfliktan (ako se koristi minimalan broj boja). Rezultati heuristika koje se koriste za klasičan problem daju bolje rezultate nego pokazani algoritam u ovom radu, ali to je i očekivano, jer nije puno vremena utrošeno na dobivanje idealnih parametara za klasičan problem. Slike \ref{fig:r250.5-65}, \ref{fig:r250.5-67}, \ref{fig:r250.5-69}, \ref{fig:r1000.5-234}, \ref{fig:r1000.5-266} i \ref{fig:r1000.5-270} pokazuju kako je simulirano kaljenje u kombinaciji s pohlepnim algoritmom vrlo agresivna metoda za postizanje minimalne kolizije na samom početku. U sredini izvršavanja algoritma radi se metoda \emph{tuneliranja}, što se može zamijetiti na rezultatima jer se često nakon toga kolizija smanji. Da bi se rezultati poboljšali potrebno je za svaki graf namjestiti idealne parametre. Osim toga bilo bi poželjno razviti determinističke metode koje rješavaju konfliktne bridove na kraju izvršavanja metaheuristika, jer kao što se iz rezultata vidi takvih bridova na kraju izvršavanja nema puno. Vremena izvršavanja ovise o veličini grafa, tj. o njegovoj gustoći. Vidljivo je da kada se koristi više boja, vrijeme izvršavanja je veće, što se može objasniti implementacijom metoda za odabir boja.
 
 \chapter{Zaključak}
 Zaključak.
