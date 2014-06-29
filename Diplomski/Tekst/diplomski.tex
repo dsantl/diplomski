@@ -63,7 +63,7 @@
 \izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
-\zahvala{}
+\zahvala{Zahvaljujem se roditeljima na podršci, bratu što je izdržao kao cimer te prijateljima na slobodnom vremenu.}
 
 \tableofcontents
 
@@ -172,6 +172,7 @@ Ulaz algoritma je inicijalno stanje mreže. Za svaku baznu stanicu poznat je tre
 			\item Početna boja za čvor
 			\item Oznaka je li čvor nepromjenjiv
 		\end{enumerate}
+	\item Popis bridova
 \end{enumerate} 
 
 \subsubsection{Izlazni podaci}
@@ -657,7 +658,7 @@ Moguće bi rješenje navedenog problema moglo biti u pretraživanju susjednih č
 
 \section{Agentski algoritam}
 
-Agentski algoritam inspiriran je dobrim rezultatima pohlepnog algoritma. Glavna jedinica algoritma je agent. Agenti se raspoređuju po grafu, gdje se neki agent postavlja na neki čvor grafa. \emph{Globalna iteracija} je jedna iteracija algoritma u kojoj svaki agent svome čvoru pridruži neku boju. Agenti se boduju i to tako da na početku svi imaju $0$ bodova, a nakon globalne iteracije broj bodova je za nekog agenta jednak maksimalnoj pogrešci nekog susjednog čvora, na koji se i agent pomakne. Zatim se agenti sortiraju prema bodovima i u sljedećoj globalnoj iteraciji pravo na bojanje prvo dobiva agent s najviše bodova. Slično kao i kod pohlepnog algoritma, prvo se obrađuju \emph{teški čvorovi}, a to je u ovom algoritmu modelirano pomoću bodovanja. Agenti se, osim akcije pomaka na \emph{najbolji} čvor, mogu pomaknuti na slučajan susjedni čvor ili pak ostati na čvoru na kojem jesu. Tada bodovi za agenta ostaju isti. Algoritam posjeća na mravlje algoritme \engl{ant colony optimization} \cite{lit3}, ali kako algoritam daje lošije rezultate za klasični problem bojanja grafova u radu je odlučeno koristiti agentski algoritam.
+Agentski algoritam inspiriran je dobrim rezultatima pohlepnog algoritma. Glavna jedinica algoritma je agent. Agenti se raspoređuju po grafu, gdje se neki agent postavlja na neki čvor grafa. \emph{Globalna iteracija} je jedna iteracija algoritma u kojoj svaki agent svome čvoru pridruži neku boju. Agenti se boduju i to tako da na početku svi imaju $0$ bodova, a nakon globalne iteracije broj bodova je za nekog agenta jednak maksimalnoj pogrešci nekog susjednog čvora, na koji se i agent pomakne. Zatim se agenti sortiraju prema bodovima i u sljedećoj globalnoj iteraciji pravo na bojanje prvo dobiva agent s najviše bodova. Slično kao i kod pohlepnog algoritma, prvo se obrađuju \emph{teški čvorovi}, a to je u ovom algoritmu modelirano pomoću bodovanja. Agenti se, osim akcije pomaka na \emph{najbolji} čvor, mogu pomaknuti na slučajan susjedni čvor ili pak ostati na čvoru na kojem jesu. Tada bodovi za agenta ostaju isti. Algoritam podsjeća na mravlje algoritme \engl{ant colony optimization} \cite{lit3}, ali kako algoritam daje lošije rezultate za klasični problem bojanja grafova u radu je odlučeno koristiti agentski algoritam.
 
 \subsection{Parametri algoritma}
 
@@ -975,7 +976,7 @@ U navedenom pseudok\^{o}du nova se točka postavlja u trenutnu. Zatim se vanjska
 
 \section{Upravljanje postotkom promijenjenih čvorova}
 
-Kako je sekundarni kriterij optimizacije da postotak promijenjenih čvorova naspram inicijalnog stanja ne prođe neku granicu (konkretno 66\%), potrebno je ostvariti mehanizam koji to omogućuje. U ovom se radu koristi pristup težnje boje da postane početna. U vrste bojanja implementira se mehanizam biranja boja za koji vrijedi da ako je početna boja jedna od mogućih, ona se iskorištava za bojanje čvora
+Kako je sekundarni kriterij optimizacije da postotak promijenjenih čvorova naspram inicijalnog stanja ne prođe neku granicu (konkretno 66\%), potrebno je ostvariti mehanizam koji to omogućuje. U ovom se radu koristi pristup težnje boje da postane početna. U vrste bojanja implementira se mehanizam biranja boja za koji vrijedi da ako je početna boja jedna od mogućih, ona se iskorištava za bojanje čvora.
 
 \chapter{Programsko rješenje}
 
@@ -1086,8 +1087,8 @@ Modul "\emph{unit}" je generička klasa koja se koristi kao prikaz rješenja u p
 \begin{itemize}
 	\item brzo dohvaćanje funkcije cilja -- \emph{getError()} -- $O(1)$
 	\item dohvaćanje broja čvorova -- \emph{getSize()} -- $O(1)$
-	\item postavljanje boje čvoru -- \emph{setColor(id, color)} -- $O(H(v))$
-	\item postavljanje strukture grafa u boje jedinke -- \emph{updateGraph()} -- $O(V(G))$
+	\item postavljanje boje čvoru -- \emph{setColor(id, color)} -- $O(|H(v)|)$
+	\item postavljanje strukture grafa u boje jedinke -- \emph{updateGraph()} -- $O(|V(G)|)$
 \end{itemize}
 
 \chapter{Rezultati}
@@ -1183,7 +1184,7 @@ Za ispitivanje koriste se dvije vrste grafova. Prva vrsta su grafovi koji su gen
 
 \section{Slučajno pretraživanje}
 
-Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. U ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se dodijeli slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam pokreće deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
+Kako bi se opravdalo traženje optimizacijskog algoritma za ovaj problem, potrebno je pokazati kako uniformna raspodjela boja po grafu ne daje zadovoljavajuće rezultate. U ovu je svrhu korišten pohlepni algoritam koji za sortiranje čvorova koristi \emph{RND} metodu i također \emph{RND} vrstu bojanja. Efekt je isti kao da se obilaze čvorovi i svakom se dodijeli slučajna boja iz njegove domene. Nad svakim se grafom pokreće pohlepni algoritam deset puta, nakon čega se rezultat usrednjuje i uspoređuje s početnom pogreškom grafa.
 
 Rezultati su prikazani u tablici \ref{tbl:random-test}.
 Kako je očekivana greška u svim grafovima reda veličine $10^3$ ili manje, vidljivo je da slučajno bojanje ne daje dobre rezultate, već rezultati imaju jedan do dva reda veličine manje vrijednosti od inicijalnog bojanja. Razlika bi bila još manja kada bi inicijalna bojanja bila validna, ali kako se takvi čvorovi dodatno kažnjavaju (prema funkciji cilja \ref{equ:funkcija_cilja}), inicijalna pogreška je veća.
@@ -1226,6 +1227,54 @@ Različite vrste bojanja različito utječu na sam rad agentskog algoritma. Vrst
 
 \clearpage
 
+
+
+\section{Evolucijska strategija}
+
+Problem evolucijske strategije je sporo izvođenje zbog toga što koristi populaciju. Za svaku jedinku iz populacije potrebno je računati funkciju cilja, što dovodi do sporijeg izvršavanja. Jedan od razloga je implementacija algoritma. Zbog veličine problema i nedostatka memorije na razvojnom računalu, smanjuje se memorijska složenost, ali gubi se na vremenskoj složenosti. Evolucijska strategija ima puno više mogućnosti, ali za to je potrebno i puno više procesorske snage.
+
+U tablici \ref{tbl:es-cs1} prikazano je tipično ponašanje algoritma s različitim vrstama bojenja. Korištenjem \emph{RND} načina bojenja algoritam brže radi, ali su i rješenja lošija. Najbolji izbor je kombinacija \emph{ABW-SWAP} jer za korištenje malo vremena dobivaju se dobri rezultati. Korištenje \emph{MC} lokalnog načina bojenja se ne preporučuje zbog loših rezultata i vremenske neučinkovitosti.
+
+\textbf{Veličina skupa $\mu$} mora biti dovoljno velika kako bi se stvorilo dovoljno jedinki koje mogu evoluirati. Premali skup $\mu$ dovodi rješenje u lokalni minimum iz kojeg je teško izaći. Skup ne smije biti prevelik zbog toga što se vremensko izvođenje povećava. Velik skup zbog uniformne selekcije može dovesti do spore konvergencije, jer se očekuje da se svaka jedinka posjeti jednak broj puta u nekom vremenu.
+
+\textbf{Veličina skupa $\lambda$} svakako mora biti veća od skupa $\mu$. Preporučuje se da skup $\lambda$ bude veličine od $1.5$ do $2$ puta veći od skupa $\mu$. Prevelik skup sporo se obrađuje, ali skup ne smije biti premalen jer može uzrokovati sporu konvergenciju -- mali selekcijski pritisak.
+
+\textbf{Ukupan broj iteracija} ovisi o kompleksnosti grafa, tj. ovisi o tome koliko dobro rješenje se želi dobiti.
+
+\textbf{Broj mutacija nad jednom jedinkom} parametar je koji omogućava nešto bržu konvergenciju. Za grafove s više od $10000$ čvorova, preporuka je koristiti vrijednost parametra reda veličine $10^2$. Ako je parametar prevelik, pretraga algoritma postaje pregruba, tj. algoritam previše skače u prostoru stanja. Na slici \ref{fig:gen_mut} pokazan je rad algoritma s različitim brojem mutacija nad jedinkom. Kao što se vidi na slici ako je mutacija relativno velika, algoritam brzo konvergira na početku, ali je problem što zastane u lokalnom minimumu, tj. algoritam je pregrub. Ako je parametar premalen, tada je konvergencija spora.
+
+\textbf{Vjerojatnost mutacije gena pomoću lokalne pretrage} parametar je koji određuje učestalost korištenja lokalne vrste bojenja. Ponašanje je slično kao i kod drugih algoritama. Parametar bi trebao biti veći od $0.5$ kako bi se naglasak stavio na minimizaciju, ali s druge strane treba osigurati dovoljno veliko skakanje u prostoru stanja. Rezultati su prikazani na slici \ref{fig:gen_cs}.
+
+\begin{table}[htb]
+	\caption{Vrijeme izvođenja evolucijske strategije uz razne vrste bojanja -- Kansai-C}
+	\label{tbl:es-cs1}
+	\centering
+	\begin{tabular}{|l||l|r|r|} \hline
+	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
+	ABW & RND & 63.8 & 37.168 \\ \hline 
+	ABW & SWAP & 51.79 & 115.04 \\  \hline
+	MC & RND & 276.35 & 187.2 \\ \hline
+	MC & SWAP & 63.56 &  302.1 \\  \hline 
+	MF & RND & 64.43 & 218.4 \\ \hline
+	MF & SWAP & 51.34 & 306.39 \\ \hline
+	\end{tabular}
+\end{table}
+
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{Slike/ga/mut/mut.png}
+	\caption{Evolucijska strategija -- ovisnost o broju mutacija nad jedinkom -- Tokai-C}
+	\label{fig:gen_mut}
+\end{figure}
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{Slike/ga/cs/cs.png}
+	\caption{Evolucijska strategija -- ovisnost o vjerojatnosti lokalnog bojanja -- Tokai-C}
+	\label{fig:gen_cs}
+\end{figure}
+
+
+\clearpage
 
 \section{Simulirano kaljenje}
 
@@ -1317,53 +1366,6 @@ Tablice \ref{tbl:sa-cs1}, \ref{tbl:sa-cs2}, \ref{tbl:sa-cs3} i \ref{tbl:sa-cs4} 
 	\caption{Simulirano kaljenje -- ovisnost algoritma o početnoj temperaturi -- Kansai-C}
 	\label{fig:sa_se}
 \end{figure}
-
-\section{Evolucijska strategija}
-
-Problem evolucijske strategije je sporo izvođenje zbog toga što koristi populaciju. Za svaku jedinku iz populacije potrebno je računati funkciju cilja, što dovodi do sporijeg izvršavanja. Jedan od razloga je implementacija algoritma. Zbog veličine problema i nedostatka memorije na razvojnom računalu, smanjuje se memorijska složenost, ali gubi se na vremenskoj složenosti. Evolucijska strategija ima puno više mogućnosti, ali za to je potrebno i puno više procesorske snage.
-
-U tablici \ref{tbl:es-cs1} prikazano je tipično ponašanje algoritma s različitim vrstama bojenja. Korištenjem \emph{RND} načina bojenja algoritam brže radi, ali su i rješenja lošija. Najbolji izbor je kombinacija \emph{ABW-SWAP} jer za korištenje malo vremena dobivaju se dobri rezultati. Korištenje \emph{MC} lokalnog načina bojenja se ne preporučuje zbog loših rezultata i vremenske neučinkovitosti.
-
-\textbf{Veličina skupa $\mu$} mora biti dovoljno velika kako bi se stvorilo dovoljno jedinki koje mogu evoluirati. Premali skup $\mu$ dovodi rješenje u lokalni minimum iz kojeg je teško izaći. Skup ne smije biti prevelik zbog toga što se vremensko izvođenje povećava. Velik skup zbog uniformne selekcije može dovesti do spore konvergencije, jer se očekuje da se svaka jedinka posjeti jednak broj puta u nekom vremenu.
-
-\textbf{Veličina skupa $\lambda$} svakako mora biti veća od skupa $\mu$. Preporučuje se da skup $\lambda$ bude veličine od $1.5$ do $2$ puta veći od skupa $\mu$. Prevelik skup sporo se obrađuje, ali skup ne smije biti premalen jer može uzrokovati sporu konvergenciju -- mali selekcijski pritisak.
-
-\textbf{Ukupan broj iteracija} ovisi o kompleksnosti grafa, tj. ovisi o tome koliko dobro rješenje se želi dobiti.
-
-\textbf{Broj mutacija nad jednom jedinkom} parametar je koji omogućava nešto bržu konvergenciju. Za grafove s više od $10000$ čvorova, preporuka je koristiti vrijednost parametra reda veličine $10^2$. Ako je parametar prevelik, pretraga algoritma postaje pregruba, tj. algoritam previše skače u prostoru stanja. Na slici \ref{fig:gen_mut} pokazan je rad algoritma s različitim brojem mutacija nad jedinkom. Kao što se vidi na slici ako je mutacija relativno velika, algoritam brzo konvergira na početku, ali je problem što zastane u lokalnom minimumu, tj. algoritam je pregrub. Ako je parametar premalen, tada je konvergencija spora.
-
-\textbf{Vjerojatnost mutacije gena pomoću lokalne pretrage} parametar je koji određuje učestalost korištenja lokalne vrste bojenja. Ponašanje je slično kao i kod drugih algoritama. Parametar bi trebao biti veći od $0.5$ kako bi se naglasak stavio na minimizaciju, ali s druge strane treba osigurati dovoljno veliko skakanje u prostoru stanja. Rezultati su prikazani na slici \ref{fig:gen_cs}.
-
-\begin{table}[htb]
-	\caption{Vrijeme izvođenja evolucijske strategije uz razne vrste bojanja -- Kansai-C}
-	\label{tbl:es-cs1}
-	\centering
-	\begin{tabular}{|l||l|r|r|} \hline
-	Lokalno bojanje & Globalno bojanje & Funkcija cilja & Vrijeme izvođenja (s)\\ \hline \hline
-	ABW & RND & 63.8 & 37.168 \\ \hline 
-	ABW & SWAP & 51.79 & 115.04 \\  \hline
-	MC & RND & 276.35 & 187.2 \\ \hline
-	MC & SWAP & 63.56 &  302.1 \\  \hline 
-	MF & RND & 64.43 & 218.4 \\ \hline
-	MF & SWAP & 51.34 & 306.39 \\ \hline
-	\end{tabular}
-\end{table}
-
-
-\begin{figure}[htb]
-	\includegraphics[width=\textwidth]{Slike/ga/mut/mut.png}
-	\caption{Evolucijska strategija -- ovisnost o broju mutacija nad jedinkom -- Tokai-C}
-	\label{fig:gen_mut}
-\end{figure}
-
-\begin{figure}[htb]
-	\includegraphics[width=\textwidth]{Slike/ga/cs/cs.png}
-	\caption{Evolucijska strategija -- ovisnost o vjerojatnosti lokalnog bojanja -- Tokai-C}
-	\label{fig:gen_cs}
-\end{figure}
-
-
-\clearpage
 
 
 \section{Genetsko kaljenje}
@@ -1639,7 +1641,7 @@ U tablici \ref{tbl:dimacs-sa-time} prikazana su vremena izvođenja simuliranog k
 	\end{tabular}
 \end{table}
 
-Na slikama \ref{fig:r250.5} i \ref{fig:r1000.5}, prikazana su ponašanja algoritma za dva grafa.
+Na slikama \ref{fig:r250.5}, \ref{fig:r1000.5}, \ref{fig:dsjr500.1c}, \ref{fig:le450_25c} i \ref{fig:le450_25d} prikazana su ponašanja algoritma za neke grafove.
 
 \begin{figure}[htb]
 	\includegraphics[width=\textwidth]{Slike/test_65_all.png}
@@ -1652,6 +1654,26 @@ Na slikama \ref{fig:r250.5} i \ref{fig:r1000.5}, prikazana su ponašanja algorit
 	\caption{Graf r1000.5 -- korištenje $234$, $266$ i $270$ boja sa simuliranim kaljenjem}
 	\label{fig:r1000.5}
 \end{figure}
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{Slike/test_84_all.png}
+	\caption{Graf dsjr500.1c -- korištenje $84$, $85$ i $86$ i $87$ boja sa simuliranim kaljenjem}
+	\label{fig:dsjr500.1c}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{Slike/test_25c.png}
+	\caption{Graf le450\_25c -- korištenje $25$, $26$, $27$ i $28$ boja sa simuliranim kaljenjem}
+	\label{fig:le450_25c}
+\end{figure}
+
+\begin{figure}[htb]
+	\includegraphics[width=\textwidth]{Slike/test_25d.png}
+	\caption{Graf le450\_25d -- korištenje $25$, $26$, $27$ i $28$ boja sa simuliranim kaljenjem}
+	\label{fig:le450_25d}
+\end{figure}
+
 
 Cilj je ispitivanja algoritma nad \emph{DIMACS} bazom pokazati kako se algoritmi mogu koristiti i za rješavanje klasičnog problema bojenja grafova. Rezultati pokazuju kako je mali postotak bridova na kraju konfliktan (ako se koristi minimalan broj boja). Rezultati heuristika koje se koriste za klasičan problem daju bolje rezultate nego pokazani algoritam u ovom radu, ali to je i očekivano, jer nije puno vremena utrošeno na dobivanje idealnih parametara za klasičan problem. Slike \ref{fig:r250.5} i \ref{fig:r250.5} prikazuje kako je simulirano kaljenje u kombinaciji s pohlepnim algoritmom vrlo agresivna metoda za postizanje minimalne kolizije na samom početku. U sredini izvršavanja algoritma radi se metoda \emph{tuneliranja}, što se može zamijetiti na rezultatima jer se često nakon toga kolizija smanji. Da bi se rezultati poboljšali potrebno je za svaki graf namjestiti idealne parametre. Osim toga bilo bi poželjno razviti determinističke metode koje rješavaju konfliktne bridove na kraju izvršavanja metaheuristika, jer kao što se iz rezultata vidi takvih bridova na kraju izvršavanja nema puno. Vremena izvršavanja ovise o veličini grafa, tj. o njegovoj gustoći. Vidljivo je da kada se koristi više boja, vrijeme izvršavanja je veće, što se može objasniti implementacijom metoda za odabir boja.
 
