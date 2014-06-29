@@ -412,7 +412,7 @@ Sažetak problema kojeg modeliramo pomoću težinskog grafa glasi:
 	\item Svaki čvor može poprimiti jednu boju iz skupa dopuštenih boja za taj čvor.
 	\item Svaki čvor spada u jednu grupu tj. vrstu (A, B ili C).
 	\item Neki čvorovi su definirani kao nepromjenjivi, njima se boja nikad ne smije mijenjati.
-	\item Dodatan uvjet je da postotak promjenjenih čvorova naprema inicijalnom stanju ne smije biti veći od 66\%.
+	\item Dodatan uvjet je da postotak promijenjenih čvorova naprema inicijalnom stanju ne smije biti veći od 66\%.
 	\item Optimizacija se provodi nad funkcijom cilja definiranom formulom (\ref{equ:funkcija_cilja}).
 \end{itemize}
 
@@ -564,7 +564,7 @@ Algoritmi koji su implementirani za ovaj problem podijeljeni su u dva dijela. Pr
 
 \subsection{Mogući problemi}
 
-Mogući problemi mogu se podijeliti na dva dijela: problemi vezani uz ograničenja i problemi vezani uz implementaciju. Problemi vezani uz ograničenja su: velik broj čvorova i bridova koji se mogu pojaviti, velika razlika između težina bridova (razlika za više redova veličina), nepromjenjivi čvorovi koji su okruženi promjenjivim čvorovima. Velik broj čvorova i bridova uzrokuje i sporiji rad algoritma. Razlika između težina bridova može kod algoritama koji koriste tu razliku uzrokovati neočekivano ponašanje (npr. dugo zadržavanje na manjim vrijednostima funkcije cilja). Nepromjenjivi čvorovi koji za susjede imaju promjenjive čvorove mogu uzrokovati sporu konvergenciju, a često je zbog takvh čvorova minimum funkcije cilja relativno velika vrijednost, pa je teško razlikovati lokalni od globalnog minimuma. 
+Mogući problemi mogu se podijeliti na dva dijela: problemi vezani uz ograničenja i problemi vezani uz implementaciju. Problemi vezani uz ograničenja su: velik broj čvorova i bridova koji se mogu pojaviti, velika razlika između težina bridova (razlika za više redova veličina), nepromjenjivi čvorovi koji su okruženi promjenjivim čvorovima. Velik broj čvorova i bridova uzrokuje i sporiji rad algoritma. Razlika između težina bridova može kod algoritama koji koriste tu razliku uzrokovati neočekivano ponašanje (npr. dugo zadržavanje na manjim vrijednostima funkcije cilja). Nepromjenjivi čvorovi koji za susjede imaju promjenjive čvorove mogu uzrokovati sporu konvergenciju, a često je zbog takvih čvorova minimum funkcije cilja relativno velika vrijednost, pa je teško razlikovati lokalni od globalnog minimuma. 
 
 Problemi vezani uz implementaciju su zapravo problemi dizajna algoritama i struktura podataka. S jedne je strane potrebno osigurati brze operacije nad grafom, a s druge strane grafovi mogu zauzimati velik dio memorijskog prostora. Zato je potrebno dizajnirati strukturu grafa koja ne zauzima previše memorijskog prostora, a omogućuje brze operacije. Moguće probleme stvaraju i populacijski algoritmi kod kojih je potrebno čuvati više rješenja. Zbog toga se jedinke ne čuvaju kao grafovi, već je svaka jedinka funkcija bojanja grafa (za svaki čvor zna se koja je njegova boja). Sama struktura (bridovi) sadržana je u strukturi grafa, a jedinka posjeduje vezu na taj graf.
 
@@ -780,7 +780,7 @@ Kostur algoritma izgleda veoma jednostavno. Kao što je opisano, iz skupa $\mu$ 
 	\end{lstlisting}
 \end{singlespace}
 
-Najvažnija je stvar u algoritmu operator mutacije. Operator mutacije kao argumente prima jedinku koja će se promjeniti, broj gena koji se mijenjaju (čvorova), vjerojatnost lokalne pretrage, vrstu bojanja za lokalnu pretragu i vrstu bojanja za globalnu pretragu. 
+Najvažnija je stvar u algoritmu operator mutacije. Operator mutacije kao argumente prima jedinku koja će se promijeniti, broj gena koji se mijenjaju (čvorova), vjerojatnost lokalne pretrage, vrstu bojanja za lokalnu pretragu i vrstu bojanja za globalnu pretragu. 
 
 \begin{singlespace}
 	\begin{lstlisting}[caption=Pseudok\^{o}d mutacije evolucijske strategije]
@@ -1687,11 +1687,13 @@ Glavna stavka rada s metaheuristikama je pogađanje dobrih parametara. Pokazuje 
 Kako pohlepni algoritam ima važnu ulogu, važno je istražiti da li postoji neko sortiranje čvorova koje koristi kombinaciju svojstava čvorova. Rezultati su pokazali kako je dominantno svojstvo \emph{SDO} i u većini slučajeva potiskuje druga svojstva. Istraživanje ovog područja ne bi trebalo završiti na tome, već bi trebalo probati povećati skup za učenje i izvršiti isprobane metode na boljim procesorskim sustavima. Kao nastavak rada na ovom problemu, predlaže se paralelno korištenje računala, gdje svako računalo izvršava po jedan algoritam (s različitim parametrima), te kombinirati dobivena rješenja. 
 
 \bibliography{literatura}
+
 \bibliographystyle{fer}
+%\bibliographystyle{ieeetr}
 
 \begin{sazetak}
 
-U radu se proučava inačica problema bojanja težinskih grafova, gdje je cilj minimizirati sumu težina konfliktnih bridova. Problem je primjenjiv u domeni telekomuniakacija gdje se žele raspodijeliti k\^{o}dovi po mobilnoj mreži. Problem se obrađuje teorijski i praktično. U teorijskom dijelu detaljno se analizira problem i određuju granice njegove rješivosti na računalu. U radu se primjenjuju različiti metaheuristički postupci. Pomoću metoda regresija pokušavaju se pronaći optimalna svojstva grafova, kako bi konvergencija bila što bolja. Na kraju su prikazani rezultati i zaključci.
+U radu se proučava inačica problema bojanja težinskih grafova, gdje je cilj minimizirati sumu težina konfliktnih bridova. Problem je primjenjiv u domeni telekomunikacija gdje se žele raspodijeliti k\^{o}dovi po mobilnoj mreži. Problem se obrađuje teorijski i praktično. U teorijskom dijelu detaljno se analizira problem i određuju granice njegove rješivosti na računalu. U radu se primjenjuju različiti metaheuristički postupci. Pomoću metoda regresija pokušavaju se pronaći optimalna svojstva grafova, kako bi konvergencija bila što bolja. Na kraju su prikazani rezultati i zaključci.
 
 \kljucnerijeci{bojanje grafova, metaheuristika, strojno učenje, regresija, simulirano kaljenje, evolucijska strategija, genetsko kaljenje, agentski algoritam}
 \end{sazetak}
