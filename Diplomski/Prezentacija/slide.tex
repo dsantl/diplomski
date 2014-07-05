@@ -1,0 +1,266 @@
+\documentclass[utf8]{beamer}
+\usetheme{Dresden}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{subfigure}
+
+
+%dodatak za programski kod
+\usepackage{listings}
+\usepackage{color}
+\usepackage{setspace}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\small\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+% Postavljanje fonta
+\if@fonttimes\RequirePackage{times} \fi
+\if@fontlmodern\RequirePackage{lmodern} \fi
+
+\usecolortheme{dolphin}
+
+%prikaz broja slajda
+\expandafter\def\expandafter\insertshorttitle\expandafter{%
+	\insertshorttitle\hfill%
+	\insertframenumber\,/\,\inserttotalframenumber}
+
+\newcommand{\engl}[1]{(engl.~\emph{#1})}
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+
+\title[Simbolička regresija]{Simbolička regresija}
+
+\author[Dino Šantl]{Seminar \newline\newline Dino Šantl\newline Mentor: Prof. dr. sc. Domagoj Jakobović}
+
+\institute{Fakultet elektrotehnike i računarstva}
+\date{Zagreb, lipanj 2013.}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Uvod}
+\begin{frame}{Uvod}
+\begin{itemize}
+\item Postupak pronalaženja matematičkog izraza iz empirijskih podataka
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{slike/sinus.png}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Uvod}
+	\begin{itemize}
+		\item Osim traženja parametra modela traži se i sam model 
+		\item Model nije pretpostavljen kao npr. kod linearne regresije
+	\end{itemize}
+	\vspace{20px}
+	Linearna regresija:
+	\begin{equation} 
+	h(x) = \mathbf{w_{1}}\cdot x^{2} + \mathbf{w_{2}}\cdot x + \mathbf{w_{0}}
+	\end{equation}
+	Simbolička regresija:
+	\begin{equation} 
+	h(x) = \mathbf{2\cdot ln(x) + 0.5\cdot sin(x)} 
+	\end{equation}
+	\center
+	ili
+	\begin{equation} 
+	h(x) = \mathbf{e^{x} \cdot cos^{2}(x)} 
+	\end{equation}
+\end{frame}
+
+\section{Evolucijski algoritam}
+\begin{frame}{Evolucijski algoritam}
+	\begin{itemize}
+		\item Prostor stanja prevelik za iscrpno pretraživanje \engl{brute force} - heuristika $\rightarrow$ evolucijski algoritam
+		\item Evolucijski algoritam
+		\begin{itemize}
+			\item \textbf{jedinka}
+			\item populacija
+			\item selekcija
+			\item križanje 
+			\item mutacija
+			\item dobrota jedinke - \textbf{račun pogreške}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Evolucijski algoritam}
+	\begin{itemize}
+	\item Genetsko programiranje
+	\pause
+	\item Gramatička evolucija
+	\pause
+	\item Analitičko programiranje
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Genetsko programiranje}
+	\begin{itemize}
+		\item Jedinka prikazana stablom: $\sqrt{y} \cdot x+sin(3.14\cdot x)$
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=5cm]{slike/sintaksno_stablo.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Gramatička evolucija}
+	\begin{itemize}
+		\item Jedinka prikazana u binarnom obliku - 0011 1110 0101 1000
+		\item Formira se niz iz kojeg se gradi izraz - $[3, 14, 5, 8]$
+		\item Izraz se gradi na temelju zadane gramatike (npr. BNF oblik)
+	\end{itemize}
+\pause
+\begin{tabular}{r l l c}                       
+	<izraz> & ::= & <izraz> <operator> <izaraz> & (0)\\
+	  & | & <var> & (1)\\
+	  & | & <func>(<izraz>) & (2)\\
+	 <operator> & ::= & + & (0)\\
+	  & | & - & (1)\\
+	<var> & ::= & X & (0)\\
+	& | & 3.14 & (1)\\
+	<func> & ::= & Sin & (0)\\
+	& | & Log & (1)\\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}{Analitičko programiranje}
+	\begin{itemize}
+		\item Jedinka zapisana pomoću niza - $[3, 14, 42, 5]$
+		\item Definira se skup u kojem se nalaze operatori, funkcije, varijable i konstante
+		\item Na temelju broja u nizu određuje se element u matematičkom izrazu
+		\item \{ +, -, *, / , sin, cos, sqrt, X, Y, 3.14\}
+ 
+	\end{itemize}
+\end{frame}
+
+\section{Problemi}
+\begin{frame}{Problemi u simboličkoj regresiji}
+\begin{itemize}
+\item Predugi izrazi - regularizacija
+\item Nedefiniran izlaz funkcije - \textbf{intervalna aritmetika}
+\item Konstante - \textbf{linearno skaliranje}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Intervalna aritmetika}
+	\begin{itemize}
+		\item Raniji pokušaji: sigurni operatori: $f(x)=\frac{1}{x-5}$, $x=5$?
+		\pause
+		\item Prikaz jedinke pomoću stabla
+		\item Računa se izlaz generirane funkcije ali u intervalnoj aritmetici
+		\item Ako je interval beskonačan ili se pojavi kompleksni broj potrebno je obrisati podstablo
+		\item Korak prije računanja pogreške
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Intervalna aritmetika}
+	\begin{figure}
+		\centering
+		\includegraphics[width=7cm]{slike/interval.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Linearno skaliranje}
+	\begin{itemize}
+		\item Funkcija ima "dobar" oblik ali nije dobro skalirana
+		\item Primjer: $h(x) = 12.42\cdot x^{2} + 10^{8}$
+		\pause
+		\item Izraz se zapiše u obliku $h^{'}(x)=\mathbf{a}\cdot h(x) + \mathbf{b}$		
+		\item Traže se konstante $\mathbf{a}$ i $\mathbf{b}$ koje minimiziraju srednju kvadratnu pogrešku (dobrota jedinke)
+	\end{itemize}
+\begin{equation}
+E = \frac{1}{N}\sum_{i=1}^{N}(y_{i}-(a\cdot h(\mathbf{x_{i}})+b))^2
+\end{equation}
+\end{frame}
+
+
+\section{Korištenje u praksi}
+
+\begin{frame}{Izlučivanje fizikalnih zakona iz empirijskih podataka}
+\begin{figure}
+\centering
+\includegraphics[height=1.5cm]{slike/oscilator.pdf}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[height=2.5cm]{slike/sinus.png}
+\end{figure}
+
+Bez znanja fizike:
+\begin{equation}
+a-0.05v-7.8x=0
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}{Izlučivanje fizikalnih zakona iz empirijskih podataka}
+\begin{itemize}
+\item Empirijski podaci
+\pause
+\item Numeričko računanje parcijalnih derivacija $\frac{\Delta y}{\Delta x}$
+\pause
+\item Simboličkom regresijom traži se funkcija $f(x,y)$ koja najbolje opisuje parcijalne derivacije: $\frac{\delta y}{\delta x}=\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}$
+\pause
+\item Račun pogreške:
+\begin{equation}
+E = -\frac{1}{N} \sum_{i=1}^{N} log\left [1+abs(\frac{\delta y_{i}}{\delta x_{i}}-\frac{\Delta y_{i}}{\Delta x_{i}}) \right ]
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Izlučivanje fizikalnih zakona iz empirijskih podataka}
+\begin{itemize}
+\item Zanemarivanje nekih funkcija $\rightarrow$ aproksimacije
+\pause
+\item Računanje traje od par sati do nekoliko dana
+\pause
+\item Pokazuje se da je točno rješenje u trenutku kada se dogodi veliki skok u pogrešci
+\end{itemize}
+\end{frame}
+
+
+\section{Pitanja}
+\begin{frame}{}
+\center
+\Huge{Hvala na pažnji!}
+\end{frame}
+
+\begin{frame}{}
+\center
+\Huge{Pitanja?}
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{slike/pitanja.png}
+\end{figure}
+\end{frame}
+
+
+
+\end{document}
