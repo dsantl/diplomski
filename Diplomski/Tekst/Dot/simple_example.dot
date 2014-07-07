@@ -1,0 +1,16 @@
+graph crown {
+	
+	n1[label="BS1"];
+	n2[label="BS2"];
+	n3[label="BS3"];
+	n4[label="BS4"];
+	n5[label="BS5"];
+
+	n1--n2[label="5"];
+	n1--n3[label="10"];
+	n1--n5[label="40"];
+	n2--n4[label="100"];
+	n2--n5[label="9"];
+	n3--n4[label="1"];
+	n4--n5[label="7"];
+}
