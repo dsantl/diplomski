@@ -100,17 +100,6 @@
 
 \begin{frame}{Definicija problema}
 	\begin{itemize}
-		\item Obojati graf s ciljem minimizacije sume težina konfliktnih bridova
-	\end{itemize}
-	\begin{figure}[h]
-  \caption{Primjer bojanja težinskog grafa - greška: $10$}
-  \centering
-    \includegraphics[width=0.4\textwidth]{../Tekst/Slike/simple_example_color.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Definicija problema}
-	\begin{itemize}
 		\item Ulaz:
 			\begin{itemize}
 				\item Popis i definicija domena (skupova) boja
@@ -134,29 +123,173 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Definicija problema}
+	\begin{itemize}
+		\item Obojati graf s ciljem minimizacije sume težina konfliktnih bridova
+		\item Potrebno je poštivati pravilo: manje od $66\%$ čvorova mora imati svoju početnu boju
+	\end{itemize}
+	\begin{figure}[h]
+  \caption{Primjer bojanja težinskog grafa - greška: $10$}
+  \centering
+    \includegraphics[width=0.4\textwidth]{../Tekst/Slike/simple_example_color.png}
+	\end{figure}
+\end{frame}
 
+\begin{frame}{Analiza problema}
+	\begin{itemize}
+		\item Za broj stanja: $N \le \sum_{i=1}^{M} S(V(G), i)$
+		\pause
+		\item Za $M=V(G)$ vrijedi: $N=B(M)$
+		\begin{itemize}
+			\item $2^M \le B(M) \le M!$
+		\end{itemize}
+		\pause
+		\item Broj stanja prevelik za iscrpnu pretragu!
+	\end{itemize}
+\end{frame}
 
-\begin{frame}{Analiza}
-Prostor stanja
-NP hard problem
-No free lunch
-Ispod zaključka
+\begin{frame}{Analiza problema}
+	\begin{itemize}
+		\item Optimizacijski problem (nije problem odluke)
+		\pause
+		\item Traži se minimum funkcije cilja: sume konfliktnih bridova
+		\pause
+		\item Problem je \textbf{NP-težak}
+		\pause
+		\item \emph{No free lunch} teorem?
+		\pause
+		\item Nameće se korištenje (meta)heuristika
+	\end{itemize}
 \end{frame}
 
 \section{Algoritmi}
 \begin{frame}{Korišteni algoritmi}
+	\begin{itemize}
+		\item Pohlepni algoritam
+		\pause
+		\item Agentski algoritam
+		\pause
+		\item Simulirano kaljenje
+		\pause
+		\item Evolucijska strategija
+		\pause
+		\item Genetsko kaljenje
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Pohlepni algoritam}
+	\begin{itemize}
+		\item Obilazak čvorova i dodijela boja
+		\pause
+		\item Vrste sortiranja: COL, FIT, LDO, SDO, SDOLDO, RND
+		\pause
+		\item Vrste bojanja: ABW, MC, MF, RND, SWAP
+		\pause
+		\item Pohlepan algoritam nije ispravan!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Agentski algoritam}
+	\begin{itemize}
+		\item Agent - nalazi se na nekom čvoru
+		\item Boduje se prema najvećem svojem konfliktnom bridu
+		\item Sortiranje agenata prema bodovima
+		\item Odluka za agenta: 
+			\begin{itemize}
+				\item Ostajanje na čvoru
+				\item Slučajni susjed
+				\item \emph{Najteži} susjed
+			\end{itemize}
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Simulirano kaljenje}
+	\begin{itemize}
+		\item Dva rješenja: staro i novo
+		\pause
+		\item Ako je novo bolje sigurno se prihvaća
+		\pause
+		\item Ako je rješenje lošje prihvaća se s određenom vjerojatnošću
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Evolucijska strategija}
+	\begin{itemize}
+		\item Genetski algoritam -- smisao operatora križanja? -- loši rezultati
+		\pause
+		\item Evolucijska strategija $(\mu, \lambda)$ -- kreiraju se nova rješenja, stara se brišu
+		\pause
+		\item Samo operator mutacije
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Genetsko kaljenje}
+	\begin{itemize}
+		\item Kombinacija simuliranog kaljenja i genetskog algoritma
+		\pause
+		\item Komunikacija između \emph{jedinki} modelira se zajedničkom energijom
+		\pause
+		\item Energija: koliko rješenje može biti lošije a da se prihvati
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Tuneliranje i postotak bojanja}
+	\begin{itemize}
+		\item \emph{SWAP} vrsta bojanja
+		\pause
+		\item Odabire se točka u prostoru čija vrijednost funkcije cilja približno jednaka trenutnoj
+		\pause
+		\item Funkcija cilja u teoriji može samo padati
+		\pause
+		\item Postotak bojanja - u operatore se ugrađuje preferiranje početne boje
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Izlučivanje znanja}
+	\begin{itemize}
+		\item Da li postoji funkcija $f(\textup{COL}, \textup{FIT}, \textup{LDO}, \textup{SDO})$ po kojoj se čvorovi sortiraju, a da je rezultat pohlepnog algoritma optimalan?
+		\pause
+		\item Korištenje regresije (odabir modela ili simbolička regresija)
+		\pause
+		\item Slučajno sortirati čvorove
+		\pause
+		\item Obojati nekom vrstom bojanja
+		\pause
+		\item Uzeti najbolje rezultate kao ulaz za regresiju
+		\pause
+		\item Fokus je na čvorovima (ne na grafu)
+	\end{itemize}
 \end{frame}
+
 
 \section{Programsko rješenje}
 \begin{frame}{Programsko rješenje}
+	\begin{itemize}
+		\item \emph{Java} programski jezik
+		\pause
+		\item Programsko okruženje za razvoj algoritama za ovaj specifičan problem
+		\pause
+		\item Razni formati za čitanje grafova i spremanje rezultata, podrška za populacijske algoritme...
+	\end{itemize}
 \end{frame}
 
 
 \section{Rezultati}
-\begin{frame}{Rezultati}
+\begin{frame}{Minimizacija funkcije cilja}
+\end{frame}
+
+\begin{frame}{Minimizacija postotka promjene početne boje}
+\end{frame}
+
+\begin{frame}{Traženje optimalne funkcije sortiranja}
+\end{frame}
+
+\begin{frame}{Rezultati DIMACS baze}
+\end{frame}
+
+\section{Zaključak}
+\begin{frame}{Zaključak}
 \end{frame}
 
 
@@ -171,7 +304,6 @@ Ispod zaključka
 \Huge{Pitanja?}
 
 \end{frame}
-
 
 
 \end{document}
