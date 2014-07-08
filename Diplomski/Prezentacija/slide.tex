@@ -37,7 +37,7 @@
 \if@fonttimes\RequirePackage{times} \fi
 \if@fontlmodern\RequirePackage{lmodern} \fi
 
-\usecolortheme{dolphin}
+\usecolortheme{sidebartab}
 
 %prikaz broja slajda
 \expandafter\def\expandafter\insertshorttitle\expandafter{%
@@ -46,6 +46,8 @@
 
 \newcommand{\engl}[1]{(engl.~\emph{#1})}
 \newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+
+\renewcommand\tablename{Tablica}
 
 \title[Bojanje grafova prilagodljivim metaheurističkim postupcima]{Bojanje grafova prilagodljivim metaheurističkim postupcima}
 
@@ -74,21 +76,26 @@
 \section{Uvod}
 \begin{frame}{Uvod}
 	\begin{itemize}
-		\item Kako mobilni uređaj ralikuje bazne stanice?
+		\item Korištenje metaheuristika u stvarnom problemu
 		\pause
-		\item \emph{Scrambling Code}
+		\item Cilj: Povećanje kvalitete mobilne mreže
+		\pause
+		\item \emph{Scrambling Code} -- prepoznavanje baznih stanica 
 		\pause
 		\item Problem: $\sim 100000$ baznih stanica i \emph{samo} $512$ k\^{o}dova
 		\pause
-		\item Pokušaj rješenja: uniformna raspodijela kodova - \textbf{neuspješno} 
+		\item Pokušaj rješenja: uniformna raspodjela kodova - \textbf{neuspješno} 
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Modeliranje problema}
 	\begin{itemize}
 		\item Bazne stanice modeliraju se čvorovima
-		\item Udaljenosti između baznih staniza -- težinski bridovi
+		\pause
+		\item Udaljenosti između baznih stanica -- težinski bridovi
+		\pause
 		\item Model -- težinski graf
+		\pause
 		\item Postavljanje k\^{o}dova - \textbf{problem bojanja težinskih grafova}
 	\end{itemize}
 	\begin{figure}[h]
@@ -100,34 +107,13 @@
 
 \begin{frame}{Definicija problema}
 	\begin{itemize}
-		\item Ulaz:
-			\begin{itemize}
-				\item Popis i definicija domena (skupova) boja
-				\pause
-				\item Popis čvorova
-					\begin{itemize}
-						\item Oznaka čvora
-						\item Vrsta čvora - (A, B, C)
-						\item Oznaka domene boja
-						\item Početna boja čvora
-						\item Oznaka promjenjivosti čvora
-					\end{itemize}
-				\pause
-				\item Popis bridova
-			\end{itemize}
+		\item Ulaz: početno stanje mreže (informacije o čvorovima)
 		\pause
-		\item Izlaz:
-			\begin{itemize}
-				\item Oznaka čvora i boja čvora
-			\end{itemize}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Definicija problema}
-	\begin{itemize}
 		\item Obojati graf s ciljem minimizacije sume težina konfliktnih bridova
-		\item Potrebno je poštivati pravilo: manje od $66\%$ čvorova mora imati svoju početnu boju
+		\pause
+		\item Najmanje $33\%$ čvorova mora imati svoju početnu boju
 	\end{itemize}
+	\pause
 	\begin{figure}[h]
   \caption{Primjer bojanja težinskog grafa - greška: $10$}
   \centering
@@ -137,7 +123,7 @@
 
 \begin{frame}{Analiza problema}
 	\begin{itemize}
-		\item Za broj stanja: $N \le \sum_{i=1}^{M} S(V(G), i)$
+		\item Za broj stanja (različitih bojanja): $N \le \sum_{i=1}^{M} S(V(G), i)$
 		\pause
 		\item Za $M=V(G)$ vrijedi: $N=B(M)$
 		\begin{itemize}
@@ -151,8 +137,6 @@
 \begin{frame}{Analiza problema}
 	\begin{itemize}
 		\item Optimizacijski problem (nije problem odluke)
-		\pause
-		\item Traži se minimum funkcije cilja: sume konfliktnih bridova
 		\pause
 		\item Problem je \textbf{NP-težak}
 		\pause
@@ -179,21 +163,29 @@
 
 \begin{frame}{Pohlepni algoritam}
 	\begin{itemize}
-		\item Obilazak čvorova i dodijela boja
+		\item Obilazak čvorova i dodjela boja
+		\pause
+		\item Pronalazak relativno dobre vrijednosti funkcije cilja
 		\pause
 		\item Vrste sortiranja: COL, FIT, LDO, SDO, SDOLDO, RND
 		\pause
-		\item Vrste bojanja: ABW, MC, MF, RND, SWAP
+		\item Vrste bojanja: ABW, MC, MF, SWAP, RND
 		\pause
-		\item Pohlepan algoritam nije ispravan!
+		\item Pohlepan algoritam ne pronađe nužno globalni minimum
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Agentski algoritam}
+	
+	\putat{90}{30}{ \includegraphics[width=0.07\textwidth]{../Tekst/Slike/agent.png}}
+	
 	\begin{itemize}
-		\item Agent - nalazi se na nekom čvoru
-		\item Boduje se prema najvećem svojem konfliktnom bridu
+		\item Agent - nalazi se na nekom čvoru i donosi odluku o novoj boji
+		\pause
+		\item Boduje se prema najvećoj težini konfliktnog brida
+		\pause
 		\item Sortiranje agenata prema bodovima
+		\pause
 		\item Odluka za agenta: 
 			\begin{itemize}
 				\item Ostajanje na čvoru
@@ -205,11 +197,16 @@
 
 \begin{frame}{Simulirano kaljenje}
 	\begin{itemize}
-		\item Dva rješenja: staro i novo
+		\item Dva rješenja: staro $X$ i novo $S$
 		\pause
 		\item Ako je novo bolje sigurno se prihvaća
 		\pause
-		\item Ako je rješenje lošje prihvaća se s određenom vjerojatnošću
+		\item Ako je rješenje lošije prihvaća se s određenom vjerojatnošću
+		\begin{itemize}
+			\item $P(X=S) = e^{-\frac{f(S)-f(X)}{T}}$
+		\end{itemize}
+		\pause
+		\item Temperatura $T$ pada s vremenom
 	\end{itemize}
 \end{frame}
 
@@ -219,7 +216,7 @@
 		\pause
 		\item Evolucijska strategija $(\mu, \lambda)$ -- kreiraju se nova rješenja, stara se brišu
 		\pause
-		\item Samo operator mutacije
+		\item Samo operator mutacije - vrste bojanja
 		\end{itemize}
 \end{frame}
 
@@ -227,9 +224,9 @@
 	\begin{itemize}
 		\item Kombinacija simuliranog kaljenja i genetskog algoritma
 		\pause
-		\item Komunikacija između \emph{jedinki} modelira se zajedničkom energijom
+		\item Komunikacija između \emph{jedinki} modelira se zajedničkom energijom koja se ravnopravno podijeli
 		\pause
-		\item Energija: koliko rješenje može biti lošije a da se prihvati
+		\item Energija: koliko rješenje može biti lošije, a da se prihvati
 	\end{itemize}
 \end{frame}
 
@@ -238,19 +235,28 @@
 	\begin{itemize}
 		\item \emph{SWAP} vrsta bojanja
 		\pause
-		\item Odabire se točka u prostoru čija vrijednost funkcije cilja približno jednaka trenutnoj
-		\pause
-		\item Funkcija cilja u teoriji može samo padati
+		\begin{itemize}
+			\item Odabire se točka u prostoru čija vrijednost funkcije cilja približno jednaka trenutnoj
+		\end{itemize}
 		\pause
 		\item Postotak bojanja - u operatore se ugrađuje preferiranje početne boje
+		\begin{itemize}
+			\item Agresivni i blagi operatori
+		\end{itemize}
 	\end{itemize}
 \end{frame}
+
+\begin{frame}{Minimizacija postotka promjene početne boje}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../Tekst/Slike/kondenz_iter_per_.png}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}{Izlučivanje znanja}
 	\begin{itemize}
 		\item Da li postoji funkcija $f(\textup{COL}, \textup{FIT}, \textup{LDO}, \textup{SDO})$ po kojoj se čvorovi sortiraju, a da je rezultat pohlepnog algoritma optimalan?
-		\pause
-		\item Korištenje regresije (odabir modela ili simbolička regresija)
 		\pause
 		\item Slučajno sortirati čvorove
 		\pause
@@ -258,9 +264,20 @@
 		\pause
 		\item Uzeti najbolje rezultate kao ulaz za regresiju
 		\pause
+		\item Korištenje regresije (odabir modela ili simbolička regresija)
+		\pause
 		\item Fokus je na čvorovima (ne na grafu)
 	\end{itemize}
 \end{frame}
+
+\begin{frame}{Izlučivanje znanja}
+	\begin{itemize}
+		\item Rezultati nisu pokazali postojanje funkcije koja kombinira vrste sortiranja
+		\item Najveći utjecaj ima $SDO$, a nakon toga $LDO$ -- što se poklapa s prijašnjim istraživanjima
+		\item Ako se greška minimizira lokalno $MF$, tada i $FIT$ ima utjecaj
+	\end{itemize}
+\end{frame}
+
 
 
 \section{Programsko rješenje}
@@ -277,19 +294,51 @@
 
 \section{Rezultati}
 \begin{frame}{Minimizacija funkcije cilja}
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{|l|r|r|} \hline
+	Graf & Funkcija cilja & Postotak promjene početne boje \\ \hline \hline
+	Tokai & 1195.255 & 65\% \\ \hline
+	Kansai & 4104.29 & 66\% \\ \hline
+	\end{tabular}
+\end{table}
+
 \end{frame}
 
-\begin{frame}{Minimizacija postotka promjene početne boje}
+
+\begin{frame}{Usporedba algoritama}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]{../Tekst/Slike/tokai-A.pdf}
+\end{figure}
 \end{frame}
 
-\begin{frame}{Traženje optimalne funkcije sortiranja}
+\begin{frame}{Usporedba algoritama}
+\begin{table}[htb]
+	\centering
+	\caption{Standardna devijacija}
+	\begin{tabular}{|l|r|} \hline
+	Algoritam & Standardna devijacija \\ \hline \hline
+	Agentski algoritam  & 166.5007100085  \\ \hline
+	Simulirano kaljenje & 2.3047581941 \\ \hline
+	Evolucijska strategija & 7.855956339 \\ \hline
+	Genetsko kaljenje & 0.1745653573 \\ \hline
+	\end{tabular}
+\end{table}
 \end{frame}
 
-\begin{frame}{Rezultati DIMACS baze}
-\end{frame}
 
 \section{Zaključak}
 \begin{frame}{Zaključak}
+	\begin{itemize}
+		\item Problem se može efikasno rješavati metaheuristikama
+		\pause
+		\item Važno je ugraditi specifične operatore i namjestiti parametre
+		\pause
+		\item Rezultati pokazuju da se ovakav pristup može korisititi za klasičan problem bojanja grafova
+		\pause
+		\item Moguća poboljšanja i ubrzanja
+	\end{itemize}
 \end{frame}
 
 
@@ -302,7 +351,10 @@
 \begin{frame}{}
 \center
 \Huge{Pitanja?}
-
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.4\textwidth]{../Tekst/Slike/pitanja.png}
+	\end{figure}
 \end{frame}
 
 
